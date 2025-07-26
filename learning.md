@@ -53,3 +53,31 @@ Example:
 
 
 ## sticky and top-0 is used in the navbar for best 
+
+
+## NPM Scripts
+
+- Scripts are commands in `package.json` under `scripts`.
+- Run with: `npm run <script-name>`.
+- Example:
+  ```json
+  "scripts": {
+    "dev:backend": "nodemon index.js",
+    "dev:frontend": "vite",
+    "start": "node index.js"
+  }
+Use npm run dev:backend to start backend dev server,
+and npm run dev:frontend for frontend.
+
+
+## `npm run dev` Usage
+
+- Vite projects have `dev` script by default (`"dev": "vite"`).
+- Backend projects need you to add it manually (`"dev": "nodemon index.js"`).
+- Run `npm run dev` to start dev server in both cases.
+
+
+### Centering in Tailwind
+- **text-center** → centers text inside a full-width element.
+- **mx-auto** → centers the whole element horizontally, works only if the element’s width is smaller than its parent (not `w-full`).
+- **my-auto** → vertically centers a flex/grid child when parent has extra height.
