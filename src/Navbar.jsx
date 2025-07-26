@@ -13,39 +13,39 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className='flex justify-center w-full h-18 bg-black items-center'
+        className='flex justify-center w-full h-18 bg-white items-center sticky top-0 px-2'
       >
         <button
           onClick={slider}
-          className='text-gray-300 hover:bg-white/20 rounded-full p-2 hover:cursor-pointer'>
+          className='text-black  rounded-full  hover:cursor-pointer hover:bg-black/15'>
           <Menu size={33} />
         </button>
 
-        <img src="/images/travel-mitra-logo.png" alt="" className='h-20 left-0' />
-
+        <img src="/images/travel-mitra-logo.png" alt="" className='h-40 pl-4' />
         <div className='h-[70%] w-[50%] rounded-full border-1 ml-64 border-gray-600 flex justify-center items-center'>
           <input
-            type="text"
-            name='search-bar'
-            placeholder='Search'
+            type="search"
+            name="searchQuery_no_save"
+            placeholder='Search Your Destination'
             autoComplete='new-password'
-            className='   pl-5 h-full w-[90%] text-lg text-gray-200 pr-3 placeholder:text-gray-500  outline-none'
+            inputMode="search"
+            className='pl-5 h-full w-[90%] text-lg text-black pr-3 overflow-hidden outline-none'
           />
-          <button className='text-gray-300 bg-white/13 rounded-r-full hover:cursor-pointer hover:bg-white/20 h-full justify-center flex items-center w-[10%]'>
+          <button className='text-black bg-black/10 rounded-r-full hover:cursor-pointer hover:bg-black/15 h-full justify-center flex items-center w-[10%]'>
             <Search />
           </button>
         </div>
-        <div className='text-gray-300 flex justify-center mr-32 items-center w-12 h-[70%] mx-4 cursor-pointer hover:bg-white/20 rounded-full bg-white/13'>
+        <div className='text-black flex justify-center mr-32 items-center w-12 h-[70%] mx-4 cursor-pointer hover:bg-black/15 bg-black/10  rounded-full '>
           <Mic />
         </div>
-        <button className='text-gray-300 h-[70%] w-12 flex justify-center mr-2 items-center rounded-full hover:cursor-pointer hover:bg-white/20'>
+        <button className='text-black h-[70%] w-12 flex justify-center mr-2 items-center rounded-full hover:bg-black/15 bg-black/10  hover:cursor-pointer '>
           <Bell />
         </button>
-        <button className='text-gray-300 h-[70%] w-12 flex justify-center items-center rounded-full bg-white/20 cursor-pointer'>
+        <button className='text-black h-[70%] w-12 flex justify-center items-center rounded-full  hover:bg-black/15 bg-black/10  cursor-pointer'>
           <User size={25} />
         </button>
       </nav>
-      <div className='text-black'>{isClicked ? <Slider /> : false}</div>
+      <div className='text-black'>{isClicked && <Slider />}</div>
     </>
   )
 }

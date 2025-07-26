@@ -38,3 +38,18 @@ Using the function form ensures you always get the latest state value, which is 
 prev is a parameter representing the previous state value, and the function you pass to setState uses it to compute the new state.
 
 So when you write prev => !prev, you are taking that parameter and returning its opposite, effectively toggling the boolean state.
+
+
+### 🔒 Preventing Browser Autofill in Input Fields
+
+Browsers often show saved suggestions (autofill) based on the `name` attribute, even if `autoComplete="off"` is set. To prevent this:
+
+- Use a unique, non-standard `name` (e.g., `searchQuery_no_save`) to avoid triggering autofill.
+- Still set `autoComplete="off"` for consistency.
+- Avoid common names like `search`, `email`, `username`, which browsers recognize.
+
+Example:
+<input type="search" name="searchQuery_no_save" autoComplete="off" />
+
+
+## sticky and top-0 is used in the navbar for best 
