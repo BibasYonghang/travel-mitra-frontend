@@ -13,7 +13,7 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className='flex justify-center w-full h-20 bg-white items-center  sticky z-50 top-0 px-2'
+        className='flex justify-center w-full h-20 bg-white items-center  px-2'
       >
         <button
           onClick={slider}

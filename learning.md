@@ -81,3 +81,26 @@ and npm run dev:frontend for frontend.
 - **text-center** → centers text inside a full-width element.
 - **mx-auto** → centers the whole element horizontally, works only if the element’s width is smaller than its parent (not `w-full`).
 - **my-auto** → vertically centers a flex/grid child when parent has extra height.
+# React Props — Notes
+
+- Props are data passed **from parent to child** components.
+- You **cannot pass props to the same component internally**.
+- Props are **read-only** inside child components.
+- To access props, use:
+  - `props.propName` or
+  - Destructure in function args: `function Comp({ propName })`
+- To share state between components, pass:
+  - State value as prop
+  - Setter function as prop (callback)
+- Always pass props explicitly when rendering child components, e.g.:
+  <Child propName={value} />
+
+
+  - **Inline elements** (e.g., `<a>`, `<span>`, `<strong>`) do not respect `width` and `height`.
+- Their size depends on:
+  - Text content
+  - `line-height`
+  - `padding` (only adds space, not set width/height)
+- To apply custom width/height:
+  - Use `display: block` or `display: inline-block`
+  - Example: `<a class="block w-32 h-10">Link</a>`
