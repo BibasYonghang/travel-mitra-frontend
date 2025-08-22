@@ -104,3 +104,10 @@ and npm run dev:frontend for frontend.
 - To apply custom width/height:
   - Use `display: block` or `display: inline-block`
   - Example: `<a class="block w-32 h-10">Link</a>`
+- # NPM Scripts for Vite
+
+
+- `"dev": "vite"` → run with `npm run dev`  
+- `"start": "vite"` → run with `npm start`
+
+`npm start` is a shortcut for `"start"`, no `run` needed.

@@ -1,51 +1,59 @@
-
-import { Bell, Menu, Mic, Search, User } from 'lucide-react'
+import { Menu, Search } from 'lucide-react'
 import Slider from './Slider';
 import { useState } from "react";
 
 export default function Navbar() {
   const [isClicked, setIsClicked] = useState(false);
 
-  const slider = () => {
+  const toggleSlider = () => {
     setIsClicked((prev) => !prev);
   }
 
   return (
     <>
-      <nav
-        className='flex justify-center w-full h-20 bg-white items-center  px-2'
-      >
+      <nav className='flex justify-between items-center w-full h-20 bg-white px-6'>
+        {/* Menu Button */}
         <button
-          onClick={slider}
-          className='text-black h-[60%] w-12 flex justify-center items-center rounded-full hover:bg-black/15   hover:cursor-pointer '>
-          <Menu size={33} />
+          onClick={toggleSlider}
+          className='text-black h-[60%] w-12 flex justify-center items-center rounded-full hover:bg-black/15 cursor-pointer'
+          aria-label="Toggle Menu"
+        >
+          <Menu size={30} />
         </button>
 
-        <img src="/images/travel-mitra-logo.png" alt="" className='h-full mx-4' />
-        <div className='h-[60%] w-[50%] rounded-full border-1 ml-64 border-gray-600 flex justify-center items-center'>
+        {/* Logo */}
+        <img src="/images/travel-mitra-logo.png" alt="Travel Mitra Logo" className='h-full mx-4' />
+
+        {/* Navigation Links */}
+        <ul className='space-x-8 font-medium text- '>
+          <li><a href="#" className="hover:text-blue-500 text-red-600">Home</a></li>
+          <li><a href="#" className="hover:text-blue-500">Trails</a></li>
+          <li><a href="#" className="hover:text-blue-500">Weather</a></li>
+          <li><a href="#" className="hover:text-blue-500">Services</a></li>
+          <li><a href="#" className="hover:text-blue-500">Blog</a></li>
+          <li><a href="#" className="hover:text-blue-500">About</a></li>
+          <li><a href="#" className="hover:text-blue-500">Contact</a></li>
+        </ul>
+
+
+        {/* Search Bar */}
+        <div className='hidden md:flex items-center border border-gray-400 rounded-full px-3 py-1 w-80'>
           <input
             type="search"
-            name="searchQuery_no_save"
+            name="search"
             placeholder='Search Your Destination'
-            autoComplete='new-password'
-            inputMode="search"
-            className='pl-8 h-full w-[90%] text-lg text-black pr-3 outline-none'
+            autoComplete='off'
+            className='flex-grow text-black text-base outline-none px-2'
           />
-          <button className='text-black bg-black/10 rounded-r-full hover:cursor-pointer hover:bg-black/15 h-full justify-center flex items-center w-[10%]'>
-            <Search />
+          <button className='text-black hover:text-blue-500'>
+            <Search size={20} />
           </button>
         </div>
-        <div className='text-black flex justify-center mr-32 items-center w-12 h-[60%] mx-4 cursor-pointer hover:bg-black/15 bg-black/10  rounded-full '>
-          <Mic />
-        </div>
-        <button className='text-black h-[60%] w-12 flex justify-center mr-2 ml-8 items-center rounded-full hover:bg-black/15 bg-black/10  hover:cursor-pointer '>
-          <Bell />
-        </button>
-        <button className='text-black h-[60%] w-12 flex justify-center items-center rounded-full  hover:bg-black/15 bg-black/10  cursor-pointer'>
-          <User size={25} />
-        </button>
+
       </nav>
-      <div className='text-black'>{isClicked && <Slider />}</div>
+
+      {/* Mobile Slider / Sidebar */}
+      <div>{isClicked && <Slider />}</div>
     </>
   )
 }

@@ -1,60 +1,113 @@
-import { Bell, Menu, Mic, Search, User } from 'lucide-react';
-import React from 'react';
+import { Bell, Menu, Mic, Search, SearchCheck, SearchIcon, User } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
 
-export default function Intro({ searchTerm, setSearchTerm }) {
+export default function Intro() {
+    const [isClicked, setIsClicked] = useState(false);
+    const [currentImage, setCurrentImage] = useState(0);
+
+    const backgroundImages = [
+        { path: "/images/travel-mitra-bg.png" },
+        { path: "/images/background-image1.png" },
+        { path: "/images/background-image2.png" },
+        { path: "/images/background-image3.png" },
+    ];
+
+    const clickButton = () => {
+        setIsClicked(prev => !prev);
+    };
+
+    // Rotating background images every 4 seconds
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentImage(prev => (prev + 1) % backgroundImages.length);
+        }, 4000);
+
+        return () => clearInterval(interval); // cleanup on unmount
+    }, []);
+
     return (
-        <div className="w-full h-[85vh] px-2 ">
+        <div className="w-full h-[70vh] px-2">
             <div className="relative h-full w-full">
+                {/* Background Image */}
                 <img
-                    src="/images/travel-mitra-bg.png"
-                    alt=""
+                    src={backgroundImages[currentImage].path}
+                    alt="Background"
                     className="object-cover w-full h-full object-[center_50%] absolute top-0 left-0"
                 />
-                <div className="absolute bottom-0 h-[60vh] w-full bg-gradient-to-t from-black to-transparent"></div>
 
-                <nav className="absolute flex justify-center w-full h-20 items-center  px-2">
-                    <img src="/images/travel-mitra-logo.png" alt="" className="h-[25vh] mx-4" />
+                {/* Gradient Overlay */}
+                <div className="absolute top-0 h-[30vh] w-full bg-gradient-to-b from-black to-transparent"></div>
 
-                    <div className="h-[60%] w-[50%] rounded-full ml-40 bg-white flex justify-center items-center">
+                {/* Navbar */}
+                <nav className='absolute z-50 flex justify-between items-center w-full h-20 pr-6'>
+                    {/* Logo */}
+                    <img src="/images/travel-mitra-logo.png" alt="Travel Mitra Logo" className='h-[18vh]' />
+
+                    {/* Menu Button */}
+                    <button
+                        onClick={clickButton}
+                        className='text-white hover:text-blue-600 transition-color duration-100 flex justify-center items-center rounded-full hover:bg-black/15 cursor-pointer'
+                        aria-label="Toggle Menu"
+                    >
+                        <Menu size={27} className='hover:cursor-pointer' />
+                    </button>
+
+                    {/* Navigation Links */}
+                    {isClicked && (
+                        <ul className='space-x-8 font-medium text-white'>
+                            <li><a href="#" className="hover:text-blue-500 text-red-600">Home</a></li>
+                            <li><a href="#" className="hover:text-blue-500">Trails</a></li>
+                            <li><a href="#" className="hover:text-blue-500">Weather</a></li>
+                            <li><a href="#" className="hover:text-blue-500">Services</a></li>
+                            <li><a href="#" className="hover:text-blue-500">Blog</a></li>
+                            <li><a href="#" className="hover:text-blue-500">About</a></li>
+                            <li><a href="#" className="hover:text-blue-500">Contact</a></li>
+                        </ul>
+                    )}
+
+                    {/* Search Bar */}
+                    <div className='hidden md:flex items-center border border-gray-400 rounded-full px-3 py-1 w-80'>
                         <input
                             type="search"
-                            placeholder="Search Your Destination"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            className="pl-8 h-full w-[90%] text-lg text-gray-600 pr-3  outline-none"
+                            name="search"
+                            placeholder='Search Your Destination'
+                            autoComplete='off'
+                            className='flex-grow text-black text-base outline-none px-2'
                         />
-                        <button className="text-black bg-black/10 rounded-r-full hover:cursor-pointer hover:bg-black/15 h-full justify-center flex items-center w-[10%]">
-                            <Search />
+                        <button className='text-black hover:text-blue-500'>
+                            <Search size={20} />
                         </button>
                     </div>
-
-                    <div className="text-black flex justify-center mr-32 items-center w-12 h-[60%] mx-4 cursor-pointer hover:bg-black/15 bg-black/10  rounded-full ">
-                        <Mic />
-                    </div>
-                    <button className="text-black h-[60%] w-12 flex justify-center mr-2 ml-8 items-center rounded-full hover:bg-black/15 bg-black/10  hover:cursor-pointer ">
-                        <Bell />
-                    </button>
-                    <button className="text-black h-[60%] w-12 flex justify-center items-center rounded-full  hover:bg-black/15 bg-black/10  cursor-pointer">
-                        <User size={25} />
-                    </button>
                 </nav>
 
-                <section className="absolute bottom-0 text-white px-52 text-justify py-15 flex flex-col items-start justify-center gap-7">
+                {/* Intro Section */}
+                <section className="absolute top-0 flex flex-col items-center justify-center text-white lg:px-52 sm:px-20 px-5 text-justify py-40 gap-4">
                     <h1 className="font-bold text-4xl">
-                        <span className="text-blue-500"> Travel Mitra</span> — Your Perfect Travel Companion
+                        Travel With Us
                     </h1>
-                    <p>Travel Mitra helps you explore your day trips smarter and easier by giving you all the essential info in one place:
-
-                        Real-time weather forecasts to plan your day perfectly
-
-                        Price estimates for local services and items to manage your budget
-
-                        Details on nearby hotels, restaurants, and facilities for a hassle-free experience
-
-                        Live updates on current location conditions so you can make informed decisions
-
-                        Whether you’re planning a quick getaway or a spontaneous adventure, Travel Mitra makes your journey smooth, well-informed, and enjoyable.</p>
+                    <div className='w-[80vw] flex items-center gap-3 text-black bg-white text-lg px-5 py-5 rounded-full'>
+                        <SearchIcon size={25} className='opacity-50' />
+                        <input
+                            type="search"
+                            name="search"
+                            placeholder='Search Your Destination'
+                            autoComplete='off'
+                            className='w-[90%] outline-none placeholder:font-semibold'
+                        />
+                    </div>
                 </section>
+
+                <p className='absolute w-full text-white bottom-32 text-center underline font-bold hover:cursor-pointer'>
+                    Explore Nearby Trails
+                </p>
+
+                <div className='absolute bottom-8 h-10 w-full flex justify-center items-center gap-3 '>
+                    <span className='w-15 h-1 block bg-white'></span>
+                    <span className='w-15 h-1 block bg-white'></span>
+                    <span className='w-15 h-1 block bg-white'></span>
+                    <span className='w-15 h-1 block bg-white'></span>
+                </div>
+
             </div>
         </div>
     );
