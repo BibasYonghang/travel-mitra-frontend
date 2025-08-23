@@ -23,7 +23,7 @@ export default function PopularSearches({ searchTerm }) {
                     {filteredPlaces.map(({ src, placeName, description }, idx) => {
                         return (
 
-                            <div key={idx} className='flex gap-10 w-[22vw] h-[60vh] '>
+                            <div key={idx} className='flex gap-10 md:w-[22vw] h-[60vh] '>
                                 <div
 
                                     className='h-[50vh] w-full  rounded-t-2xl rounded-b-2xl'>
