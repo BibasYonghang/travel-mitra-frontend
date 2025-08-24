@@ -8,9 +8,7 @@ export default function Home() {
 
     return (
         <>
-            {/* Pass state and setter to Intro */}
             <Intro searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-            {/* Pass searchTerm only to PopularSearches */}
             <PopularSearches searchTerm={searchTerm} />
             <Footer />
         </>

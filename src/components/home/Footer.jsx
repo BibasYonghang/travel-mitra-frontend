@@ -35,15 +35,15 @@ export default function Footer() {
   return (
     <footer className="relative min-h-screen px-[6vw] bg-[#161f13] ">
       {/* Main content */}
-      <div className="relative w-full py-[5vh]">
+      <div className="relative w-full lg:pt-[12vh] md:pt-[9vh] pt-[5vh]">
         {/* Logo */}
         <img
           src="/images/travel-mitra-logo.png"
           alt="Travel Mitra Logo"
-          className="h-[6vh] hover:cursor-pointer"
+          className="md:h-[8vh] h-[6vh]  hover:cursor-pointer"
         />
 
-        <div className="w-full pt-4 px-[1vw]">
+        <div className="w-full pt-4">
           {/* Sections */}
           {footerSections.map(({ title, links }, index) => (
             <div
@@ -52,7 +52,7 @@ export default function Footer() {
             >
               <button
                 onClick={() => toggleSection(index)}
-                className="font-bold md:text-2xl sm:text-2xl text-lg mt-4 mb-2 hover:cursor-pointer w-full flex justify-between"
+                className="font-bold md:text-xl text-lg mt-4 mb-2 hover:cursor-pointer w-full flex justify-between"
               >
                 {title}
                 <ChevronDown
@@ -67,7 +67,7 @@ export default function Footer() {
                 className={`overflow-hidden transition-all duration-500 ease-in-out ${activeIndex === index ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
                   }`}
               >
-                <ul className="ml-4 mt-2 ">
+                <ul className="ml-4 mt-2 md:text-lg text-base">
                   {links.map((link) => (
                     <li
                       key={link}
@@ -82,11 +82,11 @@ export default function Footer() {
           ))}
 
           {/* App buttons  */}
-          <section className="relative z-20 text-white flex flex-col gap-6 mt-11">
+          <section className="md:absolute relative z-20 text-white flex flex-col gap-5 mt-10 md:ml-[18rem]">
             <h2 className="font-bold text-xl">An App For OutDoors</h2>
-            <div className="relative text-white flex gap-6 ">
+            <div className="relative text-white flex md:items-end  gap-6 ">
               {/* App Store */}
-              <div className="h-[6vh] w-[38vw] flex justify-center items-center bg-black text-white rounded-lg border border-black pr-3">
+              <div className="h-[35px] md:max-w-[13rem]  w-[30vw] flex justify-center items-center  bg-black border border-white text-white rounded-lg   pr-3">
                 <a
                   href=""
                   className="relative w-full h-full flex justify-center items-center"
@@ -100,7 +100,7 @@ export default function Footer() {
               </div>
 
               {/* Play Store */}
-              <div className="h-[6vh] w-[38vw] flex justify-center items-center bg-black text-white rounded-lg border border-black pr-3">
+              <div className="h-[35px] md:max-w-[13rem]  w-[30vw] flex justify-center items-center  bg-black border border-white  text-white rounded-lg  pr-3">
                 <a
                   href=""
                   className="relative w-full h-full flex justify-center items-center"
@@ -111,7 +111,7 @@ export default function Footer() {
                   <img
                     src="/images/playstore-logo.png"
                     alt="Play Store"
-                    className="h-9 w-8"
+                    className="h-8 w-8"
                   />
                   <span className="text-xs inline font-bold pt-2">Play Store</span>
                 </a>
@@ -122,7 +122,7 @@ export default function Footer() {
       </div>
 
       {/* Social icons (now in flow so they also get pushed) */}
-      <section className="relative z-20 mt-5 flex flex-col gap-3 ">
+      <section className="md:absolute relative z-20 mt-10 w-auto flex flex-col md:gap-6 gap-3 ">
         <h1 className="text-white text-xl font-bold">Conncet with us </h1>
         <div className="flex w-ful gap-5">
           {socialIcons.map((Icon, i) => (
@@ -140,7 +140,7 @@ export default function Footer() {
       </section>
 
       {/* Copyright (in flow so footer height grows) */}
-      <p className="relative z-20 mt-10 pb-8 text-white ">
+      <p className="md:absolute relative z-20 mt-11   pb-8 text-white  lg:pl-[53rem]  md:pl-[34rem] ">
         &copy; {currentYear} Travel Mitra. All Right Reserved
       </p>
     </footer>

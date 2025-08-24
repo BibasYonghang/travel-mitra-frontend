@@ -17,13 +17,13 @@ export default function PopularSearches({ searchTerm }) {
 
     return (
         <> 
-            <section className='w-full py-5 px-8'>
-                <h1 className='text-5xl font-bold text-blue-500'>Popular Searches</h1>
-                <div className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10 mt-10 w-full'>
+            <section className='w-full py-5 px-5'>
+                <h1 className='text-4xl font-bold text-gray-700'>Popular Searches Near You</h1>
+                <div className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3 justify-center mt-10 w-full'>
                     {filteredPlaces.map(({ src, placeName, description }, idx) => {
                         return (
 
-                            <div key={idx} className='flex gap-10 md:w-[22vw] h-[60vh] '>
+                            <div key={idx} className='flex gap-10 md:w-[22vw] h-[60vh] p-4 rounded-xl shadow-[0_0_9px_rgba(0,0,0,0.5)] '>
                                 <div
 
                                     className='h-[50vh] w-full  rounded-t-2xl rounded-b-2xl'>
