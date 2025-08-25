@@ -16,14 +16,14 @@ export default function PopularSearches({ searchTerm }) {
     );
 
     return (
-        <> 
+        <>
             <section className='w-full py-5 px-5'>
                 <h1 className='text-4xl font-bold text-gray-700'>Popular Searches Near You</h1>
                 <div className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3 justify-center mt-10 w-full'>
                     {filteredPlaces.map(({ src, placeName, description }, idx) => {
                         return (
 
-                            <div key={idx} className='flex gap-10 md:w-[22vw] h-[60vh] p-4 rounded-xl shadow-[0_0_9px_rgba(0,0,0,0.5)] '>
+                            <div key={idx} className='flex gap-10 md:w-[22vw] h-[63vh] p-4 rounded-xl shadow-[0_0_9px_rgba(0,0,0,0.5)] '>
                                 <div
 
                                     className='h-[50vh] w-full  rounded-t-2xl rounded-b-2xl'>
@@ -31,7 +31,7 @@ export default function PopularSearches({ searchTerm }) {
                                     <div className='space-y-2 pt-2 w-full '>
                                         <h1 className='font-semibold text-xl text-black font-sans'>{placeName}</h1>
                                         <p className='text-base text-gray-600 font-semibold'>{description}</p>
-                                        <div className=' relative group border h-8 w-24 text-center border-blue-500 text-blue-500 '>
+                                        <div className=' relative group border rounded-sm h-8 w-24 text-center border-blue-500 text-blue-500 '>
                                             <span className='absolute h-full w-full bg-blue-500 group-hover:scale-x-100 inset-0 scale-x-0 transition-all duration-300'></span>
                                             <Link to="" className='absolute z-20 inset-0 pt-0.5 group-hover:text-white'>See More</Link>
                                         </div>
