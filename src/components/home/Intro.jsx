@@ -105,7 +105,7 @@ export default function Intro() {
                     </div>
                 </section>
 
-                <p className='absolute w-full md:text-2xl text-base text-white bottom-32 text-center hover:underline hover:text-blue-200 font-bold hover:cursor-pointer'>
+                <p className='absolute w-full md:text-2xl text-base text-white bottom-32 text-center hover:underline hover:text-green-200 font-bold hover:cursor-pointer'>
                     Explore Nearby Trails
                 </p>
 

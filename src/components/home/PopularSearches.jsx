@@ -31,8 +31,8 @@ export default function PopularSearches({ searchTerm }) {
                                     <div className='space-y-2 pt-2 w-full '>
                                         <h1 className='font-semibold text-xl text-black font-sans'>{placeName}</h1>
                                         <p className='text-base text-gray-600 font-semibold'>{description}</p>
-                                        <div className=' relative group border rounded-sm h-8 w-24 text-center border-blue-500 text-blue-500 '>
-                                            <span className='absolute h-full w-full bg-blue-500 group-hover:scale-x-100 inset-0 scale-x-0 transition-all duration-300'></span>
+                                        <div className=' relative group border rounded-sm h-8 w-24 text-center border-green-700 text-green-700 '>
+                                            <span className='absolute h-full w-full bg-green-700 group-hover:scale-x-100 inset-0 scale-x-0 transition-all duration-300'></span>
                                             <Link to="" className='absolute z-20 inset-0 pt-0.5 group-hover:text-white'>See More</Link>
                                         </div>
                                     </div>

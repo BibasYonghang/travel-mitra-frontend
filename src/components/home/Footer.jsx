@@ -33,7 +33,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative min-h-screen px-[6vw] bg-[#161f13] ">
+    <footer className="relative min-h-screen px-[6vw] bg-[#161f13] text-gray-200">
       {/* Main content */}
       <div className="relative w-full lg:pt-[12vh] md:pt-[9vh] pt-[5vh]">
         {/* Logo */}
@@ -48,7 +48,7 @@ export default function Footer() {
           {footerSections.map(({ title, links }, index) => (
             <div
               key={title}
-              className="h-30vh w-full text-white transition-transform duration-300"
+              className="h-30vh w-full  transition-transform duration-300 "
             >
               <button
                 onClick={() => toggleSection(index)}
@@ -57,7 +57,7 @@ export default function Footer() {
                 {title}
                 <ChevronDown
                   size={21}
-                  className={`inline mt-1 transition-transform duration-300 ${activeIndex === index ? "rotate-180" : ""
+                  className={`inline mt-1 transition-transform  duration-300 ${activeIndex === index ? "rotate-180" : ""
                     }`}
                 />
               </button>
@@ -71,7 +71,7 @@ export default function Footer() {
                   {links.map((link) => (
                     <li
                       key={link}
-                      className="hover:underline w-auto hover:cursor-pointer font-semibold mt-3"
+                      className="hover:underline hover:text-green-400 w-auto hover:cursor-pointer font-semibold mt-3"
                     >
                       <a href="">{link}</a>
                     </li>
@@ -82,28 +82,28 @@ export default function Footer() {
           ))}
 
           {/* App buttons  */}
-          <section className="md:absolute relative z-20 text-white flex flex-col gap-5 mt-10 md:ml-[18rem]">
+          <section className="md:absolute relative z-20  flex flex-col gap-5 mt-10 md:ml-[18rem]">
             <h2 className="font-bold text-xl">An App For OutDoors</h2>
-            <div className="relative text-white flex md:items-end  gap-6 ">
+            <div className="relative  flex md:items-end  gap-6 ">
               {/* App Store */}
-              <div className="h-[35px] md:max-w-[13rem]  w-[30vw] flex justify-center items-center  bg-black border border-white text-white rounded-lg   pr-3">
+              <div className="h-[35px] md:max-w-[13rem]  w-[30vw] flex justify-center items-center  bg-black border border-white  hover:border-green-400   rounded-lg   pr-3">
                 <a
                   href=""
-                  className="relative w-full h-full flex justify-center items-center"
+                  className="relative w-full h-full flex justify-center items-center hover:text-green-400"
                 >
-                  <p className="absolute mb-4 ml-4 text-center text-[10px] w-full">
+                  <p className="absolute mb-4 ml-4 text-center text-[10px] w-full ">
                     Get It On
                   </p>
-                  <SiApple size={24} className="text-white inline mr-1" />
+                  <SiApple size={24} className=" inline mr-1" />
                   <span className="text-xs inline font-bold pt-2">App Store</span>
                 </a>
               </div>
 
               {/* Play Store */}
-              <div className="h-[35px] md:max-w-[13rem]  w-[30vw] flex justify-center items-center  bg-black border border-white  text-white rounded-lg  pr-3">
+              <div className="h-[35px] md:max-w-[13rem]  w-[30vw] flex justify-center items-center  bg-black border border-white hover:border-green-400  rounded-lg  pr-3">
                 <a
                   href=""
-                  className="relative w-full h-full flex justify-center items-center"
+                  className="relative w-full h-full flex justify-center items-center hover:text-green-400"
                 >
                   <p className="absolute mb-4 ml-4 text-center text-[10px] w-full">
                     Get It On
@@ -123,7 +123,7 @@ export default function Footer() {
 
       {/* Social icons (now in flow so they also get pushed) */}
       <section className="md:absolute relative z-20 mt-10 w-auto flex flex-col md:gap-6 gap-3 ">
-        <h1 className="text-white text-xl font-bold">Conncet with us </h1>
+        <h1 className=" text-xl font-bold">Conncet with us </h1>
         <div className="flex w-ful gap-5">
           {socialIcons.map((Icon, i) => (
             <Icon
@@ -131,8 +131,8 @@ export default function Footer() {
               size={Icon === FaTiktok ? 20 : 25}
               className={
                 Icon === FaTiktok
-                  ? "mt-0.5 hover:cursor-pointer text-white"
-                  : "hover:cursor-pointer text-white"
+                  ? "mt-0.5 hover:cursor-pointer  hover:text-green-600 "
+                  : "hover:cursor-pointer  hover:text-green-400  "
               }
             />
           ))}
@@ -140,7 +140,7 @@ export default function Footer() {
       </section>
 
       {/* Copyright (in flow so footer height grows) */}
-      <p className="md:absolute relative z-20 mt-11   pb-8 text-white  lg:pl-[53rem]  md:pl-[34rem] ">
+      <p className="md:absolute relative z-20 mt-11   pb-8   lg:pl-[53rem]  md:pl-[34rem] ">
         &copy; {currentYear} Travel Mitra. All Right Reserved
       </p>
     </footer>

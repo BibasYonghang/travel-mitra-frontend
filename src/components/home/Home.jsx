@@ -7,6 +7,8 @@ import FeatureGuide from './FeatureGuide';
 import TrailCard from './TrailCard';
 import TrailList from './TrailList';
 import PremiumSection from './PremiumSection';
+import PersonalizationSection from './PersonalizationSection';
+import CommunitySection from './CommunitySection';
 
 export default function Home() {
     const [searchTerm, setSearchTerm] = useState("");  // <---- define state here
@@ -15,10 +17,9 @@ export default function Home() {
         <>
             <Intro searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             <PopularSearches searchTerm={searchTerm} />
-            <FeatureGuide />
             <PremiumSection />
-            <TrailCard />
-            <TrailList />
+            <PersonalizationSection />
+            <CommunitySection />
             <ContactUs />
             <Footer />
         </>
