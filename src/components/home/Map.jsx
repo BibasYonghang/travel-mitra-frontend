@@ -1,34 +1,21 @@
-import React from 'react';
-import { MapContainer, TileLayer, LayersControl, Marker, Popup } from 'react-leaflet';
-
-const { BaseLayer } = LayersControl;
-
-const position = [27.6667, 85.3397];
+import React from "react";
 
 export default function Map() {
     return (
-        <MapContainer center={position} zoom={13} scrollWheelZoom className='h-[60vh] w-full px-2'>
-            <LayersControl position="topright">
-                {/* Street Map */}
-                <BaseLayer checked name="Street Map">
-                    <TileLayer
-                        attribution='&copy; OpenStreetMap contributors'
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        <section className="py-12 bg-white" id="map-preview">
+            <div className="container mx-auto px-6 text-center">
+                <h2 className="text-3xl font-bold mb-8">Explore Trails on Map</h2>
+                <div className="border rounded-lg overflow-hidden shadow-md">
+                    <img
+                        src="https://source.unsplash.com/1200x500/?map,mountains"
+                        alt="Map Preview"
+                        className="w-full h-80 object-cover"
                     />
-                </BaseLayer>
-
-                {/* Satellite Map */}
-                <BaseLayer name="Satellite">
-                    <TileLayer
-                        attribution='&copy; Esri & contributors'
-                        url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-                    />
-                </BaseLayer>
-            </LayersControl>
-
-            <Marker position={position}>
-                <Popup>Kathmandu Valley</Popup>
-            </Marker>
-        </MapContainer>
+                </div>
+                <p className="mt-4 text-gray-600">
+                    Visualize nearby trails and plan your next adventure.
+                </p>
+            </div>
+        </section>
     );
 }
