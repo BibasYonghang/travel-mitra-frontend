@@ -20,9 +20,10 @@ const reviews = [
 
 export default function Reviews() {
     return (
-        <section className="py-12 bg-gray-50" id="reviews">
-            <div className="container mx-auto px-6">
-                <h2 className="text-3xl font-bold mb-8 text-center">User Reviews</h2>
+        <section className="py-12  md:px-10 px-5 bg-gray-100" id="reviews">
+            <div className="container">
+                <h2 className="font-bold mb-8 text-green-600
+                md:text-4xl text-3xl">User <span className="text-black">Reviews</span> </h2>
                 <div className="grid md:grid-cols-3 gap-6">
                     {reviews.map((review, idx) => (
                         <div

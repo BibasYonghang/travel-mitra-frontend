@@ -7,7 +7,7 @@ const trails = [
         difficulty: "Easy",
         distance: "5 km",
         duration: "2 hours",
-        image: "https://source.unsplash.com/600x400/?hill,nature",
+        image: "/images/background-image1.png",
     },
     {
         name: "River View Trail",
@@ -15,7 +15,7 @@ const trails = [
         difficulty: "Medium",
         distance: "8 km",
         duration: "3 hours",
-        image: "https://source.unsplash.com/600x400/?river,nature",
+        image: "/images/background-image2.png",
     },
     {
         name: "Forest Trek",
@@ -23,15 +23,16 @@ const trails = [
         difficulty: "Hard",
         distance: "12 km",
         duration: "5 hours",
-        image: "https://source.unsplash.com/600x400/?forest,trail",
+        image: "/images/background-image3.png",
     },
 ];
 
 export default function FeaturedTrails() {
     return (
-        <section className="py-12 bg-gray-50" id="featured-trails">
-            <div className="container mx-auto px-6">
-                <h2 className="text-3xl font-bold mb-8 text-center">Featured Trails</h2>
+        <section className="py-12  md:px-10 px-5" id="featured-trails">
+            <div className="container mx-auto ">
+                <h2 className="font-bold mb-8 text-black
+                md:text-4xl text-3xl"> <span className="text-green-600">Featured</span>  Trails</h2>
                 <div className="grid md:grid-cols-3 gap-6">
                     {trails.map((trail, idx) => (
                         <div
@@ -41,7 +42,7 @@ export default function FeaturedTrails() {
                             <img
                                 src={trail.image}
                                 alt={trail.name}
-                                className="w-full h-48 object-cover"
+                                className="w-full h-72 object-cover"
                             />
                             <div className="p-4">
                                 <h3 className="text-xl font-semibold mb-2">{trail.name}</h3>

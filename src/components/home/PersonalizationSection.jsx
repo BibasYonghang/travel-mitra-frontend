@@ -30,11 +30,14 @@ export default function PersonalizationSection() {
     ];
 
     return (
-        <section className="py-16 px-6 md:px-12 lg:px-20 bg-gray-50 rounded-2xl mt-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 text-center">
-                Personalize Your Hiking Journey
+        <section className=" rounded-2xl mt-16
+        md:py-16 py-12
+        md:px-10 px-5">
+            <h2 className=" font-bold text-gray-800 
+            md:text-4xl text-3xl ">
+                <span className="text-green-600">Personalize</span>   Your Hiking Journey
             </h2>
-            <p className="mt-2 text-gray-600 text-center max-w-2xl mx-auto">
+            <p className="mt-2 text-gray-600 text-justify">
                 Tailor your adventures with features designed to track your progress and
                 suggest the best trails for you.
             </p>

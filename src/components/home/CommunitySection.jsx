@@ -34,9 +34,9 @@ export default function CommunitySection() {
     ];
 
     return (
-        <section className="py-16 px-6 md:px-12 lg:px-20 bg-white rounded-2xl mt-16">
+        <section className="py-16 md:px-10 px-5 rounded-2xl">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 text-center">
-                Join the Hiking Community
+                Join the <span className="text-green-600">Hiking Community</span>
             </h2>
             <p className="mt-2 text-gray-600 text-center max-w-2xl mx-auto">
                 Connect with other hikers, share your experiences, and become part of a

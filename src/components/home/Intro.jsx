@@ -65,7 +65,7 @@ export default function Intro() {
                 <div className="absolute top-0 h-[30vh] w-full bg-gradient-to-b from-black to-transparent"></div>
 
                 {/* Navbar */}
-                <nav className='absolute top-4 z-50 flex justify-between items-center w-full  px-6 '>
+                <nav className='absolute top-4 z-50   md:px-10 px-5 flex justify-between items-center w-full  '>
                     <img src="/images/travel-mitra-logo.png" alt="Travel Mitra Logo" className='h-[7vh] ' />
                     <button
                         onClick={clickButton}
@@ -90,7 +90,8 @@ export default function Intro() {
 
                 {/* Intro Section */}
                 <section className="absolute top-0 w-full flex flex-col items-center justify-center text-white lg:px-52 sm:px-20 px-5 text-justify md:py-55 py-40 gap-4">
-                    <h1 className="font-bold text-4xl">
+                    <h1 className="font-bold text-4xl 
+                    md:text-5xl">
                         Travel With Us
                     </h1>
                     <div className='md:w-[50vw] w-[80vw] flex justify-center items-center gap-3 text-black bg-white text-lg px-5 py-5 rounded-full'>
@@ -100,7 +101,8 @@ export default function Intro() {
                             name="search"
                             placeholder='Search Your Destination'
                             autoComplete='off'
-                            className=' w-[90%] outline-none placeholder:font-semibold'
+                            className=' w-[90%] outline-none placeholder:font-semibold
+                            md:placeholder:text-lg placeholder:text-base'
                         />
                     </div>
                 </section>

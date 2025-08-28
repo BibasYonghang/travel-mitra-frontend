@@ -1,20 +1,21 @@
 import React from "react";
-import { ExclamationTriangleIcon } from "@heroicons/react/24/solid";
+import { ShieldCheckIcon } from "@heroicons/react/24/solid";
 
 const tips = [
-    "Always carry enough water and snacks.",
     "Wear comfortable hiking shoes.",
     "Check the weather forecast before heading out.",
     "Inform someone about your hiking plan.",
     "Carry a basic first-aid kit and map.",
+    "Bring a fully charged mobile phone for emergencies.",
+    "Pack light but include essential layers for changing weather.",
 ];
 
 export default function SafetyTips() {
     return (
-        <section className="py-12 bg-gray-50" id="safety-tips">
-            <div className="container mx-auto px-6">
-                <h2 className="text-3xl font-bold mb-12 text-center text-red-600">
-                    Safety Tips
+        <section className="py-12 md:px-10 px-5 bg-gray-100" id="safety-tips">
+            <div className="container mx-auto">
+                <h2 className="text-3xl font-bold mb-12  text-green-600">
+                    Safety <span className="text-black">Tips</span>
                 </h2>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -23,7 +24,7 @@ export default function SafetyTips() {
                             key={idx}
                             className="bg-white rounded-lg shadow-md p-6 flex items-start space-x-4 hover:shadow-xl transition"
                         >
-                            <ExclamationTriangleIcon className="w-8 h-8 text-red-500 flex-shrink-0" />
+                            <ShieldCheckIcon className="w-7 h-7 text-green-600 flex-shrink-0" />
                             <p className="text-gray-700 font-medium">{tip}</p>
                         </div>
                     ))}

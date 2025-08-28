@@ -25,7 +25,7 @@ export default function PremiumSection() {
     ];
 
     return (
-        <div className="relative  mt-16 px-5 overflow-hidden">
+        <div className="relative  md:px-10 px-5 mt-16 overflow-hidden">
             <img src="/images/premium-image-bg.png" alt="Premium Background Image" className="md:h-[90vh] sm:h-[70vh] h-[50vh] object-cover md:object-top object-right md:rounded-2xl rounded-t-2xl w-full " />
             <section className="md:absolute bg-gray-200 md:bg-transparent  rounded-b-2xl top-0 md:px-20 px-6 md:py-12 py-8">
                 <h2 className="md:text-4xl text-3xl font-bold md:text-gray-50">Elevate Your Hiking Adventures</h2>

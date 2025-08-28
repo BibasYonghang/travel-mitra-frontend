@@ -9,6 +9,7 @@ import CommunitySection from './CommunitySection';
 import FeaturedTrails from './FeatureTrails';
 import SafetyTips from './SafetyTips';
 import Reviews from './Reviews';
+import Map from './Map';
 
 export default function Home() {
     const [searchTerm, setSearchTerm] = useState("");  // <---- define state here
@@ -17,6 +18,7 @@ export default function Home() {
         <>
             <Intro searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             <PopularSearches searchTerm={searchTerm} />
+            <Map />
             <FeaturedTrails />
             <PremiumSection />
             <PersonalizationSection />

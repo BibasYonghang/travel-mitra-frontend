@@ -33,7 +33,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative min-h-screen px-[6vw] bg-[#161f13] text-gray-200">
+    <footer className="relative  md:px-10 px-5 min-h-screen  bg-[#161f13] text-gray-200">
       {/* Main content */}
       <div className="relative w-full lg:pt-[12vh] md:pt-[9vh] pt-[5vh]">
         {/* Logo */}

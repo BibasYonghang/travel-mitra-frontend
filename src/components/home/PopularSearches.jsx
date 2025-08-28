@@ -17,8 +17,8 @@ export default function PopularSearches({ searchTerm }) {
 
     return (
         <>
-            <section className='w-full py-5 px-5'>
-                <h1 className='text-4xl font-bold text-gray-700'>Popular Searches Near You</h1>
+            <section className='w-full py-6  md:px-10 px-5'>
+                <h1 className='text-4xl font-bold text-black'><span className='text-green-600'>Popular</span> Searches Near You</h1>
                 <div className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3 justify-center mt-10 w-full'>
                     {filteredPlaces.map(({ src, placeName, description }, idx) => {
                         return (
