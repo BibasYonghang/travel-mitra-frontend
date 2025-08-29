@@ -7,7 +7,7 @@ export default function PopularSearches({ searchTerm }) {
         { src: "/images/travel-mitra-bg.png", placeName: "Gamecho Hike", description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. " },
         { src: "/images/travel-mitra-bg.png", placeName: "Champadevi Hike", description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. " },
         { src: "/images/travel-mitra-bg.png", placeName: "Lakuri Bhanjyang Hike", description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. " },
-        { src: "/images/travel-mitra-bg.png", placeName: "Sundarijal Hike", description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. " },
+        // { src: "/images/travel-mitra-bg.png", placeName: "Sundarijal Hike", description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. " },
     ]
     const term = (searchTerm || "").toLowerCase();
 
@@ -19,21 +19,21 @@ export default function PopularSearches({ searchTerm }) {
         <>
             <section className='w-full py-6  md:px-10 px-5'>
                 <h1 className='text-4xl font-bold text-black'><span className='text-green-600'>Popular</span> Searches Near You</h1>
-                <div className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3 justify-center mt-10 w-full'>
+                <div className='grid  md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3 justify-center mt-10 w-full'>
                     {filteredPlaces.map(({ src, placeName, description }, idx) => {
                         return (
 
-                            <div key={idx} className='flex gap-10 md:w-[22vw] h-[63vh] p-4 rounded-xl shadow-[0_0_9px_rgba(0,0,0,0.5)] '>
+                            <div key={idx} className='flex gap-10 md:w-[29vw] h-[70vh] rounded-xl shadow-lg'>
                                 <div
 
                                     className='h-[50vh] w-full  rounded-t-2xl rounded-b-2xl'>
-                                    <img src={src} alt="" className='h-[75%] w-full object-cover rounded-2xl' />
-                                    <div className='space-y-2 pt-2 w-full '>
+                                    <img src={src} alt="" className='h-[85%] w-full object-cover rounded-t-xl' />
+                                    <div className=' w-full space-y-2 pt-2 p-4 '>
                                         <h1 className='font-semibold text-xl text-black font-sans'>{placeName}</h1>
                                         <p className='text-base text-gray-600 font-semibold'>{description}</p>
-                                        <div className=' relative group border rounded-sm h-8 w-24 text-center border-green-700 text-green-700 '>
-                                            <span className='absolute h-full w-full bg-green-700 group-hover:scale-x-100 inset-0 scale-x-0 transition-all duration-300'></span>
-                                            <Link to="" className='absolute z-20 inset-0 pt-0.5 group-hover:text-white'>See More</Link>
+                                        <div className=' relative group border rounded-sm h-8 w-24 text-center border-green-500 bg-green-500 text-green-700 '>
+                                            <span className='absolute h-full w-full bg-green-600 group-hover:scale-x-100 inset-0 scale-x-0 transition-all duration-300'></span>
+                                            <Link to="" className='absolute z-20 inset-0 pt-0.5 text-white'>See More</Link>
                                         </div>
                                     </div>
                                 </div>

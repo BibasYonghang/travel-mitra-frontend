@@ -19,10 +19,10 @@ export default function Home() {
             <Intro searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             <PopularSearches searchTerm={searchTerm} />
             <Map />
-            <FeaturedTrails />
-            <PremiumSection />
             <PersonalizationSection />
+            <FeaturedTrails />
             <SafetyTips />
+            <PremiumSection />
             <CommunitySection />
             <Reviews />
             <ContactUs />

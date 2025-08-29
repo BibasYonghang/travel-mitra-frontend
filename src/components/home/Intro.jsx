@@ -1,4 +1,4 @@
-import { Bell, Menu, Mic, Search, SearchCheck, SearchIcon, User } from 'lucide-react';
+import { Bell, CrossIcon, Menu, Mic, Search, SearchCheck, SearchIcon, User, X } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 
 export default function Intro() {
@@ -7,15 +7,25 @@ export default function Intro() {
     const [progressBars, setProgressBars] = useState([0, 0, 0, 0]); // one for each image
 
     const backgroundImages = [
+        { path: "/images/background-image2.png" },
         { path: "/images/travel-mitra-bg.png" },
         { path: "/images/background-image1.png" },
-        { path: "/images/background-image2.png" },
         { path: "/images/background-image3.png" },
     ];
+
+    const navLi = [
+        { name: "Home", path: "" },
+        { name: "Trails", path: "" },
+        { name: "Weather", path: "" },
+        { name: "Service", path: "" },
+        { name: "About", path: "" },
+        { name: "Contact", path: "" },
+    ]
 
     const clickButton = () => {
         setIsClicked(prev => !prev);
     };
+
 
     // Rotating background images every 4 seconds
     useEffect(() => {
@@ -65,26 +75,76 @@ export default function Intro() {
                 <div className="absolute top-0 h-[30vh] w-full bg-gradient-to-b from-black to-transparent"></div>
 
                 {/* Navbar */}
-                <nav className='absolute top-4 z-50   md:px-10 px-5 flex justify-between items-center w-full  '>
-                    <img src="/images/travel-mitra-logo.png" alt="Travel Mitra Logo" className='h-[7vh] ' />
-                    <button
-                        onClick={clickButton}
-                        className='text-white hover:text-blue-600 transition-color duration-100 flex justify-center items-center rounded-full hover:bg-black/15 cursor-pointer'
-                        aria-label="Toggle Menu"
-                    >
-                        <Menu size={27} className='hover:cursor-pointer' />
-                    </button>
+                <nav className='absolute  z-50   md:px-10  flex justify-between items-center w-full  '>
+                    <img src="/images/travel-mitra-logo.png" alt="Travel Mitra Logo" className='h-[7vh] mt-4 md:ml-0 ml-4' />
+
+                    {window.innerWidth < 800 ?
+                        (
+                            <button
+                                onClick={clickButton}
+                                className='absolute z-20 right-0 pr-5 text-white hover:text-green-600 transition-color duration-100 flex justify-center items-center rounded-full hover:bg-black/15 cursor-pointer'
+                                aria-label="Toggle Menu"
+                            >
+                                <Menu size={27} className='hover:cursor-pointer' />
+                            </button>
+
+                        )
+                        :
+                        (
+                            <ul className='flex lg:space-x-8 md:space-x-4 font-medium text-white'>
+                                {navLi.map(({ name, path }, idx) =>
+                                (
+                                    <li
+                                        key={idx}
+                                        className="hover:text-green-500 hover:underline lg:text-lg md:text-base">
+                                        <a href={path}>
+                                            {name}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        )
+                    }
+
+
 
                     {isClicked && (
-                        <ul className='space-x-8 font-medium text-white'>
-                            <li><a href="#" className="hover:text-blue-500">Home</a></li>
-                            <li><a href="#" className="hover:text-blue-500">Trails</a></li>
-                            <li><a href="#" className="hover:text-blue-500">Weather</a></li>
-                            <li><a href="#" className="hover:text-blue-500">Services</a></li>
-                            <li><a href="#" className="hover:text-blue-500">Blog</a></li>
-                            <li><a href="#" className="hover:text-blue-500">About</a></li>
-                            <li><a href="#" className="hover:text-blue-500">Contact</a></li>
-                        </ul>
+                        <div className="absolute top-0 left-0  z-50 w-full h-screen px-8 py-10 font-medium text-black bg-white transition-transform duration-300">
+                            <div className='flex w-full'>
+                                <img
+                                    src="/images/travel-mitra-logo.png"
+                                    alt="Travel Mitra Logo"
+                                    className="h-[7vh] mb-6"
+                                />
+                                <button
+                                    onClick={clickButton}
+                                    className='pl-43 mb-6 text-black hover:text-green-600 transition-color duration-100 flex justify-center items-center rounded-full  cursor-pointer'
+                                    aria-label="Toggle Menu"
+                                >
+                                    <X size={27} className='hover:cursor-pointer' />
+                                </button>
+                            </div>
+                            <ul>
+                                {navLi.map(({ name, path }, idx) => (
+                                    <li
+                                        key={idx}
+                                        className="text-lg pt-5 mx-auto hover:text-green-700"
+                                    >
+                                        <a
+                                            className='mx-auto'
+                                            href={path}>
+                                            {name}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                            <div className='flex flex-col justify-center pt-5'>
+                                <a href="" className='py-3 text-center mt-3 rounded-full bg-gray-200'>Sign Up  </a>
+                                <a href="" className='py-3 text-center mt-3 rounded-full bg-gray-200'>Log in</a>
+                                <a href="" className='py-3 text-center mt-3 rounded-full bg-black text-white'>Continue in app</a>
+                            </div>
+
+                        </div>
                     )}
                 </nav>
 
@@ -107,9 +167,12 @@ export default function Intro() {
                     </div>
                 </section>
 
-                <p className='absolute w-full md:text-2xl text-base text-white bottom-32 text-center hover:underline hover:text-green-200 font-bold hover:cursor-pointer'>
-                    Explore Nearby Trails
-                </p>
+                <div className='absolute bottom-32 w-full flex justify-center'>
+                    <p className=' w-auto md:text-2xl text-base text-white  hover:underline hover:text-green-400 transition-transform duration-200 font-bold hover:cursor-pointer'>
+                        Explore Nearby Trails
+                    </p>
+                </div>
+
 
                 {/* Progress Bars (stay filled until cycle resets) */}
                 <div className='absolute bottom-8 h-10 w-full flex justify-center items-center gap-3 '>

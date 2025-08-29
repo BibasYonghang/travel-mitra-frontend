@@ -14,7 +14,7 @@ export default function SafetyTips() {
     return (
         <section className="py-12 md:px-10 px-5 bg-gray-100" id="safety-tips">
             <div className="container mx-auto">
-                <h2 className="text-3xl font-bold mb-12  text-green-600">
+                <h2 className="md:text-4xl text-3xl font-bold mb-12  text-green-600">
                     Safety <span className="text-black">Tips</span>
                 </h2>
 
