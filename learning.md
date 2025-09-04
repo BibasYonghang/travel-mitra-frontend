@@ -111,3 +111,20 @@ and npm run dev:frontend for frontend.
 - `"start": "vite"` → run with `npm start`
 
 `npm start` is a shortcut for `"start"`, no `run` needed.
+
+
+### Inline vs Block Elements (Width & Height)
+
+- **Inline elements** (e.g., `<a>`, `<span>`) **don't respect `width` and `height`** by default.  
+  - They only grow to fit their content.
+  - Example: `<a class="h-10 w-20">Text</a>` ❌ *won't work.*
+
+- **Solution:** Use `inline-block` or `block` to make them respect dimensions.
+  ```html
+  <a class="inline-block h-10 w-20 bg-red-500">Link</a> ✅
+Display Type	Respects Width/Height?
+inline	❌ No
+inline-block	✅ Yes
+block	✅ Yes
+
+Copy code

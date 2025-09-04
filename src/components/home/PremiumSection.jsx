@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function PremiumSection() {
     const plans = [
@@ -48,9 +49,10 @@ export default function PremiumSection() {
                                 ))}
                             </ul>
                             {plan.name === "Premium" && (
-                                <button className="mt-6 w-full bg-green-600 text-white py-2 rounded-lg font-bold hover:bg-green-700 hover:cursor-pointer transition">
-                                    Upgrade Now
-                                </button>
+                                <Link to="premium" className="relative inline-block group h-9 w-full bg-green-600 rounded-md group mt-3">
+                                    <span className="absolute w-full h-full bg-green-500 scale-x-0 origin-center rounded-md group-hover:scale-x-100 transition-transform duration-300"></span>
+                                    <span className="absolute z-30 w-full text-center mt-1 h-full group-hover:cursor-pointer text-white ">Upgrade Now</span>
+                                </Link>
                             )}
                         </div>
                     ))}

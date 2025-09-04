@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import Intro from './Intro'
 import PopularSearches from './PopularSearches'
-import Footer from './Footer'
 import ContactUs from './ContactUs';
 import PremiumSection from './PremiumSection';
 import PersonalizationSection from './PersonalizationSection';
@@ -26,7 +25,6 @@ export default function Home() {
             <CommunitySection />
             <Reviews />
             <ContactUs />
-            <Footer />
         </>
     )
 }
