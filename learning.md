@@ -7,6 +7,25 @@
 - ⚠️ Not a standard use for text inputs — may become unreliable in future browser updates.
 
 
+### 📝 AutoComplete Best Practices for Password Fields
+
+- **Signup Form**  
+  - Username: `autoComplete="username"`  
+  - Password: `autoComplete="new-password"` *(new password being created)*
+
+- **Login Form**  
+  - Username: `autoComplete="username"`  
+  - Password: `autoComplete="current-password"` *(existing password to log in)*
+
+- **Reset/Change Password Form**  
+  - Current Password: `autoComplete="current-password"`  
+  - New Password: `autoComplete="new-password"`
+
+> **Rule:**  
+> - Use `new-password` when **creating a new password** (signup/reset).  
+> - Use `current-password` when **logging in or verifying identity**.
+
+
 
 ### Clickable Elements: `<button>` vs `<a>`
 
@@ -127,4 +146,109 @@ inline	❌ No
 inline-block	✅ Yes
 block	✅ Yes
 
-Copy code
+
+
+# eSewa Payment Integration (MERN)
+
+## 1. Frontend → Backend
+- User clicks **Pay**.
+- Frontend sends payment info (`amount`, `pid`, etc.) to backend.
+
+## 2. Backend prepares eSewa link
+- Backend generates:
+  - `amt` (amount)
+  - `pid` (unique transaction id)
+  - `scd` (merchant ID)
+  - `su` (success URL)
+  - `fu` (failure URL)
+- Backend sends the link (or auto-submit form) to frontend.
+
+## 3. Frontend → eSewa
+- Frontend redirects user to eSewa page or app.
+- User sees pre-filled payment details and completes payment.
+
+## 4. eSewa → Backend
+- After payment, eSewa redirects user to backend success/failure URL.
+- Backend receives query params (`amt`, `pid`, `refId`) and verifies payment with eSewa API.
+
+## 5. Backend → Frontend
+- Backend sends verified payment status (success/failure) to frontend.
+- Frontend updates UI:
+  - ✅ Payment successful
+  - ❌ Payment failed
+- **Loading page/spinner** should be shown while backend verification is in progress to reassure the user.
+
+## ✅ Key Points
+- Backend must **verify payment**; frontend should not trust eSewa redirect alone.
+- Show **loading indicator** to avoid confusion or panic during verification.
+- Frontend displays **final payment result** after backend confirmation.
+
+The process is the same for almost all payment gateways:
+
+Frontend → Backend: Collect payment info.
+
+Backend → Gateway: Generate payment request (link, token, or form).
+
+Frontend → Gateway: Redirect user to gateway page/app.
+
+Gateway → Backend: Callback/webhook after payment.
+
+Backend Verification: Confirm payment via gateway API.
+
+Backend → Frontend: Send payment status.
+
+Frontend Update: Show success/failure, optionally with a loading indicator.
+
+The differences between gateways are usually:
+
+API endpoints and parameters (pid, refId, merchant ID, etc.).
+
+UI/UX of the payment page (bank page, wallet app).
+
+Optional features like recurring payments, EMI, or wallets.
+
+So the flow stays the same, just the implementation details change.
+
+
+Frontend is never secure for verifying payments.
+
+Users can modify frontend code in the browser, intercept requests, or fake success messages.
+
+If you rely only on frontend verification, someone could trick your app into thinking a payment succeeded.
+
+Backend verification is mandatory:
+
+Backend receives the callback or query params from the payment gateway.
+
+Backend calls the gateway’s API to confirm the payment (amount, transaction ID, status).
+
+Only after backend confirmation does your frontend show success or unlock services.
+
+Rule of thumb:
+
+“Never trust the client for financial operations. Always verify on the server side.”
+
+This is the standard practice for all payment gateways, whether it’s eSewa, Stripe, PayPal, Razorpay, or banks.
+
+
+# Postman & API Testing (Short Notes)
+
+- **Postman** is a tool to **test APIs** without a frontend.
+- It **sends HTTP requests** (GET, POST, PUT, DELETE) directly to the backend.
+- **Frontend is optional**; Postman simulates what the frontend does (like clicking buttons).
+- **Backend must be running** to receive requests from Postman.
+- You can test:
+  - Request headers (`Content-Type`, `Authorization`, etc.)
+  - Request body (JSON, form-data, etc.)
+  - Response from the server
+- Typical workflow:
+  1. Open Postman → **New → HTTP Request**
+  2. Select **method** (GET/POST/etc.)
+  3. Enter **backend URL**
+  4. Add **headers** if needed
+  5. Add **body** for POST/PUT
+  6. Click **Send** → View **response**
+- Analogy:  
+  - Frontend button → triggers backend request  
+  - Postman → simulates button click **without UI**  
+  - Backend → processes request and returns response

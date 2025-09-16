@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const trails = [
     {
@@ -39,11 +40,13 @@ export default function FeaturedTrails() {
                             key={idx}
                             className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
                         >
-                            <img
-                                src={trail.image}
-                                alt={trail.name}
-                                className="w-full h-72 object-cover"
-                            />
+                            <div className='w-full h-72  overflow-hidden rounded-t-xl'>
+                                <img
+                                    src={trail.image}
+                                    alt={trail.name}
+                                    className="w-full h-full object-cover  hover:scale-105 transition-transform duration-200 hover:cursor-pointer"
+                                />
+                            </div>
                             <div className="p-4">
                                 <h3 className="text-xl font-semibold mb-2">{trail.name}</h3>
                                 <p className="text-gray-600 mb-1">Location: {trail.location}</p>
@@ -51,9 +54,10 @@ export default function FeaturedTrails() {
                                 <p className="text-gray-600 mb-1">
                                     Distance: {trail.distance} | Duration: {trail.duration}
                                 </p>
-                                <button className="mt-3 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">
-                                    View Details
-                                </button>
+                                <div className=' relative group border rounded-sm h-8 w-24 text-center border-green-500 bg-green-500 text-green-700 '>
+                                    <span className='absolute h-full w-full bg-green-600 group-hover:scale-x-100 inset-0 scale-x-0 transition-all duration-300'></span>
+                                    <Link to="trials" className='absolute z-20 inset-0 pt-0.5 text-white'>See More</Link>
+                                </div>
                             </div>
                         </div>
                     ))}

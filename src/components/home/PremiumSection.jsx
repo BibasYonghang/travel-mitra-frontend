@@ -34,11 +34,11 @@ export default function PremiumSection() {
                     Take your hikes to the next level! Explore trails offline, create your own routes, and enjoy every step of your outdoor adventure with the membership that unlocks the best experiences on the trail.
                 </p>
 
-                <div className="flex flex-wrap gap-6 mt-8">
+                <div className="grid sm:grid-cols-2 gap-6 mt-8">
                     {plans.map((plan) => (
                         <div
                             key={plan.name}
-                            className={`w-80 border rounded-lg p-6 shadow-md hover:shadow-xl transition ${plan.name === "Premium" ? "bg-green-100 border-green-400" : "bg-white border-green-400"
+                            className={`lg:w-[26vw] md:w-[35vw] sm:w-[37vw] border rounded-lg p-6 shadow-md hover:shadow-xl transition ${plan.name === "Premium" ? "bg-green-100 border-green-400" : "bg-white border-green-400"
                                 }`}
                         >
                             <h3 className="text-xl font-bold">{plan.name}</h3>

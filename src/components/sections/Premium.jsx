@@ -1,191 +1,119 @@
 import React, { useState } from "react";
 
-export default function PremiumPayment() {
-    const [coupon, setCoupon] = useState("");
-    const [paymentMethod, setPaymentMethod] = useState("card"); // default to card
+export default function EsewaPayment() {
+    // Khalti integration
+    const [mobile, setMobile] = useState("");
+    const amount = 1000; // Example amount
+    const [productIdentity, setProductIdentity] = useState("PROD123");
+    const [productName, setProductName] = useState("Premium Subscription");
 
-    const handlePayment = (e) => {
+    const handlePayment = async (e) => {
         e.preventDefault();
-        alert(`Redirecting to ${paymentMethod === "bank" ? "Nepali Bank Gateway" : "Credit Card"} payment gateway...`);
-        // TODO: Integrate Khalti, eSewa, or Stripe here
+
+        if (!mobile || !productIdentity || !productName) {
+            alert("Please fill out all required fields");
+            return;
+        }
+
+        try {
+            const response = await fetch("http://localhost:5000/api/khalti/payment", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ amount, mobile, product_identity: productIdentity, product_name: productName }),
+            });
+
+            const data = await response.json();
+
+            if (data?.payment_url) {
+                // If Khalti returns a payment_url, redirect user
+                window.location.href = data.payment_url;
+            } else if (data?.message) {
+                alert(data.message);
+            } else {
+                alert("Failed to start Khalti payment process. Try again.");
+            }
+        } catch {
+
+            alert("Something went wrong. Please try again.");
+        }
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-green-50 to-green-100 flex flex-col lg:flex-row  justify-center gap-10 py-10 px-4 sm:px-6 md:px-10 lg:px-10">
-            {/* Features & Billing */}
-            <div className="bg-white shadow-xl rounded-2xl w-full lg:w-1/2 p-6 sm:p-8 lg:p-10">
-                <h2 className="text-2xl sm:text-3xl md:text-3xl font-bold text-gray-800 text-center">
-                    Try <span className="text-green-600">Premium</span> free for 7 days
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-purple-50 to-purple-100 px-4">
+            <div className="bg-white shadow-xl rounded-2xl w-full max-w-md p-8">
+                <h2 className="text-2xl font-bold text-gray-800 text-center mb-2">
+                    Pay with <span className="text-purple-600">Khalti</span>
                 </h2>
-                <p className="text-center text-gray-600 mt-2 text-sm sm:text-base">
-                    Then just <span className="font-semibold">$29.99/year</span> after your trial. No commitment — cancel anytime.
+                <p className="text-center text-gray-600 text-sm mb-6">
+                    Secure payment powered by Khalti. Please fill in your details.
                 </p>
 
-                <div className="mt-6 space-y-2">
-                    <h3 className="text-lg font-semibold text-gray-800">What's included:</h3>
-                    <ul className="list-disc list-inside text-gray-700 space-y-1 text-sm sm:text-base">
-                        <li>Download offline maps</li>
-                        <li>Get alerts for wrong turns</li>
-                        <li>Preview trails and terrain in 3D</li>
-                        <li>Share live activities with friends</li>
-                    </ul>
-                    <button className="text-green-600 text-sm hover:underline">Show more</button>
-                </div>
-
-                <div className="mt-8 border-t border-gray-200 pt-4 space-y-2 text-sm sm:text-base">
-                    <div className="flex justify-between text-gray-700">
-                        <span>Billed today</span>
-                        <span className="font-semibold">$0.00</span>
-                    </div>
-                    <div className="flex justify-between text-gray-700">
-                        <span>Billed after trial</span>
-                        <span className="font-semibold">$29.99 annually</span>
-                    </div>
-
-                    <div className="mt-4">
+                <form onSubmit={handlePayment} className="space-y-5">
+                    <div>
                         <label className="block text-sm font-medium text-gray-700">
-                            Enter a coupon code
+                            Mobile Number
                         </label>
                         <input
                             type="text"
-                            value={coupon}
-                            onChange={(e) => setCoupon(e.target.value)}
-                            placeholder="Coupon code"
-                            className="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-green-500 focus:border-green-500"
+                            value={mobile}
+                            onChange={(e) => setMobile(e.target.value)}
+                            placeholder="98XXXXXXXX"
+                            className="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-purple-500 focus:border-purple-500"
+                            required
                         />
                     </div>
-                </div>
-            </div>
 
-            {/* Payment */}
-            <div className="bg-white shadow-xl rounded-2xl w-full lg:w-1/2 p-6 sm:p-8 lg:p-10">
-                {/* Payment Method Selector */}
-                <div className="">
-                    <h3 className="text-3xl font-bold text-gray-800">Choose <span className="text-green-600">Payment</span> method</h3>
-                    <div className="mt-4 grid grid-cols-2 gap-4">
-                        <button
-                            type="button"
-                            onClick={() => setPaymentMethod("bank")}
-                            className={`border rounded-lg py-3 px-4 font-medium transition ${paymentMethod === "bank"
-                                ? "border-green-600 bg-green-50 text-green-700"
-                                : "border-gray-300 hover:border-green-400"
-                                }`}
-                        >
-                            Nepali Banks
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => setPaymentMethod("card")}
-                            className={`border rounded-lg py-3 px-4 font-medium transition ${paymentMethod === "card"
-                                ? "border-green-600 bg-green-50 text-green-700"
-                                : "border-gray-300 hover:border-green-400"
-                                }`}
-                        >
-                            Credit / Debit Card
-                        </button>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700">
+                            Product Identity
+                        </label>
+                        <input
+                            type="text"
+                            value={productIdentity}
+                            onChange={(e) => setProductIdentity(e.target.value)}
+                            placeholder="PROD123"
+                            className="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-purple-500 focus:border-purple-500"
+                            required
+                        />
                     </div>
-                </div>
 
-                {/* Nepali Bank Option */}
-                {paymentMethod === "bank" && (
-                    <div className="mt-8 space-y-4 border-t pt-4">
-                        <h3 className="text-lg font-semibold text-gray-800">Pay via Nepali Banks</h3>
-                        <p className="text-gray-600 text-sm sm:text-base">
-                            Choose from options like <span className="font-semibold">Khalti</span>,{" "}
-                            <span className="font-semibold">eSewa</span>, or{" "}
-                            <span className="font-semibold">ConnectIPS</span>.
-                        </p>
-                        <button
-                            onClick={handlePayment}
-                            className="w-full py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition"
-                        >
-                            Continue to Bank Gateway
-                        </button>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700">
+                            Product Name
+                        </label>
+                        <input
+                            type="text"
+                            value={productName}
+                            onChange={(e) => setProductName(e.target.value)}
+                            placeholder="Premium Subscription"
+                            className="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-purple-500 focus:border-purple-500"
+                            required
+                        />
                     </div>
-                )}
 
-                {/* Card Payment Option */}
-                {paymentMethod === "card" && (
-                    <form onSubmit={handlePayment} className="mt-8 space-y-4 border-t pt-4">
-                        <h3 className="text-lg font-semibold text-gray-800">Enter your card details</h3>
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700">
-                                Name on card
-                            </label>
-                            <input
-                                type="text"
-                                required
-                                placeholder="John Doe"
-                                className="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-green-500 focus:border-green-500 text-sm sm:text-base"
-                            />
-                        </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700">
+                            Amount (NPR)
+                        </label>
+                        <input
+                            type="number"
+                            value={amount}
+                            disabled
+                            className="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-100 text-gray-700"
+                        />
+                    </div>
 
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700">
-                                Card number
-                            </label>
-                            <input
-                                type="text"
-                                required
-                                placeholder="1234 5678 9012 3456"
-                                maxLength="16"
-                                className="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-green-500 focus:border-green-500 text-sm sm:text-base"
-                            />
-                        </div>
+                    <button
+                        type="submit"
+                        className="w-full py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition"
+                    >
+                        Proceed to Pay
+                    </button>
 
-                        <div className="grid grid-cols-2 gap-4">
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700">
-                                    Expiration date
-                                </label>
-                                <input
-                                    type="text"
-                                    required
-                                    placeholder="MM/YY"
-                                    className="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-green-500 focus:border-green-500 text-sm sm:text-base"
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700">
-                                    CVV
-                                </label>
-                                <input
-                                    type="text"
-                                    required
-                                    placeholder="123"
-                                    maxLength="3"
-                                    className="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-green-500 focus:border-green-500 text-sm sm:text-base"
-                                />
-                            </div>
-                        </div>
-
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700">
-                                Postal code
-                            </label>
-                            <input
-                                type="text"
-                                required
-                                placeholder="123456"
-                                className="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-green-500 focus:border-green-500 text-sm sm:text-base"
-                            />
-                        </div>
-
-                        {/* Submit button */}
-                        <button
-                            type="submit"
-                            className="w-full py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition text-sm sm:text-base"
-                        >
-                            Start your free trial
-                        </button>
-
-                        <p className="text-xs sm:text-sm text-gray-500 mt-2">
-                            You will be charged <span className="font-semibold">$29.99</span> when
-                            your free trial ends. Your subscription will auto-renew every 12 months
-                            unless you turn off auto-renewal in settings before the renewal date.
-                        </p>
-                    </form>
-                )}
+                    <p className="text-xs text-gray-500 text-center mt-3">
+                        After clicking "Proceed to Pay", you will be redirected to Khalti's sandbox gateway (if payment_url is provided).
+                    </p>
+                </form>
             </div>
         </div>
     );
