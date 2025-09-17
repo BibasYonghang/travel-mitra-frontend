@@ -1,6 +1,6 @@
 import React from "react";
-import { motion } from "framer-motion";
 import { MapPin, Clock, ArrowUpRight, Star } from "lucide-react";
+import { Link } from "react-router-dom";
 
 // ChisapaniTrailComponent.jsx
 // Single-file React component styled with Tailwind CSS (v4).
@@ -140,16 +140,13 @@ export default function Trails() {
                         <div className="rounded-xl p-4 bg-white border shadow-sm">
                             <div className="flex items-center justify-between">
                                 <h4 className="text-lg font-bold">Recent reviews</h4>
-                                <button className="text-sm text-emerald-600 font-medium">See all</button>
+                                <Link to='' className="text-sm text-emerald-600 font-medium">See all</Link>
                             </div>
 
                             <div className="mt-3 space-y-3">
                                 {reviews.map((r, idx) => (
-                                    <motion.div
+                                    <div
                                         key={idx}
-                                        initial={{ opacity: 0, y: 6 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: idx * 0.06 }}
                                         className="p-3 rounded-lg bg-emerald-50"
                                     >
                                         <div className="flex items-center justify-between">
@@ -162,7 +159,7 @@ export default function Trails() {
                                                 <Star key={i} className="w-4 h-4" />
                                             ))}
                                         </div>
-                                    </motion.div>
+                                    </div>
                                 ))}
                             </div>
                         </div>
