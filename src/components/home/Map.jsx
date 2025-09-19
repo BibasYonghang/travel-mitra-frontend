@@ -14,6 +14,7 @@ import "leaflet/dist/leaflet.css";
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
+import { Search } from "lucide-react";
 
 // Fix default marker issue in Vite
 delete L.Icon.Default.prototype._getIconUrl;
@@ -82,21 +83,26 @@ export default function Map() {
             {/* Search Bar */}
             <form
                 onSubmit={handleSearch}
-                className="absolute top-28 left-1/2 -translate-x-1/2 z-[1000] bg-white shadow-md rounded-full flex"
-            >
+                className="absolute top-28 left-1/2 -translate-x-1/2 z-[1000] shadow-md rounded-full flex
+                md:mr-0 mr-20
+                ">
                 <input
                     type="text"
                     value={query}
                     placeholder="Search location..."
                     onChange={(e) => setQuery(e.target.value)}
-                    className="px-10 py-4 rounded-l-full  outline-none
-                    sm:w-[40vw] w-[33vw]"
+                    className="md:px-10 px-5 md:py-4 py-3 rounded-l-full bg-white   outline-none
+                    w-[42vw]
+                    "
                 />
                 <button
                     type="submit"
-                    className="md:px-4 px-2 py-4 bg-green-600 text-white rounded-r-full hover:bg-green-700 hover:cursor-pointer"
-                >
-                    Search
+                    className=" bg-green-600 text-white rounded-r-full hover:bg-green-700 hover:cursor-pointer
+                    md:px-6 px-2 
+                    md:py-4 py-3
+                    md:mr-0 mr-3
+                    ">
+                    <Search />
                 </button>
             </form>
 
