@@ -1,68 +1,118 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-const trails = [
-    {
-        name: "Sunrise Hill",
-        location: "Lalitpur",
-        difficulty: "Easy",
-        distance: "5 km",
-        duration: "2 hours",
-        image: "/images/background-image1.png",
-    },
-    {
-        name: "River View Trail",
-        location: "Bhaktapur",
-        difficulty: "Medium",
-        distance: "8 km",
-        duration: "3 hours",
-        image: "/images/background-image2.png",
-    },
-    {
-        name: "Forest Trek",
-        location: "Kathmandu",
-        difficulty: "Hard",
-        distance: "12 km",
-        duration: "5 hours",
-        image: "/images/background-image3.png",
-    },
-];
+export default function PopularSearches({ searchTerm }) {
 
-export default function FeaturedTrails() {
+    const popularPlaces = [
+        {
+            placeName: "Gamecho Hike",
+            location: "Lalitpur",
+            distance: "5 km",
+            duration: "2 hours",
+            src: "/images/background-image1.png",
+        },
+        {
+            placeName: "Champadevi Hike",
+            location: "Lalitpur",
+            distance: "5 km",
+            duration: "2 hours",
+            src: "/images/background-image1.png",
+        },
+        {
+            placeName: "Sundarijal Hike",
+            location: "Lalitpur",
+            distance: "5 km",
+            duration: "2 hours",
+            src: "/images/background-image1.png",
+        },
+        {
+            placeName: "Lakuri Hike",
+            location: "Lalitpur",
+            distance: "5 km",
+            duration: "2 hours",
+            src: "/images/background-image1.png",
+        },
+        {
+            placeName: "Sunrise Hill",
+            location: "Lalitpur",
+            distance: "5 km",
+            duration: "2 hours",
+            src: "/images/background-image1.png",
+        },
+        {
+            placeName: "River View Trail",
+            location: "Bhaktapur",
+            distance: "8 km",
+            duration: "3 hours",
+            src: "/images/background-image2.png",
+        },
+        {
+            placeName: "Forest Trek",
+            location: "Kathmandu",
+            distance: "12 km",
+            duration: "5 hours",
+            src: "/images/background-image3.png",
+        },
+    ]
+    const term = (searchTerm || "").toLowerCase();
+
+    const filteredPlaces = popularPlaces.filter(place =>
+        place.placeName.toLowerCase().includes(term)
+    );
+
     return (
-        <section className="py-12  md:px-10 px-5" id="featured-trails">
-            <div className="container mx-auto ">
-                <h2 className="font-bold mb-8 text-black
-                md:text-4xl text-3xl"> <span className="text-green-600">Featured</span>  Trails</h2>
-                <div className="grid md:grid-cols-3 gap-6">
-                    {trails.map((trail, idx) => (
-                        <div
-                            key={idx}
-                            className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
-                        >
-                            <div className='w-full h-72  overflow-hidden rounded-t-xl'>
-                                <img
-                                    src={trail.image}
-                                    alt={trail.name}
-                                    className="w-full h-full object-cover  hover:scale-105 transition-transform duration-200 hover:cursor-pointer"
-                                />
-                            </div>
-                            <div className="p-4">
-                                <h3 className="text-xl font-semibold mb-2">{trail.name}</h3>
-                                <p className="text-gray-600 mb-1">Location: {trail.location}</p>
-                                <p className="text-gray-600 mb-1">Difficulty: {trail.difficulty}</p>
-                                <p className="text-gray-600 mb-1">
-                                    Distance: {trail.distance} | Duration: {trail.duration}
-                                </p>
-                                <div className=' relative group border rounded-sm h-8 w-24 text-center border-green-500 bg-green-500 text-green-700 '>
-                                    <span className='absolute h-full w-full bg-green-600 group-hover:scale-x-100 inset-0 scale-x-0 transition-all duration-300'></span>
-                                    <Link to="trials" className='absolute z-20 inset-0 pt-0.5 text-white'>See More</Link>
+        <>
+            <section className='w-full py-6  md:px-10 px-5'>
+                <h1 className=' font-bold text-black
+                 md:text-4xl text-3xl
+                '>
+                    <span className='text-green-600'>Popular</span> Searches Near You
+                </h1>
+                <div className='grid  gap-3 justify-center mt-5 w-full
+                               grid-cols-2 md:grid-cols-3 xl:grid-cols-4
+                '>
+                    {filteredPlaces.map(({ src, placeName, location, distance, duration }, idx) => {
+                        return (
+
+                            <div
+                                key={idx}
+                                className='flex gap-10  shadow-lg 
+                                           py-3 sm:py-6 
+                                           px-2 sm:px-3
+                            '>
+                                <div
+                                    className='w-full'>
+                                    <div className='w-full overflow-hidden 
+                                    '>
+                                        <img src={src} alt="" className=' w-full object-cover  hover:scale-105 transition-transform duration-200 hover:cursor-pointer
+                                        h-[18vh] sm:h-[28vh] md:h-[33vh]  xl:h-[37vh]
+                                         ' />
+                                    </div>
+                                    <div className=' w-full pt-2 '>
+                                        <h1 className='font-bold  text-black font-sans
+                                                       text-base md:text-xl
+                                        '>
+                                            {placeName}
+                                        </h1>
+                                        <div className='text-sm sm:text-lg'>
+                                            <p><span className='font-semibold'>Distance : </span>{distance}</p>
+                                            <p><span className='font-semibold'>Time : </span>{duration}</p>
+                                            <p><span className='font-semibold'>Location : </span>{location}</p>
+                                        </div>
+
+                                        <div className=' relative group border rounded-sm h-8 w-24 text-center border-green-500 bg-green-600 text-green-700 '>
+                                            <span className='absolute h-full w-full bg-green-500 group-hover:scale-x-100 inset-0 scale-x-0 transition-all duration-300'></span>
+                                            <Link to="trials" className='absolute z-20 inset-0 pt-0.5 text-white'>See More</Link>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        )
+                    })
+                    }
                 </div>
-            </div>
-        </section>
-    );
+
+            </section>
+        </>
+    )
 }
