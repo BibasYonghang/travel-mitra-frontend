@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function PopularSearches({ searchTerm }) {
+export default function FeatureTrails({ searchTerm }) {
 
     const popularPlaces = [
         {
@@ -66,7 +66,7 @@ export default function PopularSearches({ searchTerm }) {
                 <h1 className=' font-bold text-black
                  md:text-4xl text-3xl
                 '>
-                    <span className='text-green-600'>Popular</span> Searches Near You
+                    <span className='text-green-600'>Featured</span> Trails
                 </h1>
                 <div className='grid  gap-3 justify-center mt-5 w-full
                                grid-cols-2 md:grid-cols-3 xl:grid-cols-4
@@ -102,7 +102,7 @@ export default function PopularSearches({ searchTerm }) {
 
                                         <div className=' relative group border rounded-sm h-8 w-24 text-center border-green-500 bg-green-600 text-green-700 '>
                                             <span className='absolute h-full w-full bg-green-500 group-hover:scale-x-100 inset-0 scale-x-0 transition-all duration-300'></span>
-                                            <Link to="trials" className='absolute z-20 inset-0 pt-0.5 text-white'>See More</Link>
+                                            <Link to="trials-info" className='absolute z-20 inset-0 pt-0.5 text-white'>See More</Link>
                                         </div>
                                     </div>
                                 </div>

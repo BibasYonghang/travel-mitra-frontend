@@ -52,7 +52,7 @@ export default function PopularSearches({ searchTerm }) {
                                         <p className='text-base text-gray-600'>{description}</p>
                                         <div className=' relative group border rounded-sm h-8 w-24 text-center border-green-500 bg-green-600 text-green-700 '>
                                             <span className='absolute h-full w-full bg-green-500 group-hover:scale-x-100 inset-0 scale-x-0 transition-all duration-300'></span>
-                                            <Link to="trials" className='absolute z-20 inset-0 pt-0.5 text-white'>See More</Link>
+                                            <Link to="trials-info" className='absolute z-20 inset-0 pt-0.5 text-white'>See More</Link>
                                         </div>
                                     </div>
                                 </div>

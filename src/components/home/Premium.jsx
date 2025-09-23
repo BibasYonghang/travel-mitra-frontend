@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function PremiumSection() {
+export default function Premium() {
     const plans = [
         {
             name: "Free",

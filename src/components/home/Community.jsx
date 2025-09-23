@@ -2,7 +2,7 @@ import React from "react";
 import { User, Star, MessageSquare, Camera } from "lucide-react";
 import { Link } from "react-router-dom";
 
-export default function CommunitySection() {
+export default function Community() {
     const features = [
         {
             icon: <User className="w-10 h-10 text-blue-600" />,

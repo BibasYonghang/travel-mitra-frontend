@@ -1,7 +1,7 @@
 import React from "react";
 import { Heart, Map, TrendingUp, Compass } from "lucide-react"; // icons
 
-export default function PersonalizationSection() {
+export default function Personalization() {
     const iconClass = "w-6 sm:w-10 h-6 sm:h-10 text-green-600"
     const features = [
         {

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 // Single-file React component styled with Tailwind CSS (v4).
 // Usage: drop this file into a React + Tailwind project and render <ChisapaniTrail />.
 
-export default function Trails() {
+export default function TrailsInfo() {
     const images = [
         "/images/chisapani-1.jpg",
         "/images/chisapani-2.jpg",
