@@ -3,7 +3,6 @@ import Intro from '../../components/home/Intro';
 import PopularSearches from '../../components/home/PopularSearches';
 import Personalization from '../../components/home/Personalization';
 import FeatureTrails from '../../components/home/FeatureTrails';
-import SafetyTips from '../../components/home/SafetyTips';
 import Premium from '../../components/home/Premium';
 import Community from '../../components/home/Community';
 import Reviews from '../../components/home/Reviews';
@@ -20,7 +19,6 @@ export default function Home() {
             <Map />
             <Personalization />
             <FeatureTrails />
-            <SafetyTips />
             <Premium />
             <Community />
             <Reviews />

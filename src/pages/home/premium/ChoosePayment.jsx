@@ -29,9 +29,9 @@ export default function ChoosePayment() {
         }
 
         if (selectedMethod === "khalti") {
-            window.location.href = "http://localhost:5000/api/khalti/payment";
+            window.location.href = "http://localhost:5000/api/khalti/payment"; // Redirect user to backend to initiate Khalti payment
         } else if (selectedMethod === "esewa") {
-            window.location.href = "http://localhost:5000/api/esewa/payment";
+            window.location.href = "http://localhost:5000/api/esewa/payment"; // Redirect user to backend to initiate esewa payment
         }
     };
 

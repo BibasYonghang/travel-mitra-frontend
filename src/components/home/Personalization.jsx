@@ -48,9 +48,10 @@ export default function Personalization() {
             gap-2 sm:gap-8
             ">
                 {features.map((item, idx) => (
-                    <div
+                    <a
+                        href=""
                         key={idx}
-                        className="flex flex-col items-center text-center bg-white rounded-2xl shadow-md hover:shadow-xl transition
+                        className="flex flex-col items-center text-center bg-white rounded-2xl shadow-md hover:shadow-xl transition hover:cursor-pointer
                         p-2 sm:p-6 
                         "
                     >
@@ -63,7 +64,7 @@ export default function Personalization() {
                             {item.title}
                         </h3>
                         <p className="mt-2 text-gray-600 text-sm">{item.description}</p>
-                    </div>
+                    </a>
                 ))}
             </div>
         </section>
