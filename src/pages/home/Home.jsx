@@ -13,7 +13,7 @@ export default function Home() {
     const [searchTerm, setSearchTerm] = useState("");  // <---- define state here
 
     return (
-        <>
+        <div className='bg-white'>
             <Intro searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             <PopularSearches searchTerm={searchTerm} />
             <Map />
@@ -23,6 +23,6 @@ export default function Home() {
             <Community />
             <Reviews />
             <ContactUs />
-        </>
+        </div>
     )
 }
