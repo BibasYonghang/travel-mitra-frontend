@@ -32,27 +32,27 @@ export default function FeatureTrails({ searchTerm }) {
             duration: "2 hours",
             src: "/images/background-image1.png",
         },
-        {
-            placeName: "Sunrise Hill",
-            location: "Lalitpur",
-            distance: "5 km",
-            duration: "2 hours",
-            src: "/images/background-image1.png",
-        },
-        {
-            placeName: "River View Trail",
-            location: "Bhaktapur",
-            distance: "8 km",
-            duration: "3 hours",
-            src: "/images/background-image2.png",
-        },
-        {
-            placeName: "Forest Trek",
-            location: "Kathmandu",
-            distance: "12 km",
-            duration: "5 hours",
-            src: "/images/background-image3.png",
-        },
+        // {
+        //     placeName: "Sunrise Hill",
+        //     location: "Lalitpur",
+        //     distance: "5 km",
+        //     duration: "2 hours",
+        //     src: "/images/background-image1.png",
+        // },
+        // {
+        //     placeName: "River View Trail",
+        //     location: "Bhaktapur",
+        //     distance: "8 km",
+        //     duration: "3 hours",
+        //     src: "/images/background-image2.png",
+        // },
+        // {
+        //     placeName: "Forest Trek",
+        //     location: "Kathmandu",
+        //     distance: "12 km",
+        //     duration: "5 hours",
+        //     src: "/images/background-image3.png",
+        // },
     ]
     const term = (searchTerm || "").toLowerCase();
 
