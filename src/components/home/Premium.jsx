@@ -31,7 +31,7 @@ export default function Premium() {
             <section className="md:absolute bg-gray-200 md:bg-transparent  rounded-b-2xl top-0 md:px-20 px-6 md:py-12 py-8">
                 <h2 className="md:text-4xl text-3xl font-bold md:text-gray-50">Elevate Your Hiking Adventures</h2>
                 <p className="mt-2 md:text-gray-100 max-w-xl text-justify">
-                    Take your hikes to the next level! Explore trails offline, create your own routes, and enjoy every step of your outdoor adventure with the membership that unlocks the best experiences on the trail.
+                    Take your hikes to the next level! Explore trails, create your own routes, and enjoy every step of your outdoor adventure with the membership that unlocks the best experiences on the trail.
                 </p>
 
                 <div className="grid sm:grid-cols-2 gap-6 mt-8">
