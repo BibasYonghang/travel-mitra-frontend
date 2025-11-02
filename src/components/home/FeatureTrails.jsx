@@ -1,4 +1,6 @@
+import { Star } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
+import { AiFillStar } from "react-icons/ai";
 import { Link } from 'react-router-dom';
 
 export default function FeatureTrails() {
@@ -25,26 +27,31 @@ export default function FeatureTrails() {
                 <span className='text-green-600'>Featured</span> Trails
             </h1>
             <div className='grid gap-3 justify-center mt-5 w-full grid-cols-2 md:grid-cols-3 xl:grid-cols-4'>
-                {trailsData.map(({ src, placeName, location, distance, duration }, idx) => (
-                    <div key={idx} className='flex gap-10 shadow-lg py-3 sm:py-6 px-2 sm:px-3'>
+                {trailsData.map(({ src, name }, idx) => (
+                    <div key={idx} className='flex gap-10 shadow-lg py-3 sm:py-4 px-2 sm:px-3'>
                         <div className='w-full'>
                             <div className='w-full overflow-hidden'>
                                 <img
                                     src={src || "/images/background-image1.png"}
-                                    alt={placeName}
+                                    alt={name}
                                     className='w-full object-cover hover:scale-105 transition-transform duration-200 hover:cursor-pointer
                                                h-[18vh] sm:h-[28vh] md:h-[33vh] xl:h-[37vh]'
                                 />
                             </div>
-                            <div className='w-full pt-2'>
-                                <h1 className='font-bold text-black font-sans text-base md:text-xl'>{placeName}</h1>
-                                <div className='text-sm sm:text-lg'>
-                                    <p><span className='font-semibold'>Distance : </span>{distance}</p>
-                                    <p><span className='font-semibold'>Time : </span>{duration}</p>
-                                    <p><span className='font-semibold'>Location : </span>{location}</p>
+                            <div className='w-full mt-2'>
+                                <h1 className='font-bold  font-sans text-base md:text-xl text-green-700'>{name}</h1>
+                                <div className='my-4'>
+                                    <AiFillStar size={15} className='text-yellow-400 inline' />
+                                    <AiFillStar size={15} className='text-yellow-400 inline' />
+                                    <AiFillStar size={15} className='text-yellow-400 inline' />
+                                    <AiFillStar size={15} className='text-yellow-400 inline' />
+                                    <AiFillStar size={15} className='text-yellow-400 inline' />
+                                    <p className='inline ml-2 text-gray-600'>based on 5 reviews</p>
                                 </div>
 
-                                <div className='relative group border rounded-sm h-8 w-24 text-center border-green-500 bg-green-600 text-green-700'>
+                                <hr className='my-5 text-gray-300'/>
+
+                                <div className='relative group border rounded-sm h-8 w-24 mt-2 text-center border-green-500 bg-green-600 text-green-700'>
                                     <span className='absolute h-full w-full bg-green-500 group-hover:scale-x-100 inset-0 scale-x-0 transition-all duration-300'></span>
                                     <Link to="trials-info" className='absolute z-20 inset-0 pt-0.5 text-white'>See More</Link>
                                 </div>
