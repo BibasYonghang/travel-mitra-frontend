@@ -26,7 +26,9 @@ export default function FeatureTrails() {
             <h1 className='font-bold text-black md:text-4xl text-3xl'>
                 <span className='text-green-600'>Popular</span> Searches Near You
             </h1>
-            <div className='grid gap-3 justify-center mt-5 w-full grid-cols-2 md:grid-cols-3 xl:grid-cols-4'>
+            <div className='grid gap-3 justify-center mt-5 w-full 
+                            grid-cols-1 sm:grid-cols-2  xl:grid-cols-4'
+            >
                 {trailsData.map(({ src, name }, idx) => (
                     <div key={idx} className='flex gap-10 shadow-lg py-3 sm:py-4 px-2 sm:px-3'>
                         <div className='w-full'>
@@ -34,8 +36,8 @@ export default function FeatureTrails() {
                                 <img
                                     src={src || "/images/background-image1.png"}
                                     alt={name}
-                                    className='w-full object-cover hover:scale-105 transition-transform duration-200 hover:cursor-pointer
-                                               h-[18vh] sm:h-[28vh] md:h-[33vh] xl:h-[37vh]'
+                                    className='w-full object-cover rounded-md hover:rounded-md hover:scale-105 transition-transform duration-200 hover:cursor-pointer
+                                               h-[28vh] sm:h-[30vh] md:h-[38vh] xl:h-[37vh]'
                                 />
                             </div>
                             <div className='w-full mt-2'>

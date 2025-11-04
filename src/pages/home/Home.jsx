@@ -17,7 +17,6 @@ export default function Home() {
             <Intro searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             <PopularSearches searchTerm={searchTerm} />
             <Map />
-            <Personalization />
             <FeatureTrails />
             <Premium />
             <Community />
