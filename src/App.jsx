@@ -9,6 +9,9 @@ import SocialSharing from "./pages/home/community/SocialSharing"
 import TrailsInfo from "./pages/TrailsInfo"
 import ScrollToTop from "./components/ScrollToTop"
 import ChoosePayment from "./pages/home/premium/ChoosePayment"
+import ThankYou from "./pages/ThankYou"
+import PaymentSuccess from "./pages/PaymentSuccess"
+import PaymentFailure from "./pages/PaymentFailure"
 
 
 function App() {
@@ -22,6 +25,9 @@ function App() {
           <Route path="" element={<Home />} />
           <Route path="premium" element={<ChoosePayment />} />
           <Route path="trials" element={<FeatureTrails />} />
+          <Route path="payment-success" element={<PaymentSuccess />} />
+          <Route path="payment-failure" element={<PaymentFailure />} />
+          <Route path="thank-you" element={<ThankYou />} />
 
           {/* HOME/COMMUNITY */}
 

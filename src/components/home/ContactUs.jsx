@@ -15,7 +15,6 @@ export default function ContactUs() {
                     <div className={divClass}>
                         <Mail size={18} className={iconClass} /><span className='font-bold'>Email</span>
                         <p>travelmitra@gmail.com</p>
-
                     </div>
                     <div className={divClass}>
                         <Phone size={18} className={iconClass} /><span className='font-bold'>Phone</span>

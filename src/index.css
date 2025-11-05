@@ -2,7 +2,7 @@
 @import "tailwindcss";
 @import "leaflet/dist/leaflet.css";
 
-
+/* 
 html{
-  overscroll-behavior-y: none; /* disables bounce */
-}
+  overscroll-behavior-y: none; 
+} */
