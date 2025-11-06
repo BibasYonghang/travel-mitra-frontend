@@ -14,14 +14,36 @@ export default function Home() {
 
     return (
         <div className='bg-white'>
+            {/* Hero + Search Bar */}
             <Intro searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-            <PopularSearches searchTerm={searchTerm} />
+
+            <div id='popular-section'>
+                <PopularSearches searchTerm={searchTerm} />
+            </div>
+
+
+            {/* Where things happen (Interactive part) */}
             <Map />
+
+            {/* Highlight main offerings */}
             <FeatureTrails />
+
+            {/* Upsell premium features */}
             <Premium />
+
+            {/* Social proof / community engagement */}
             <Community />
-            <Reviews />
-            <ContactUs />
+
+            {/* Real user reviews / trust element */}
+            <div id='about-app'>
+                <Reviews />
+            </div>
+
+
+            <div id='contact'>
+                <ContactUs />
+            </div>
+
         </div>
     )
 }

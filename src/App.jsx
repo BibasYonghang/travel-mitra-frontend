@@ -12,6 +12,7 @@ import ChoosePayment from "./pages/home/premium/ChoosePayment"
 import ThankYou from "./pages/ThankYou"
 import PaymentSuccess from "./pages/PaymentSuccess"
 import PaymentFailure from "./pages/PaymentFailure"
+import Trails from "./pages/Trails"
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
           <Route path="social-sharing" element={<SocialSharing />} />
 
           <Route path="trials-info" element={<TrailsInfo />} />
+          <Route path="/trails" element={<Trails />} />
         </Route>
       </Routes>
 

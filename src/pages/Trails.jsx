@@ -1,9 +1,11 @@
-import { Star } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { AiFillStar } from "react-icons/ai";
 import { Link } from 'react-router-dom';
 
-export default function FeatureTrails() {
+
+const Trails = () => {
+
+
     const [trailsData, setTrailsData] = useState([]);
 
     useEffect(() => {
@@ -24,7 +26,7 @@ export default function FeatureTrails() {
     return (
         <section  className='w-full py-6 md:px-10 px-5'>
             <h1 className='font-bold text-black md:text-4xl text-3xl'>
-                <span className='text-green-600'>Popular</span> Searches Near You
+                Trails
             </h1>
             <div className='grid gap-3 justify-center mt-5 w-full 
                             grid-cols-1 sm:grid-cols-2  xl:grid-cols-4'
@@ -65,3 +67,6 @@ export default function FeatureTrails() {
         </section>
     );
 }
+
+
+export default Trails

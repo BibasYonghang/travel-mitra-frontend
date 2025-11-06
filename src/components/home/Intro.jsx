@@ -1,7 +1,9 @@
 import { Bell, CrossIcon, Menu, Mic, Search, SearchCheck, SearchIcon, User, X } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Intro() {
+    const navigate = useNavigate();
     const [isClicked, setIsClicked] = useState(false);
     const [currentImage, setCurrentImage] = useState(0);
     const [progressBars, setProgressBars] = useState([0, 0, 0, 0]); // one for each image
@@ -13,13 +15,21 @@ export default function Intro() {
         { path: "/images/background-image3.png" },
     ];
 
+    const aboutApp = () => {
+        const trails = document.getElementById("about-app")
+        trails?.scrollIntoView({ behavior: "smooth" })
+    }
+    const contact = () => {
+        const trails = document.getElementById("contact")
+        trails?.scrollIntoView({ behavior: "smooth" })
+    }
+
+
     const navLi = [
-        { name: "Home", path: "" },
-        { name: "Trails", path: "" },
-        { name: "Weather", path: "" },
-        { name: "Service", path: "" },
-        { name: "About", path: "" },
-        { name: "Contact", path: "" },
+        { name: "Home", action: () => window.scrollTo({ top: 0, behavior: "smooth" }) },
+        { name: "Trails", route: "/trails" },
+        { name: "About", action: aboutApp },
+        { name: "Contact", action: contact },
     ]
 
     const clickButton = () => {
@@ -61,6 +71,12 @@ export default function Intro() {
         return () => clearInterval(interval);
     }, [currentImage]);
 
+    const popularSearches = () => {
+        const trails = document.getElementById("popular-section")
+        trails?.scrollIntoView({ behavior: "smooth" })
+    }
+
+
     return (
         <div className="w-full md:h-[85vh] h-[72vh]">
             <div className="relative h-full w-full">
@@ -92,14 +108,21 @@ export default function Intro() {
                         :
                         (
                             <ul className='flex lg:space-x-8 md:space-x-4 font-medium text-white'>
-                                {navLi.map(({ name, path }, idx) =>
+                                {navLi.map(({ name, action, route }, idx) =>
                                 (
                                     <li
                                         key={idx}
-                                        className="hover:text-green-500 hover:underline lg:text-lg md:text-base">
-                                        <a href={path}>
+                                        className="hover:text-green-500 hover:underline hover:cursor-pointer lg:text-lg md:text-base">
+                                        <ul onClick={() => {
+                                            if (action) {
+                                                action()
+                                            } else if (route) {
+                                                navigate(route)
+                                            }
+                                            setIsClicked(false); // close mobile menu if needed
+                                        }}>
                                             {name}
-                                        </a>
+                                        </ul>
                                     </li>
                                 ))}
                             </ul>
@@ -125,18 +148,24 @@ export default function Intro() {
                                 </button>
                             </div>
                             <ul>
-                                {navLi.map(({ name, path }, idx) => (
-                                    <li
-                                        key={idx}
-                                        className="text-lg pt-5 mx-auto hover:text-green-700"
-                                    >
-                                        <a
-                                            className='mx-auto'
-                                            href={path}>
+                                <ul>
+                                    {navLi.map(({ name, action, route }, idx) => (
+                                        <li
+                                            key={idx}
+                                            className="text-lg pt-5 mx-auto hover:text-green-700 cursor-pointer"
+                                            onClick={() => {
+                                                if (action) {
+                                                    action()
+                                                } else if (route) {
+                                                    navigate(route)
+                                                }
+                                                setIsClicked(false); // close menu
+                                            }}
+                                        >
                                             {name}
-                                        </a>
-                                    </li>
-                                ))}
+                                        </li>
+                                    ))}
+                                </ul>
                             </ul>
                             <div className='flex flex-col justify-center pt-5'>
                                 <a href="" className='py-3 text-center mt-3 rounded-full bg-gray-200'>Sign Up  </a>
@@ -168,7 +197,7 @@ export default function Intro() {
                 </section>
 
                 <div className='absolute bottom-32 w-full flex justify-center'>
-                    <p className=' w-auto md:text-2xl text-base text-white  hover:underline hover:text-green-400 transition-transform duration-200 font-bold hover:cursor-pointer'>
+                    <p onClick={popularSearches} className=' w-auto md:text-2xl text-base text-white  hover:underline hover:text-green-400 transition-transform duration-200 font-bold hover:cursor-pointer'>
                         Explore Nearby Trails
                     </p>
                 </div>
