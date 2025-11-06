@@ -30,6 +30,8 @@ export default function ContactUs() {
                 </div>
 
             </div >
+            <div className="absolute w-full h-[30vh] top-0 bg-gradient-to-b from-white to-transparent"></div>
+
 
         </>
     )

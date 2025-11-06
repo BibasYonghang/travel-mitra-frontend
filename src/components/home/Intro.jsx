@@ -88,7 +88,7 @@ export default function Intro() {
                 />
 
                 {/* Gradient Overlay */}
-                <div className="absolute top-0 h-[30vh] w-full bg-gradient-to-b from-black to-transparent"></div>
+                <div className="absolute z-10 top-0 h-[30vh] w-full bg-gradient-to-b from-black to-transparent"></div>
 
                 {/* Navbar */}
                 <nav className='absolute  z-50   md:px-10  flex justify-between items-center w-full  '>
@@ -112,7 +112,7 @@ export default function Intro() {
                                 (
                                     <li
                                         key={idx}
-                                        className="hover:text-green-500 hover:underline hover:cursor-pointer lg:text-lg md:text-base">
+                                        className=" text-white hover:cursor-pointer hover:scale-102 hover:text-green-500 transform duration-150  text-lg">
                                         <ul onClick={() => {
                                             if (action) {
                                                 action()
@@ -152,7 +152,7 @@ export default function Intro() {
                                     {navLi.map(({ name, action, route }, idx) => (
                                         <li
                                             key={idx}
-                                            className="text-lg pt-5 mx-auto hover:text-green-700 cursor-pointer"
+                                            className=" text-white hover:cursor-pointer hover:scale-102 hover:text-green-500 transform duration-150 text-lg"
                                             onClick={() => {
                                                 if (action) {
                                                     action()
@@ -197,7 +197,7 @@ export default function Intro() {
                 </section>
 
                 <div className='absolute bottom-32 w-full flex justify-center'>
-                    <p onClick={popularSearches} className=' w-auto md:text-2xl text-base text-white  hover:underline hover:text-green-400 transition-transform duration-200 font-bold hover:cursor-pointer'>
+                    <p onClick={popularSearches} className='font-bold text-white hover:cursor-pointer hover:scale-102 hover:text-green-500 transform duration-150 underline text-xl'>
                         Explore Nearby Trails
                     </p>
                 </div>
@@ -216,6 +216,7 @@ export default function Intro() {
                         </button>
                     ))}
                 </div>
+
             </div>
         </div>
     );
