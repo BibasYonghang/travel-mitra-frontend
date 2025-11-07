@@ -141,18 +141,18 @@ export default function Intro() {
                                 />
                                 <button
                                     onClick={clickButton}
-                                    className='pl-43 mb-6 text-black hover:text-green-600 transition-color duration-100 flex justify-center items-center rounded-full  cursor-pointer'
+                                    className='pl-36 mb-6 text-black hover:text-green-600 transition-color duration-100 flex justify-center items-center rounded-full  cursor-pointer'
                                     aria-label="Toggle Menu"
                                 >
                                     <X size={27} className='hover:cursor-pointer' />
                                 </button>
                             </div>
-                            <ul>
-                                <ul>
+                            <ul className='mt-4'>
+                                <ul className='space-y-6'>
                                     {navLi.map(({ name, action, route }, idx) => (
                                         <li
                                             key={idx}
-                                            className=" text-white hover:cursor-pointer hover:scale-102 hover:text-green-500 transform duration-150 text-lg"
+                                            className=" text-black cursor-pointer text-lg"
                                             onClick={() => {
                                                 if (action) {
                                                     action()
@@ -167,10 +167,10 @@ export default function Intro() {
                                     ))}
                                 </ul>
                             </ul>
-                            <div className='flex flex-col justify-center pt-5'>
-                                <a href="" className='py-3 text-center mt-3 rounded-full bg-gray-200'>Sign Up  </a>
-                                <a href="" className='py-3 text-center mt-3 rounded-full bg-gray-200'>Log in</a>
-                                <a href="" className='py-3 text-center mt-3 rounded-full bg-black text-white'>Continue in app</a>
+                            <div className='flex flex-col justify-center space-y-6 mt-12'>
+                                <a href="" className='py-3 text-center  rounded-full bg-gray-200'>Sign Up  </a>
+                                <a href="" className='py-3 text-center rounded-full bg-gray-200'>Log in</a>
+                                <a href="" className='py-3 text-center  rounded-full bg-black text-white'>Continue in app</a>
                             </div>
 
                         </div>

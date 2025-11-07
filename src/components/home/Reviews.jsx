@@ -30,7 +30,7 @@ export default function Reviews() {
 
         <>
             <section id="#about-app" className="relative  w-full text-white bg-white
-                                                xl:h-[150vh] lg:h-[200vh] md:h-[215vh] sm:h-[190vh] h-[345vh]
+                                                xl:h-[150vh] lg:h-[200vh] md:h-[215vh] sm:h-[190vh] h-[320vh]
                                                  ">
                 {/* About Section */}
                 <div className="relative w-full py-16 flex flex-col items-center text-center px-4 md:px-10">

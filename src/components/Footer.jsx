@@ -43,7 +43,7 @@ export default function Footer() {
           className="md:h-[8vh] h-[6vh]  hover:cursor-pointer"
         />
 
-        <div className="w-full pt-4">
+        <div className="w-full pt-10">
           {/* Sections */}
           {footerSections.map(({ title, links }, index) => (
             <div
@@ -82,7 +82,7 @@ export default function Footer() {
           ))}
 
           {/* App buttons  */}
-          <section className="md:absolute relative z-20  flex flex-col gap-5 mt-10 md:ml-[18rem]">
+          <section className="md:absolute relative z-20  flex flex-col gap-5 mt-14 md:ml-[18rem]">
             <h2 className="font-bold text-xl">An App For OutDoors</h2>
             <div className="relative  flex md:items-end  gap-6 ">
               {/* App Store */}
@@ -122,7 +122,7 @@ export default function Footer() {
       </div>
 
       {/* Social icons (now in flow so they also get pushed) */}
-      <section className="md:absolute relative z-20 mt-10 w-auto flex flex-col md:gap-6 gap-3 ">
+      <section className="md:absolute relative z-20 mt-15 w-auto flex flex-col md:gap-6 gap-3 ">
         <h1 className=" text-xl font-bold">Conncet with us </h1>
         <div className="flex w-ful gap-5">
           {socialIcons.map((Icon, i) => (
