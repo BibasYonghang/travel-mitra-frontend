@@ -44,7 +44,7 @@ export default function Reviews() {
                     </div>
 
                     <div className="relative z-10 xl:pr-80 lg:pr-60 md:pr-44 sm:pr-40">
-                        <h1 className="text-2xl md:text-4xl font-extrabold text-green-700 mb-6">
+                        <h1 className="text-2xl md:text-4xl font-extrabold text-start text-green-700 mb-6">
                             About <span className="text-black">Travel Mitra</span>
                         </h1>
 
@@ -68,9 +68,10 @@ export default function Reviews() {
 
                         <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
                             {reviews.map((review, idx) => (
-                                <div
+                                <Link
+                                    to="user-review"
                                     key={idx}
-                                    className="h-[50vh] bg-white shadow-md rounded-lg p-6 hover:shadow-xl transition flex flex-col justify-between"
+                                    className="h-[50vh] bg-white shadow-md rounded-lg p-6 hover:shadow-xl hover:cursor-pointer transition flex flex-col justify-between"
                                 >
                                     <p className="text-gray-700 mb-4 text-sm md:text-base">
                                         "{review.comment}"
@@ -82,13 +83,13 @@ export default function Reviews() {
                                             {"☆".repeat(5 - review.rating)}
                                         </p>
                                     </div>
-                                </div>
+                                </Link>
                             ))}
                         </div>
 
                         <div className="mt-10 flex">
                             <Link
-                                to="trials-info"
+                                to="user-review"
                                 className="font-bold hover:scale-102 hover:text-green-500 transform duration-150 underline 
                                            sm:text-xl text-md"
                             >

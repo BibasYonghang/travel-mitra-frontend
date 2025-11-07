@@ -188,7 +188,7 @@ export default function Intro() {
                         <input
                             type="search"
                             name="search"
-                            placeholder='Search Your Destination'
+                            placeholder='Find your next adventure'
                             autoComplete='off'
                             className=' w-[90%] outline-none placeholder:font-semibold
                             md:placeholder:text-lg placeholder:text-base'

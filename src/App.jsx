@@ -13,6 +13,7 @@ import ThankYou from "./pages/ThankYou"
 import PaymentSuccess from "./pages/PaymentSuccess"
 import PaymentFailure from "./pages/PaymentFailure"
 import Trails from "./pages/Trails"
+import Review from "./pages/Review"
 
 
 function App() {
@@ -36,9 +37,12 @@ function App() {
           <Route path="trail-ratings" element={<TrailsRating />} />
           <Route path="community-forum" element={<CommunityForum />} />
           <Route path="social-sharing" element={<SocialSharing />} />
+          <Route path="user-review" element={<Review />} />
 
           <Route path="trials-info" element={<TrailsInfo />} />
           <Route path="/trails" element={<Trails />} />
+
+
         </Route>
       </Routes>
 
