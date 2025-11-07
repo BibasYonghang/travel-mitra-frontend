@@ -65,7 +65,7 @@ export default function Review() {
 
                 <button
                     onClick={handleSubmit}
-                    className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition">
+                    className="bg-sky-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition">
                     Post Review
                 </button>
             </div>

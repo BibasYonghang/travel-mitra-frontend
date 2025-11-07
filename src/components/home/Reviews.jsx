@@ -44,7 +44,7 @@ export default function Reviews() {
                     </div>
 
                     <div className="relative z-10 xl:pr-80 lg:pr-60 md:pr-44 sm:pr-40">
-                        <h1 className="text-2xl md:text-4xl font-extrabold text-start text-green-700 mb-6">
+                        <h1 className="text-2xl md:text-4xl font-extrabold text-start text-sky-700 mb-6">
                             About <span className="text-black">Travel Mitra</span>
                         </h1>
 
@@ -63,7 +63,7 @@ export default function Reviews() {
                 <div className="relative w-full bottom-20 py-16 px-4 md:px-10 text-gray-800 ">
                     <div className="">
                         <h2 className="font-bold text-3xl md:text-4xl mb-10">
-                            User <span className="text-green-600">Reviews</span>
+                            User <span className="text-sky-600">Reviews</span>
                         </h2>
 
                         <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
@@ -90,7 +90,7 @@ export default function Reviews() {
                         <div className="mt-10 flex">
                             <Link
                                 to="user-review"
-                                className="font-bold hover:scale-102 hover:text-green-500 transform duration-150 underline 
+                                className="font-bold hover:scale-102 hover:text-sky-500 transform duration-150 underline 
                                            sm:text-xl text-md"
                             >
                                 See More & Leave a Review <ArrowRight size={20} className="inline" />

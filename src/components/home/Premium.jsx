@@ -38,7 +38,7 @@ export default function Premium() {
                     {plans.map((plan) => (
                         <div
                             key={plan.name}
-                            className={`lg:w-[26vw] md:w-[35vw] sm:w-[37vw] border rounded-lg p-6 shadow-md hover:shadow-xl transition ${plan.name === "Premium" ? "bg-green-100 border-green-400" : "bg-white border-green-400"
+                            className={`lg:w-[26vw] md:w-[35vw] sm:w-[37vw] border rounded-lg p-6 shadow-md hover:shadow-xl transition ${plan.name === "Premium" ? "bg-sky-100 border-sky-400" : "bg-white border-sky-400"
                                 }`}
                         >
                             <h3 className="text-xl font-bold">{plan.name}</h3>
@@ -49,8 +49,8 @@ export default function Premium() {
                                 ))}
                             </ul>
                             {plan.name === "Premium" && (
-                                <Link to="premium" className="relative inline-block group h-9 w-full bg-green-600 rounded-md group mt-3">
-                                    <span className="absolute w-full h-full bg-green-500 scale-x-0 origin-center rounded-md group-hover:scale-x-100 transition-transform duration-300"></span>
+                                <Link to="premium" className="relative inline-block group h-9 w-full bg-sky-600 rounded-md group mt-3">
+                                    <span className="absolute w-full h-full bg-sky-500 scale-x-0 origin-center rounded-md group-hover:scale-x-100 transition-transform duration-300"></span>
                                     <span className="absolute z-30 w-full text-center mt-1 h-full group-hover:cursor-pointer text-white ">Upgrade Now</span>
                                 </Link>
                             )}

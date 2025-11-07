@@ -2,7 +2,7 @@ import React from "react";
 import { Heart, Map, TrendingUp, Compass } from "lucide-react"; // icons
 
 export default function Personalization() {
-    const iconClass = "w-6 sm:w-10 h-6 sm:h-10 text-green-600"
+    const iconClass = "w-6 sm:w-10 h-6 sm:h-10 text-sky-600"
     const features = [
         {
             icon: <Heart className={iconClass} />,
@@ -36,7 +36,7 @@ export default function Personalization() {
         md:px-10 px-5">
             <h2 className=" font-bold text-gray-800 
             md:text-4xl text-3xl ">
-                <span className="text-green-600">Personalize</span>   Your Hiking Journey
+                <span className="text-sky-600">Personalize</span>   Your Hiking Journey
             </h2>
             <p className="mt-2 text-gray-600 text-justify">
                 Tailor your adventures with features designed to track your progress and
@@ -55,7 +55,7 @@ export default function Personalization() {
                         p-2 sm:p-6 
                         "
                     >
-                        <div className="bg-green-100 p-4 rounded-full mb-4">
+                        <div className="bg-sky-100 p-4 rounded-full mb-4">
                             {item.icon}
                         </div>
                         <h3 className=" font-semibold text-gray-800

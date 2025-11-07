@@ -79,7 +79,7 @@ export default function Map() {
     return (
 
         <div className="w-full md:h-[570px] h-[500px] md:px-10 px-5 pt-5 rounded-2xl overflow-hidden relative">
-            <h1 className="h-20 font-bold md:text-4xl text-3xl text-center"><span className="text-green-600"> Explore</span>  Trial on Map</h1>
+            <h1 className="h-20 font-bold md:text-4xl text-3xl text-center"><span className="text-sky-600"> Explore</span>  Trial on Map</h1>
             {/* Search Bar */}
             <form
                 onSubmit={handleSearch}
@@ -97,7 +97,7 @@ export default function Map() {
                 />
                 <button
                     type="submit"
-                    className=" bg-green-600 text-white rounded-r-full hover:bg-green-700 hover:cursor-pointer
+                    className=" bg-sky-600 text-white rounded-r-full hover:bg-sky-700 hover:cursor-pointer
                     md:px-6 px-2 
                     md:py-4 py-3
                     md:mr-0 mr-3

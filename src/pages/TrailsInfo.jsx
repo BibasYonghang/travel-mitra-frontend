@@ -43,7 +43,7 @@ export default function TrailsInfo() {
 
     return (
         <div className="min-h-screen bg-slate-50 md:p-8 p-2">
-            <div className="w-[93vw] mx-auto bg-white/80 backdrop-blur-md rounded-2xl shadow-lg overflow-hidden border border-green-200">
+            <div className="w-[93vw] mx-auto bg-white/80 backdrop-blur-md rounded-2xl shadow-lg overflow-hidden border border-sky-200">
                 {/* Header */}
                 <header className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 p-6 bg-gradient-to-r from-emerald-600 to-emerald-500 text-white">
                     <div className="flex items-center gap-4">

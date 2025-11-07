@@ -98,7 +98,7 @@ export default function Intro() {
                         (
                             <button
                                 onClick={clickButton}
-                                className='absolute z-20 right-0 pr-5 text-white hover:text-green-600 transition-color duration-100 flex justify-center items-center rounded-full hover:bg-black/15 cursor-pointer'
+                                className='absolute z-20 right-0 pr-5 text-white hover:text-sky-600 transition-color duration-100 flex justify-center items-center rounded-full hover:bg-black/15 cursor-pointer'
                                 aria-label="Toggle Menu"
                             >
                                 <Menu size={27} className='hover:cursor-pointer' />
@@ -112,7 +112,7 @@ export default function Intro() {
                                 (
                                     <li
                                         key={idx}
-                                        className=" text-white hover:cursor-pointer hover:scale-102 hover:text-green-500 transform duration-150  text-lg">
+                                        className=" text-white hover:cursor-pointer hover:scale-102 hover:text-sky-500 transform duration-150  text-lg">
                                         <ul onClick={() => {
                                             if (action) {
                                                 action()
@@ -141,7 +141,7 @@ export default function Intro() {
                                 />
                                 <button
                                     onClick={clickButton}
-                                    className='pl-36 mb-6 text-black hover:text-green-600 transition-color duration-100 flex justify-center items-center rounded-full  cursor-pointer'
+                                    className='pl-36 mb-6 text-black hover:text-sky-600 transition-color duration-100 flex justify-center items-center rounded-full  cursor-pointer'
                                     aria-label="Toggle Menu"
                                 >
                                     <X size={27} className='hover:cursor-pointer' />
@@ -197,7 +197,7 @@ export default function Intro() {
                 </section>
 
                 <div className='absolute bottom-32 w-full flex justify-center'>
-                    <p onClick={popularSearches} className='font-bold text-white hover:cursor-pointer hover:scale-102 hover:text-green-500 transform duration-150 underline text-xl'>
+                    <p onClick={popularSearches} className='font-bold text-white hover:cursor-pointer hover:scale-102 hover:text-sky-500 transform duration-150 underline text-xl'>
                         Explore Nearby Trails
                     </p>
                 </div>

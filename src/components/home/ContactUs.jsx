@@ -3,15 +3,15 @@ import React from 'react'
 import { FaAddressCard } from 'react-icons/fa'
 
 export default function ContactUs() {
-    const iconClass = "inline mb-1 mr-1 text-green-600"
-    const divClass = 'text-gray-700 py-5 text-base'
+    const iconClass = "inline mb-1 mr-1 text-sky-600"
+    const divClass = 'text-gray-700 py-5 text-sm sm:text-lg'
     return (
         <>
-            <div className='py-7  md:px-10 px-5 '>
-                <h1 className='font-bold mb-5 text-green-600
+            <div className='bg-gray-300 py-10  md:px-10 px-5 '>
+                <h1 className='font-bold mb-5 text-sky-600
                 md:text-4xl text-3xl'>Contact <span className='text-black'>Us</span> </h1>
 
-                <div className='grid md:grid-cols-3  grid-cols-1'>
+                <div className='text-lg grid md:grid-cols-3  grid-cols-1 '>
                     <div className={divClass}>
                         <Mail size={18} className={iconClass} /><span className='font-bold'>Email</span>
                         <p>travelmitra@gmail.com</p>
