@@ -22,9 +22,9 @@ export default function ChoosePayment() {
         {
             id: "esewa",
             name: "eSewa",
-            icon: <CreditCard className="w-12 h-12 text-green-600" />,
+            icon: <CreditCard className="w-12 h-12 text-sky-600" />,
             description: "Quick and easy payment with eSewa.",
-            gradient: "from-green-500 to-green-700"
+            gradient: "from-sky-500 to-sky-700"
         }
     ];
 
@@ -36,7 +36,7 @@ export default function ChoosePayment() {
         }
 
         const paymentData = {
-            amount: 100,
+            amount: 1000,
             phone: "9801234567",
             fullName: "Bibas Yonghang"
         };
@@ -84,14 +84,14 @@ export default function ChoosePayment() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+        <div className="flex flex-col items-center justify-center min-h-screen bg-sky-100 p-4">
             <ToastContainer />
-            <h2 className="text-2xl font-bold mb-4">Choose Payment Method</h2>
+            <h2 className="text-2xl sm:text-4xl font-bold mb-4">Choose <span className="text-sky-700">Payment Method</span> </h2>
             <div className="grid md:grid-cols-2 gap-6 w-full max-w-2xl">
                 {paymentMethods.map((method) => (
                     <div
                         key={method.id}
-                        className={`p-6 rounded-xl cursor-pointer shadow-md relative border-2 ${selectedMethod === method.id ? "border-green-600" : "border-transparent hover:border-gray-300"}`}
+                        className={`p-6 rounded-xl cursor-pointer shadow-md relative border-2 ${selectedMethod === method.id ? "border-sky-600" : "border-transparent hover:border-gray-300"}`}
                         onClick={() => setSelectedMethod(method.id)}
                     >
                         <div className={`absolute inset-0 rounded-xl opacity-10 bg-gradient-to-br ${method.gradient}`}></div>
@@ -105,7 +105,7 @@ export default function ChoosePayment() {
             </div>
             <button
                 onClick={handleProceed}
-                className="mt-6 px-6 py-3 bg-green-600 text-white rounded-lg font-bold"
+                className="mt-6 px-6 py-3 bg-sky-600 text-white rounded-lg font-bold hover:cursor-pointer"
             >
                 Proceed to Pay
             </button>

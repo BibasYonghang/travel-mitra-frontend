@@ -26,8 +26,6 @@ const PaymentSuccess = () => {
 
     useEffect(() => {
         const processPayment = async () => {
-
-
             try {
                 const params = new URLSearchParams(window.location.search)
                 const encodedData = params.get('data')

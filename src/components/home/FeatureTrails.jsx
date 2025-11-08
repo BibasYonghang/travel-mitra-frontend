@@ -21,6 +21,10 @@ export default function FeatureTrails() {
     }, []);
 
 
+    const featuredTrails = trailsData.slice(0, 4);
+
+
+
     return (
         <section className='w-full py-6 md:px-10 px-5'>
             <h1 className='font-bold text-black md:text-4xl text-3xl'>
@@ -29,12 +33,12 @@ export default function FeatureTrails() {
             <div className='grid gap-3 justify-center mt-5 w-full 
                             grid-cols-1 sm:grid-cols-2  xl:grid-cols-4'
             >
-                {trailsData.map(({ src, name }, idx) => (
+                {featuredTrails.map(({ image, name }, idx) => (
                     <div key={idx} className='flex gap-10 shadow-lg py-3 sm:py-4 px-2 sm:px-3'>
                         <div className='w-full'>
                             <div className='w-full overflow-hidden'>
                                 <img
-                                    src={src || "/images/background-image1.png"}
+                                    src={image}
                                     alt={name}
                                     className='w-full object-cover rounded-md hover:rounded-md hover:scale-105 transition-transform duration-200 hover:cursor-pointer
                                                h-[28vh] sm:h-[30vh] md:h-[38vh] xl:h-[37vh]'
