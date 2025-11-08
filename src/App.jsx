@@ -38,11 +38,13 @@ function App() {
           <Route path="community-forum" element={<CommunityForum />} />
           <Route path="social-sharing" element={<SocialSharing />} />
           <Route path="user-review" element={<Review />} />
-
-          <Route path="trials-info" element={<TrailsInfo />} />
           <Route path="/trails" element={<Trails />} />
 
+          <Route path="/trails-info/id/:trailId" element={<TrailsInfo />} />
+          <Route path="/trails-info/name/:trailName" element={<TrailsInfo />} />
 
+
+          <Route path="*" element={<p>Page Not Found</p>} />
         </Route>
       </Routes>
 

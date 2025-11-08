@@ -1,3 +1,4 @@
+import { ArrowRight } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { AiFillStar } from "react-icons/ai";
 import { Link } from 'react-router-dom';
@@ -24,19 +25,19 @@ const Trails = () => {
 
 
     return (
-        <section  className='w-full py-6 md:px-10 px-5'>
+        <section className='w-full py-6 md:px-10 px-5'>
             <h1 className='font-bold text-black md:text-4xl text-3xl'>
                 Trails
             </h1>
             <div className='grid gap-3 justify-center mt-5 w-full 
                             grid-cols-1 sm:grid-cols-2  xl:grid-cols-4'
             >
-                {trailsData.map(({ src, name }, idx) => (
+                {trailsData.map(({ image, name }, idx) => (
                     <div key={idx} className='flex gap-10 shadow-lg py-3 sm:py-4 px-2 sm:px-3'>
                         <div className='w-full'>
                             <div className='w-full overflow-hidden'>
                                 <img
-                                    src={src || "/images/background-image1.png"}
+                                    src={image || "/images/background-image1.png"}
                                     alt={name}
                                     className='w-full object-cover rounded-md hover:rounded-md hover:scale-105 transition-transform duration-200 hover:cursor-pointer
                                                h-[28vh] sm:h-[30vh] md:h-[38vh] xl:h-[37vh]'
@@ -57,12 +58,20 @@ const Trails = () => {
 
                                 <div className='relative group border rounded-sm h-8 w-24 mt-2 text-center border-sky-500 bg-sky-600 text-sky-700'>
                                     <span className='absolute h-full w-full bg-sky-500 group-hover:scale-x-100 inset-0 scale-x-0 transition-all duration-300'></span>
-                                    <Link to="trials-info" className='absolute z-20 inset-0 pt-0.5 text-white'>See More</Link>
+                                    <Link to={`/trails-info/id/${trailsData[idx]._id}`} className='absolute z-20 inset-0 pt-0.5 text-white'>See More</Link>
                                 </div>
                             </div>
                         </div>
                     </div>
                 ))}
+            </div>
+            <div className="mt-10 w-auto">
+                <Link
+                    to="/"
+                    className="font-bold hover:scale-y-105 hover:text-sky-500 transform duration-150 underline sm:text-xl text-md flex items-center gap-2"
+                >
+                    Back To Home <ArrowRight size={20} className="mt-1" />
+                </Link>
             </div>
         </section>
     );

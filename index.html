@@ -1,13 +1,90 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/images/travel-mitra-logo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Travel Mitra</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Travel Mitra | Hiking & Trekking in Nepal</title>
+  <meta name="description"
+    content="Explore the best hiking and trekking trails in Nepal with Travel Mitra. Find guides, homestays, and experiences while planning your adventure safely and easily." />
+  <meta name="keywords"
+    content="Nepal trekking, hiking trails, Travel Mitra, Annapurna Trek, Everest Base Camp, trekking guide, adventure Nepal" />
+  <meta name="author" content="Travel Mitra" />
+  <link rel="canonical" href="https://www.travelmitra.com/" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Favicon & Apple Touch Icon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/travel-mitra-logo.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/travel-mitra-logo.png" />
+
+  <!-- Preload critical assets for performance -->
+  <link rel="preload" href="/src/main.jsx" as="script" />
+  <link rel="preload" href="/images/travel-mitra-logo.png" as="image" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.travelmitra.com/" />
+  <meta property="og:title" content="Travel Mitra | Hiking & Trekking in Nepal" />
+  <meta property="og:description"
+    content="Explore the best hiking and trekking trails in Nepal with Travel Mitra. Find guides, homestays, and experiences while planning your adventure safely and easily." />
+  <meta property="og:image" content="https://www.travelmitra.com/images/social-preview.jpg" />
+  <meta property="og:site_name" content="Travel Mitra" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://www.travelmitra.com/" />
+  <meta name="twitter:title" content="Travel Mitra | Hiking & Trekking in Nepal" />
+  <meta name="twitter:description"
+    content="Explore the best hiking and trekking trails in Nepal with Travel Mitra. Find guides, homestays, and experiences while planning your adventure safely and easily." />
+  <meta name="twitter:image" content="https://www.travelmitra.com/images/social-preview.jpg" />
+  <meta name="twitter:site" content="@TravelMitra" />
+  <meta name="twitter:creator" content="@TravelMitra" />
+
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Travel Mitra",
+      "url": "https://www.travelmitra.com/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.travelmitra.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+  <!-- Sitemap & Robots -->
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+  <!-- Ensure /robots.txt exists in the public folder -->
+
+  <!-- Theme Color for Mobile Browsers -->
+  <meta name="theme-color" content="#22c55e" />
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <!-- Main Script -->
+  <script type="module" src="/src/main.jsx" defer></script>
+
+  <!-- Google Analytics / Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID');
+  </script>
+</body>
+
 </html>
