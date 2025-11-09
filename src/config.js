@@ -1,1 +1,1 @@
-export const APP_URL = "https://travel-mitra-backend.onrender.com/"; 
+export const APP_URL = "https://travel-mitra-backend.onrender.com"; 
