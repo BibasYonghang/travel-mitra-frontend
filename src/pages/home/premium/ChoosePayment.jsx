@@ -8,7 +8,6 @@ import axios from "axios";
 
 export default function ChoosePayment() {
     const { token } = isAuthenticated();
-    const orderInfo = JSON.parse(sessionStorage.getItem('orderInfo'));
     const [selectedMethod, setSelectedMethod] = useState(null);
 
     const paymentMethods = [
@@ -30,6 +29,7 @@ export default function ChoosePayment() {
 
     const handleProceed = async (e) => {
         e.preventDefault();
+
         if (!selectedMethod) {
             alert("Please select a payment method first!");
             return;
@@ -43,29 +43,34 @@ export default function ChoosePayment() {
 
         try {
             if (selectedMethod === "esewa") {
-                // Get all payment fields including signature from backend
+
                 const { data } = await axios.post(
                     `${APP_URL}/api/generate-signature`,
                     paymentData,
                     {
                         headers: {
-                            'Content-Type': 'application/json',
+                            "Content-Type": "application/json",
                             Authorization: `Bearer ${token}`
                         }
                     }
                 );
 
-                // Use the backend response as-is
-                const formData = { ...data };
+                // Add success and failure redirect URLs here
+                const formData = {
+                    ...data,
+                    success_url: `${window.location.origin}/payment-success`,
+                    failure_url: `${window.location.origin}/payment-failure`,
+                    signed_field_names: "total_amount,transaction_uuid,product_code"
+                };
 
-                // Create the form dynamically and submit
-                const form = document.createElement('form');
-                form.method = 'POST';
-                form.action = 'https://rc-epay.esewa.com.np/api/epay/main/v2/form';
+                // Create and submit form
+                const form = document.createElement("form");
+                form.method = "POST";
+                form.action = "https://rc-epay.esewa.com.np/api/epay/main/v2/form";
 
-                Object.keys(formData).forEach(key => {
-                    const input = document.createElement('input');
-                    input.type = 'hidden';
+                Object.keys(formData).forEach((key) => {
+                    const input = document.createElement("input");
+                    input.type = "hidden";
                     input.name = key;
                     input.value = formData[key];
                     form.appendChild(input);
@@ -74,27 +79,34 @@ export default function ChoosePayment() {
                 document.body.appendChild(form);
                 form.submit();
             } else {
-                // Khalti integration placeholder
-                alert("Khalti integration not included in this snippet.");
+                alert("Khalti integration coming soon!");
             }
         } catch (err) {
             console.error("Payment initiation failed:", err);
-            toast.error("Something went wrong. Please try again.");
+            toast.error("Something went wrong. Redirecting...");
         }
     };
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-sky-100 p-4">
             <ToastContainer />
-            <h2 className="text-2xl sm:text-4xl font-bold mb-4">Choose <span className="text-sky-700">Payment Method</span> </h2>
+            <h2 className="text-2xl sm:text-4xl font-bold mb-4">
+                Choose <span className="text-sky-700">Payment Method</span>
+            </h2>
+
             <div className="grid md:grid-cols-2 gap-6 w-full max-w-2xl">
                 {paymentMethods.map((method) => (
                     <div
                         key={method.id}
-                        className={`p-6 rounded-xl cursor-pointer shadow-md relative border-2 ${selectedMethod === method.id ? "border-sky-600" : "border-transparent hover:border-gray-300"}`}
+                        className={`p-6 rounded-xl cursor-pointer shadow-md relative border-2 ${selectedMethod === method.id
+                            ? "border-sky-600"
+                            : "border-transparent hover:border-gray-300"
+                            }`}
                         onClick={() => setSelectedMethod(method.id)}
                     >
-                        <div className={`absolute inset-0 rounded-xl opacity-10 bg-gradient-to-br ${method.gradient}`}></div>
+                        <div
+                            className={`absolute inset-0 rounded-xl opacity-10 bg-gradient-to-br ${method.gradient}`}
+                        ></div>
                         <div className="relative flex flex-col items-center text-center space-y-3">
                             {method.icon}
                             <h3 className="text-xl font-semibold">{method.name}</h3>
@@ -103,9 +115,10 @@ export default function ChoosePayment() {
                     </div>
                 ))}
             </div>
+
             <button
                 onClick={handleProceed}
-                className="mt-6 px-6 py-3 bg-sky-600 text-white rounded-lg font-bold hover:cursor-pointer"
+                className="mt-6 px-6 py-3 bg-sky-600 text-white rounded-lg font-bold hover:cursor-pointer hover:bg-sky-700"
             >
                 Proceed to Pay
             </button>
