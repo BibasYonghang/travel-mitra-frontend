@@ -13,7 +13,7 @@ export default function TrailInfo() {
     useEffect(() => {
         const fetchTrail = async () => {
             try {
-                const res = await fetch("http://localhost:5000/api/trails");
+                const res = await fetch("https://travel-mitra-backend.onrender.com/api/trails");
                 const data = await res.json();
 
                 let found = null;
