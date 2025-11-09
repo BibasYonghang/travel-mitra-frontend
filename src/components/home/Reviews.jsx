@@ -1,31 +1,29 @@
 import { ArrowRight, Star } from "lucide-react";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const reviews = [
-    {
-        name: "Sita Shrestha",
-        comment: "Loved the Sunrise Hill trail! The early morning trek was peaceful, and the sunrise over the valley was breathtaking. The trail was well-marked, and I felt completely safe throughout. Highly recommend for beginners and anyone who loves nature.",
-        rating: 5,
-    },
-    {
-        name: "Ram Thapa",
-        comment: "Forest Trek was challenging but totally worth it. The trail had steep climbs, yet the lush greenery and waterfalls made every step enjoyable. The guide was knowledgeable and made the trek safe and fun. Highly recommend for adventure and nature lovers.",
-        rating: 4,
-    },
-    {
-        name: "Mina Koirala",
-        comment: "River View Trail had amazing views! Walking along the riverside while birds chirped and the breeze kept the weather perfect made this trek unforgettable. The local homestays were welcoming. Highly recommend for those seeking a serene trekking experience.",
-        rating: 5,
-    },
-    {
-        name: "Bibas Yonghang",
-        comment: "Ghandruk trek was truly beautiful. The panoramic views of Annapurna and Machhapuchhre were surreal, and the Gurung culture along the way was fascinating. Every day brought a new hidden gem. Highly recommend for  hikers seeking a memorable journey.",
-        rating: 5,
-    },
-];
 
 export default function Reviews() {
+    const [reviews, setReviews] = useState([])
+
+
+    useEffect(() => {
+        const userReviews = async () => {
+            try {
+                const res = await fetch("http://localhost:5000/api/reviews",)
+                const data = await res.json();
+                setReviews(data);
+            } catch (error) {
+                console.log(error)
+            }
+
+        }
+
+        userReviews();
+    }, [])
+
+
+
     return (
         <section id="#about-app" className="relative w-full text-white bg-white xl:h-[150vh] lg:h-[200vh] md:h-[215vh] sm:h-[190vh] h-[320vh]">
             {/* About Section */}
@@ -95,7 +93,7 @@ export default function Reviews() {
                         to="user-review"
                         className="font-bold hover:text-sky-500 transform duration-100 underline sm:text-xl text-md flex items-center gap-2"
                     >
-                        See More & Leave a Review <ArrowRight size={20} className="mt-1"/>
+                        See More & Leave a Review <ArrowRight size={20} className="mt-1" />
                     </Link>
                 </div>
             </div>
