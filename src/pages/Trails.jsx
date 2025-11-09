@@ -1,4 +1,4 @@
-import { ArrowRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { AiFillStar } from "react-icons/ai";
 import { Link } from 'react-router-dom';
@@ -27,12 +27,12 @@ const Trails = () => {
     return (
         <section className='w-full py-6 md:px-10 px-5'>
             <h1 className='font-bold text-black md:text-4xl text-3xl'>
-                Trails
+                Discover <span className='text-sky-600'>Trails</span>
             </h1>
             <div className='grid gap-3 justify-center mt-5 w-full 
                             grid-cols-1 sm:grid-cols-2  xl:grid-cols-4'
             >
-                {trailsData.map(({ image, name }, idx) => (
+                {trailsData.map(({ image, name, stars }, idx) => (
                     <div key={idx} className='flex gap-10 shadow-lg py-3 sm:py-4 px-2 sm:px-3'>
                         <div className='w-full'>
                             <div className='w-full overflow-hidden'>
@@ -45,13 +45,11 @@ const Trails = () => {
                             </div>
                             <div className='w-full mt-2'>
                                 <h1 className='font-bold  font-sans text-base md:text-xl text-sky-700'>{name}</h1>
-                                <div className='my-4'>
-                                    <AiFillStar size={15} className='text-yellow-400 inline' />
-                                    <AiFillStar size={15} className='text-yellow-400 inline' />
-                                    <AiFillStar size={15} className='text-yellow-400 inline' />
-                                    <AiFillStar size={15} className='text-yellow-400 inline' />
-                                    <AiFillStar size={15} className='text-yellow-400 inline' />
-                                    <p className='inline ml-2 text-gray-600'>based on 5 reviews</p>
+                                <div className='my-4 flex items-center'>
+                                    {Array.from({ length: stars }).map((_, idx) => (
+                                        <AiFillStar key={idx} size={15} className='text-yellow-400 inline' />
+                                    ))}
+                                    <p className='inline ml-2 text-gray-600'>Rated {stars} out of 5 on average</p>
                                 </div>
 
                                 <hr className='my-5 text-gray-300' />
@@ -65,12 +63,12 @@ const Trails = () => {
                     </div>
                 ))}
             </div>
-            <div className="mt-10 w-auto">
+            <div className="mt-10">
                 <Link
                     to="/"
                     className="font-bold hover:scale-y-105 hover:text-sky-500 transform duration-150 underline sm:text-xl text-md flex items-center gap-2"
                 >
-                    Back To Home <ArrowRight size={20} className="mt-1" />
+                    <ArrowLeft size={20} className="mt-1" /> Back To Home
                 </Link>
             </div>
         </section>

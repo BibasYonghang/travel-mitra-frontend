@@ -33,7 +33,7 @@ export default function FeatureTrails() {
             <div className='grid gap-3 justify-center mt-5 w-full 
                             grid-cols-1 sm:grid-cols-2  xl:grid-cols-4'
             >
-                {featuredTrails.map(({ image, name }, idx) => (
+                {featuredTrails.map(({ image, name, stars }, idx) => (
                     <div key={idx} className='flex gap-10 shadow-lg py-3 sm:py-4 px-2 sm:px-3'>
                         <div className='w-full'>
                             <div className='w-full overflow-hidden'>
@@ -46,13 +46,11 @@ export default function FeatureTrails() {
                             </div>
                             <div className='w-full mt-2'>
                                 <h1 className='font-bold  font-sans text-base md:text-xl text-sky-700'>{name}</h1>
-                                <div className='my-4'>
-                                    <AiFillStar size={15} className='text-yellow-400 inline' />
-                                    <AiFillStar size={15} className='text-yellow-400 inline' />
-                                    <AiFillStar size={15} className='text-yellow-400 inline' />
-                                    <AiFillStar size={15} className='text-yellow-400 inline' />
-                                    <AiFillStar size={15} className='text-yellow-400 inline' />
-                                    <p className='inline ml-2 text-gray-600'>based on 5 reviews</p>
+                                <div className='my-4 flex items-center'>
+                                    {Array.from({ length: stars }).map((_, idx) => (
+                                        <AiFillStar key={idx} size={15} className='text-yellow-400 inline' />
+                                    ))}
+                                    <p className='inline ml-2 text-gray-600'>Rated {stars} out of 5 on average</p>
                                 </div>
 
                                 <hr className='my-5 text-gray-300' />

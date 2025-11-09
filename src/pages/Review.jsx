@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ArrowRight, Star, User } from "lucide-react";
+import { ArrowLeft, Star, User } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Review() {
@@ -50,13 +50,13 @@ export default function Review() {
             <h1 className="text-3xl font-bold text-black">Traveler <span className="text-sky-600">Reviews</span></h1>
 
             {/* Review Input */}
-            <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 space-y-3">
+            <div className="bg-white p-5 rounded-2xl shadow-sm border border-sky-200 space-y-3">
 
                 <textarea
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
                     placeholder="Share your trekking experience..."
-                    className="w-full min-h-60 border border-gray-200 rounded-xl p-3  resize-none focus:outline-none focus:ring-2 focus:ring-sky-500"
+                    className="w-full min-h-60 border border-sky-200 rounded-xl p-3 text-sky-600  resize-none focus:outline-none focus:ring-2 focus:ring-sky-500"
                     rows={3}
                 />
                 <div className="flex items-center gap-2">
@@ -112,7 +112,7 @@ export default function Review() {
                     to="/"
                     className="font-bold hover:scale-y-105 hover:text-sky-500 transform duration-150 underline sm:text-xl text-md flex items-center gap-2"
                 >
-                    Back To Home <ArrowRight size={20} className="mt-1" />
+                    <ArrowLeft size={20} className="mt-1" /> Back To Home
                 </Link>
             </div>
         </div>
