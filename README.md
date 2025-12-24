@@ -1,17 +1,96 @@
-# Mitra-Travel
+# Travel Mitra | Hiking & Trekking in Nepal
+Travel Mitra is a modern, responsive web application that helps travelers explore hiking and trekking trails in Nepal. Users can find guides, homestays, and adventure experiences while planning their trips safely and efficiently.
 
+---
 
-## Technologies Used
-used react-leaflet library for map
+## 🌐 Live Demo
 
+[Visit Travel Mitra](https://hamro-bazzar-six.vercel.app/)
 
-**Mitra-Travel** is a travel companion app designed specifically for one-day travelers. It helps users easily explore and analyze the places they plan to visit by providing essential information such as:
+---
 
-- The weather forecast throughout the day
-- Price estimates for local items and services
-- Available facilities like hotels, restaurants, and more
-- Current conditions of the location
+## 🛠 Features
 
-This app aims to assist travelers in planning better, managing their budget, and making informed decisions before they begin their journey.
+- Browse the best hiking and trekking trails in Nepal
+- Search and filter trails by region, difficulty, and duration
+- View trail details, guides, and accommodations
+- Mobile-first responsive design
+- SEO optimized with Open Graph, Twitter Cards, and JSON-LD structured data
+- Optimized performance with asset preloading
+- Google Analytics / Tag Manager integration
 
+---
+
+## 🖥 Tech Stack
+
+- **Frontend:** React.js, Vite  
+- **Styling:** Tailwind CSS  
+- **Icons:** Lucide React  
+- **Fonts:** Google Fonts (Inter)  
+- **SEO & Social Sharing:** Open Graph, Twitter Cards, JSON-LD  
+- **Deployment:** Vercel
+
+---
+
+## ⚡ Installation / Development
+
+Follow these steps to run the project locally:
+
+1. **Clone the repository**
+
+git clone https://github.com/your-username/travel-mitra-frontend.git
+cd travel-mitra-frontend
+Install dependencies
+npm install
+Start development server
+npm run dev
+Open your browser at http://localhost:5173 to view the app.
+
+📝 Project Structure
+├── public/                 # Static assets (images, favicon, robots.txt)
+├── src/
+│   ├── components/         # Reusable React components
+│   ├── pages/              # Application pages
+│   ├── main.jsx            # App entry point
+├── index.html              # Main HTML template with meta tags
+├── package.json
+└── README.md
+
+🔧 SEO & Metadata
+Fully optimized <meta> tags for description, keywords, author, canonical URL
+
+Open Graph & Twitter Cards for social sharing
+
+JSON-LD structured data for search engines
+
+Sitemap and robots.txt support
+
+🚀 Deployment
+The frontend is deployed on Vercel:
+
+Production URL: https://hamro-bazzar-six.vercel.app/
+
+Automatic builds triggered on git push to main branch
+
+📈 Analytics
+Integrated Google Analytics and Tag Manager for tracking user interactions:
+🎨 Styling & Performance
+Tailwind CSS for rapid and responsive UI development
+
+Preloaded critical assets (main.jsx, images, fonts) for faster load
+
+Mobile-first design ensures smooth experience on all devices
+
+📚 Contributing
+Contributions are not welcome for now
+
+📄 License
+This project is not under the any license yet.
+
+📞 Contact
+Website: https://hamro-bazzar-six.vercel.app/
+
+Author : Bibas Yonghang
+
+Email: support@travelmitra.com
 

@@ -8,12 +8,15 @@ export default function TrailInfo() {
     const [trail, setTrail] = useState(null);
     const [notFound, setNotFound] = useState(false);
 
+     const APP_URL = import.meta.env.VITE_BASE_URL
+
+
     const unslugify = slug => slug.replace(/-/g, " ").trim().toLowerCase();
 
     useEffect(() => {
         const fetchTrail = async () => {
             try {
-                const res = await fetch("https://travel-mitra-backend.onrender.com/api/trails");
+                const res = await fetch(`${APP_URL}/api/trails`);
                 const data = await res.json();
 
                 let found = null;

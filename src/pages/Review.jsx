@@ -32,7 +32,7 @@ export default function Review() {
     useEffect(() => {
         const userReviews = async () => {
             try {
-                const res = await fetch("https://travel-mitra-backend.onrender.com/api/reviews",)
+                const res = await fetch(`${APP_URL}/api/reviews`,)
                 const data = await res.json();
                 setReviews(data);
             } catch (error) {

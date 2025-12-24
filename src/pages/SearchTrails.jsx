@@ -11,7 +11,7 @@ export default function SearchTrails() {
     useEffect(() => {
         const fetchTrail = async () => {
             try {
-                const res = await fetch("https://travel-mitra-backend.onrender.com/api/trails");
+                const res = await fetch(`${APP_URL}/api/trails`);
                 const data = await res.json();
 
                 const sluggedName = unslugify(trailName);

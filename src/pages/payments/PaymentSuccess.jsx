@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { isAuthenticated } from '../auth';
+import { isAuthenticated } from '../../auth.js';
 import axios from 'axios';
-import { APP_URL } from '../config';
 import { CheckCircle2 } from 'lucide-react';
 
 const PaymentSuccess = () => {
@@ -10,6 +9,8 @@ const PaymentSuccess = () => {
     const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     const shippingInfo = JSON.parse(localStorage.getItem('shippingInfo')) || {};
     const { user, token } = isAuthenticated() || {};
+
+ const APP_URL = import.meta.env.VITE_BASE_URL
 
     const order = {
         orderItems: cartItems,
@@ -44,7 +45,7 @@ const PaymentSuccess = () => {
                                 Authorization: `Bearer ${token}`
                             }
                         };
-                        await axios.post(`${APP_URL}/postorder`, order, config);
+                        await axios.post(`${APP_URL}/api/generate-signature`, order, config);
                     }
 
                     localStorage.removeItem('cartItems');

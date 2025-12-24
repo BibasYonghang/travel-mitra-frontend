@@ -3,12 +3,14 @@ import { CreditCard, Wallet } from "lucide-react";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { isAuthenticated } from "../../../auth";
-import { APP_URL } from "../../../config";
 import axios from "axios";
 
 export default function ChoosePayment() {
     const { token } = isAuthenticated();
     const [selectedMethod, setSelectedMethod] = useState(null);
+
+     const APP_URL = import.meta.env.VITE_BASE_URL
+
 
     const paymentMethods = [
         {

@@ -6,10 +6,13 @@ import { Link } from 'react-router-dom';
 export default function FeatureTrails() {
     const [trailsData, setTrailsData] = useState([]);
 
+     const APP_URL = import.meta.env.VITE_BASE_URL
+
+
     useEffect(() => {
         const fetchTrails = async () => {
             try {
-                const res = await fetch("https://travel-mitra-backend.onrender.com/api/trails");
+                const res = await fetch(`${APP_URL}/api/trails`);
                 const data = await res.json();
                 setTrailsData(data); // store API data in state
             } catch (error) {
