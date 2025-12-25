@@ -19,6 +19,8 @@ export default function Intro() {
   const [progressBars, setProgressBars] = useState([0, 0, 0, 0]);
   const [searchValue, setSearchValue] = useState("");
 
+  const APP_URL = import.meta.env.VITE_BASE_URL;
+
   const backgroundImages = [
     { path: "/images/home-background-images/background-image1.png" },
     { path: "/images/home-background-images/background-image2.png" },

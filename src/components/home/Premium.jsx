@@ -28,7 +28,7 @@ export default function Premium() {
     return (
         <div className="relative  md:px-10 px-5 mt-16 overflow-hidden">
             <img src="/images/premium-image-bg.png" alt="Premium Background Image" className="md:h-[90vh] sm:h-[70vh] h-[50vh] object-cover md:object-top object-right md:rounded-2xl rounded-t-2xl w-full " />
-            <section className="md:absolute bg-gray-200 md:bg-transparent  rounded-b-2xl top-0 md:px-20 px-6 md:py-12 py-8">
+            <section className="md:absolute bg-gray-200 md:bg-transparent  rounded-b-2xl top-0 md:px-20 px-4 md:py-12 py-8">
                 <h2 className="md:text-4xl text-3xl font-bold md:text-gray-50">Elevate Your Hiking Adventures</h2>
                 <p className="mt-2 md:text-gray-100 max-w-xl text-justify">
                     Take your hikes to the next level! Explore trails, create your own routes, and enjoy every step of your outdoor adventure with the membership that unlocks the best experiences on the trail.

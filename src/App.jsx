@@ -5,12 +5,12 @@ import UserProfile from "./pages/home/community/UserProfile";
 import TrailsRating from "./pages/home/community/TrailsRatings";
 import CommunityForum from "./pages/home/community/CommunityForum";
 import SocialSharing from "./pages/home/community/SocialSharing";
-import TrailsInfo from "./pages/TrailsInfo";
+import TrailsInfo from "./pages/trails/TrailsInfo";
 import ChoosePayment from "./pages/home/premium/ChoosePayment";
 import ThankYou from "./pages/payments/ThankYou";
 import PaymentSuccess from "./pages/payments/PaymentSuccess";
 import PaymentFailure from "./pages/payments/PaymentFailure";
-import Trails from "./pages/Trails";
+import Trails from "./pages/trails/Trails";
 import Review from "./pages/Review";
 import MainLayout from "../layout/MainLayout";
 

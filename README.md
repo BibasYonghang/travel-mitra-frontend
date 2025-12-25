@@ -5,7 +5,7 @@ Travel Mitra is a modern, responsive web application that helps travelers explor
 
 ## 🌐 Live Demo
 
-[Visit Travel Mitra](https://hamro-bazzar-six.vercel.app/)
+[Visit Travel Mitra](https://travel-mitraa.vercel.app/)
 
 ---
 
@@ -38,7 +38,7 @@ Follow these steps to run the project locally:
 
 1. **Clone the repository**
 
-git clone https://github.com/your-username/travel-mitra-frontend.git
+git clone 
 cd travel-mitra-frontend
 Install dependencies
 npm install
@@ -68,7 +68,7 @@ Sitemap and robots.txt support
 🚀 Deployment
 The frontend is deployed on Vercel:
 
-Production URL: https://hamro-bazzar-six.vercel.app/
+Production URL: https://travel-mitraa.vercel.app/
 
 Automatic builds triggered on git push to main branch
 
@@ -88,9 +88,8 @@ Contributions are not welcome for now
 This project is not under the any license yet.
 
 📞 Contact
-Website: https://hamro-bazzar-six.vercel.app/
+Website: https://travel-mitraa.vercel.app/
 
 Author : Bibas Yonghang
 
-Email: support@travelmitra.com
 
