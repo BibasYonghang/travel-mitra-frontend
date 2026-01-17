@@ -50,8 +50,7 @@ Open your browser at http://localhost:5173 to view the app.
 ```
 
 📝 Project Structure
-bash
-Copy code
+```bash
 ├── public/                 # Static assets (images, favicon, robots.txt)
 ├── src/
 │   ├── components/         # Reusable React components
@@ -60,6 +59,8 @@ Copy code
 ├── index.html              # Main HTML template
 ├── package.json            # Project metadata & dependencies
 └── README.md               # Project documentation
+```
+```bash
 🔧 SEO & Metadata
 Fully optimized <meta> tags for description, keywords, author, and canonical URL
 
@@ -71,26 +72,36 @@ Sitemap and robots.txt support
 
 Deployment
 Frontend deployed on Vercel
+```
 
 Production URL: https://travel-mitraa.vercel.app/
 
 ```bash
 📈 Analytics
 Integrated Google Analytics and Google Tag Manager for tracking user interactions
+```
 
+
+```bash
 🎨 Styling & Performance
 Tailwind CSS for rapid and responsive UI development
+```
 
-Preloaded critical assets (main.jsx, images, fonts) for faster page load
-
+```bash
 Mobile-first design ensures smooth experience on all devices
+```
 
+```bash
 📚 Contributing
 Contributions are not open at the moment.
+```
 
+```bash
 📄 License
 This project does not have a license yet.
+```
 
+```bash
 📞 Contact
 Website: https://travel-mitraa.vercel.app/
 ```
