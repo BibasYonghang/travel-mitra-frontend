@@ -1,23 +1,23 @@
-# Travel Mitra | Hiking & Trekking in Nepal
-Travel Mitra is a modern, responsive web application that helps travelers explore hiking and trekking trails in Nepal. Users can find guides, homestays, and adventure experiences while planning their trips safely and efficiently.
+# 🌄 Travel Mitra | Hiking & Trekking in Nepal
+
+**Travel Mitra** is a modern, responsive web application that helps travelers explore hiking and trekking trails in Nepal. Users can find guides, homestays, and adventure experiences while planning their trips safely and efficiently.  
 
 ---
 
 ## 🌐 Live Demo
 
-[Visit Travel Mitra](https://travel-mitraa.vercel.app/)
+[Visit Travel Mitra](https://travel-mitraa.vercel.app/)  
 
 ---
 
 ## 🛠 Features
 
-- Browse the best hiking and trekking trails in Nepal
-- Search and filter trails by region, difficulty, and duration
-- View trail details, guides, and accommodations
-- Mobile-first responsive design
-- SEO optimized with Open Graph, Twitter Cards, and JSON-LD structured data
-- Optimized performance with asset preloading
-- Google Analytics / Tag Manager integration
+- Search and filter trails by **region, difficulty, and duration**  
+- View **trail details**, guides, and accommodations  
+- **Mobile-first responsive design**  
+- **SEO optimized** with Open Graph, Twitter Cards, and JSON-LD structured data  
+- Optimized performance with **asset preloading**  
+- Integrated **Google Analytics & Tag Manager**  
 
 ---
 
@@ -28,7 +28,7 @@ Travel Mitra is a modern, responsive web application that helps travelers explor
 - **Icons:** Lucide React  
 - **Fonts:** Google Fonts (Inter)  
 - **SEO & Social Sharing:** Open Graph, Twitter Cards, JSON-LD  
-- **Deployment:** Vercel
+- **Deployment:** Vercel  
 
 ---
 
@@ -36,62 +36,63 @@ Travel Mitra is a modern, responsive web application that helps travelers explor
 
 Follow these steps to run the project locally:
 
-1. **Clone the repository**
-
-git clone 
+```bash
+# 1. Clone the repository
+git clone https://github.com/yourusername/travel-mitra-frontend.git
 cd travel-mitra-frontend
-Install dependencies
+
+# 2. Install dependencies
 npm install
-Start development server
+
+# 3. Start development server
 npm run dev
 Open your browser at http://localhost:5173 to view the app.
-
-```bash
-📝 Project Structure
-├── public/            
-├── src/
-│   ├── components/        
-│   ├── pages/              
-│   ├── main.jsx       
-├── index.html             
-├── package.json
-└── README.md
 ```
 
+📝 Project Structure
+bash
+Copy code
+├── public/                 # Static assets (images, favicon, robots.txt)
+├── src/
+│   ├── components/         # Reusable React components
+│   ├── pages/              # Application pages
+│   ├── main.jsx            # App entry point
+├── index.html              # Main HTML template
+├── package.json            # Project metadata & dependencies
+└── README.md               # Project documentation
 🔧 SEO & Metadata
-Fully optimized <meta> tags for description, keywords, author, canonical URL
+Fully optimized <meta> tags for description, keywords, author, and canonical URL
 
 Open Graph & Twitter Cards for social sharing
 
-JSON-LD structured data for search engines
+JSON-LD structured data for search engine indexing
 
 Sitemap and robots.txt support
 
- Deployment
-The frontend is deployed on Vercel:
+Deployment
+Frontend deployed on Vercel
 
 Production URL: https://travel-mitraa.vercel.app/
 
-Automatic builds triggered on git push to main branch
-
+```bash
 📈 Analytics
-Integrated Google Analytics and Tag Manager for tracking user interactions:
+Integrated Google Analytics and Google Tag Manager for tracking user interactions
+
 🎨 Styling & Performance
 Tailwind CSS for rapid and responsive UI development
 
-Preloaded critical assets (main.jsx, images, fonts) for faster load
+Preloaded critical assets (main.jsx, images, fonts) for faster page load
 
 Mobile-first design ensures smooth experience on all devices
 
 📚 Contributing
-Contributions are not welcome for now
+Contributions are not open at the moment.
 
 📄 License
-This project is not under the any license yet.
+This project does not have a license yet.
 
 📞 Contact
 Website: https://travel-mitraa.vercel.app/
+```
 
-Author : Bibas Yonghang
-
-
+Author: Bibas Yonghang
