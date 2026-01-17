@@ -51,14 +51,14 @@ Open your browser at http://localhost:5173 to view the app.
 
 📝 Project Structure
 ```bash
-├── public/                 # Static assets (images, favicon, robots.txt)
+├── public/                
 ├── src/
-│   ├── components/         # Reusable React components
-│   ├── pages/              # Application pages
-│   ├── main.jsx            # App entry point
-├── index.html              # Main HTML template
-├── package.json            # Project metadata & dependencies
-└── README.md               # Project documentation
+│   ├── components/        
+│   ├── pages/             
+│   ├── main.jsx           
+├── index.html             
+├── package.json           
+└── README.md        
 ```
 ```bash
 🔧 SEO & Metadata
@@ -99,11 +99,6 @@ Contributions are not open at the moment.
 ```bash
 📄 License
 This project does not have a license yet.
-```
-
-```bash
-📞 Contact
-Website: https://travel-mitraa.vercel.app/
 ```
 
 Author: Bibas Yonghang
