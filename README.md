@@ -46,15 +46,17 @@ Start development server
 npm run dev
 Open your browser at http://localhost:5173 to view the app.
 
+```bash
 📝 Project Structure
-├── public/                 # Static assets (images, favicon, robots.txt)
+├── public/            
 ├── src/
-│   ├── components/         # Reusable React components
-│   ├── pages/              # Application pages
-│   ├── main.jsx            # App entry point
-├── index.html              # Main HTML template with meta tags
+│   ├── components/        
+│   ├── pages/              
+│   ├── main.jsx       
+├── index.html             
 ├── package.json
 └── README.md
+```
 
 🔧 SEO & Metadata
 Fully optimized <meta> tags for description, keywords, author, canonical URL
@@ -65,7 +67,7 @@ JSON-LD structured data for search engines
 
 Sitemap and robots.txt support
 
-🚀 Deployment
+ Deployment
 The frontend is deployed on Vercel:
 
 Production URL: https://travel-mitraa.vercel.app/
