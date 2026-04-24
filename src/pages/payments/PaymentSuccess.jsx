@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { isAuthenticated } from '../../auth.js';
+import { isAuthenticated } from '../../utils/auth.js';
 import axios from 'axios';
 import { CheckCircle2 } from 'lucide-react';
 
