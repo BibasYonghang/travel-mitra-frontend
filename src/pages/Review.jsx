@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ArrowLeft, Star, User } from "lucide-react";
 import { Link } from "react-router-dom";
+import { BACKEND_URL } from "../config/env";
 
 export default function Review() {
 
@@ -32,7 +33,7 @@ export default function Review() {
     useEffect(() => {
         const userReviews = async () => {
             try {
-                const res = await fetch(`${APP_URL}/api/reviews`,)
+                const res = await fetch(`${BACKEND_URL}/api/reviews`,)
                 const data = await res.json();
                 setReviews(data);
             } catch (error) {

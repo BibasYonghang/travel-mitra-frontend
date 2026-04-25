@@ -1,81 +1,94 @@
-import { ArrowLeft, ArrowRight } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import React, { useEffect, useState } from "react";
 import { AiFillStar } from "react-icons/ai";
-import { Link } from 'react-router-dom';
-
+import { Link } from "react-router-dom";
+import { BACKEND_URL } from "../../config/env";
 
 const Trails = () => {
+  const [trailsData, setTrailsData] = useState([]);
+
+  useEffect(() => {
+    const fetchTrails = async () => {
+      try {
+        const res = await fetch(`${BACKEND_URL}/api/trails`);
+        const data = await res.json();
+        setTrailsData(data); // store API data in state
+      } catch (error) {
+        console.log(`Internal Error Says: ${error}`);
+      }
+    };
+
+    fetchTrails();
+  }, []);
 
 
-    const [trailsData, setTrailsData] = useState([]);
-         const APP_URL = import.meta.env.VITE_BASE_URL
 
+  return (
+    <section className="w-full py-6 md:px-10 px-5">
+      <h1 className="font-bold text-black md:text-4xl text-3xl">
+        Discover <span className="text-sky-600">Trails</span>
+      </h1>
+      <div
+        className="grid gap-3 justify-center mt-5 w-full 
+                            grid-cols-1 sm:grid-cols-2  xl:grid-cols-4"
+      >
+        {trailsData.map(({ image, name, stars }, idx) => (
+          <div
+            key={idx}
+            className="flex gap-10 shadow-lg py-3 sm:py-4 px-2 sm:px-3"
+          >
+            <div className="w-full">
+              <div className="w-full overflow-hidden">
+                <img
+                  src={image || "/images/background-image1.png"}
+                  alt={name}
+                  className="w-full object-cover rounded-md hover:rounded-md hover:scale-105 transition-transform duration-200 hover:cursor-pointer
+                                               h-[28vh] sm:h-[30vh] md:h-[38vh] xl:h-[37vh]"
+                />
+              </div>
+              <div className="w-full mt-2">
+                <h1 className="font-bold  font-sans text-base md:text-xl text-sky-700">
+                  {name}
+                </h1>
+                <div className="my-4 flex items-center">
+                  {Array.from({ length: stars }).map((_, idx) => (
+                    <AiFillStar
+                      key={idx}
+                      size={15}
+                      className="text-yellow-400 inline"
+                    />
+                  ))}
+                  <p className="inline ml-2 text-gray-600">
+                    Rated {stars} out of 5 on average
+                  </p>
+                </div>
 
-    useEffect(() => {
-        const fetchTrails = async () => {
-            try {
-                const res = await fetch(`${APP_URL}/api/trails`);
-                const data = await res.json();
-                setTrailsData(data); // store API data in state
-            } catch (error) {
-                console.log(`Internal Error Says: ${error}`);
-            }
-        }
+                <hr className="my-5 text-gray-300" />
 
-        fetchTrails();
-    }, []);
-
-
-    return (
-        <section className='w-full py-6 md:px-10 px-5'>
-            <h1 className='font-bold text-black md:text-4xl text-3xl'>
-                Discover <span className='text-sky-600'>Trails</span>
-            </h1>
-            <div className='grid gap-3 justify-center mt-5 w-full 
-                            grid-cols-1 sm:grid-cols-2  xl:grid-cols-4'
-            >
-                {trailsData.map(({ image, name, stars }, idx) => (
-                    <div key={idx} className='flex gap-10 shadow-lg py-3 sm:py-4 px-2 sm:px-3'>
-                        <div className='w-full'>
-                            <div className='w-full overflow-hidden'>
-                                <img
-                                    src={image || "/images/background-image1.png"}
-                                    alt={name}
-                                    className='w-full object-cover rounded-md hover:rounded-md hover:scale-105 transition-transform duration-200 hover:cursor-pointer
-                                               h-[28vh] sm:h-[30vh] md:h-[38vh] xl:h-[37vh]'
-                                />
-                            </div>
-                            <div className='w-full mt-2'>
-                                <h1 className='font-bold  font-sans text-base md:text-xl text-sky-700'>{name}</h1>
-                                <div className='my-4 flex items-center'>
-                                    {Array.from({ length: stars }).map((_, idx) => (
-                                        <AiFillStar key={idx} size={15} className='text-yellow-400 inline' />
-                                    ))}
-                                    <p className='inline ml-2 text-gray-600'>Rated {stars} out of 5 on average</p>
-                                </div>
-
-                                <hr className='my-5 text-gray-300' />
-
-                                <div className='relative group border rounded-sm h-8 w-24 mt-2 text-center border-sky-500 bg-sky-600 text-sky-700'>
-                                    <span className='absolute h-full w-full bg-sky-500 group-hover:scale-x-100 inset-0 scale-x-0 transition-all duration-300'></span>
-                                    <Link to={`/trails-info/id/${trailsData[idx]._id}`} className='absolute z-20 inset-0 pt-0.5 text-white'>See More</Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                ))}
+                <div className="relative group border rounded-sm h-8 w-24 mt-2 text-center border-sky-500 bg-sky-600 text-sky-700">
+                  <span className="absolute h-full w-full bg-sky-500 group-hover:scale-x-100 inset-0 scale-x-0 transition-all duration-300"></span>
+                  <Link
+                    to={`/trails-info/id/${trailsData[idx]._id}`}
+                    className="absolute z-20 inset-0 pt-0.5 text-white"
+                  >
+                    See More
+                  </Link>
+                </div>
+              </div>
             </div>
-            <div className="mt-10">
-                <Link
-                    to="/"
-                    className="font-bold hover:scale-y-105 hover:text-sky-500 transform duration-150 underline sm:text-xl text-md flex items-center gap-2"
-                >
-                    <ArrowLeft size={20} className="mt-1" /> Back To Home
-                </Link>
-            </div>
-        </section>
-    );
-}
+          </div>
+        ))}
+      </div>
+      <div className="mt-10">
+        <Link
+          to="/"
+          className="font-bold hover:scale-y-105 hover:text-sky-500 transform duration-150 underline sm:text-xl text-md flex items-center gap-2"
+        >
+          <ArrowLeft size={20} className="mt-1" /> Back To Home
+        </Link>
+      </div>
+    </section>
+  );
+};
 
-
-export default Trails
+export default Trails;

@@ -2,17 +2,15 @@ import { Star } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { AiFillStar } from "react-icons/ai";
 import { Link } from 'react-router-dom';
+import { BACKEND_URL } from '../../config/env';
 
 export default function FeatureTrails() {
     const [trailsData, setTrailsData] = useState([]);
 
- const APP_URL = import.meta.env.VITE_BASE_URL
-
-
     useEffect(() => {
         const fetchTrails = async () => {
             try {
-                const res = await fetch(`${APP_URL}/api/trails`);
+                const res = await fetch(`${BACKEND_URL}/api/trails`);
                 const data = await res.json();
                 setTrailsData(data); // store API data in state
             } catch (error) {
