@@ -2,20 +2,21 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Star, ArrowUpRight } from "lucide-react";
 import { AiFillStar } from "react-icons/ai";
+import { BACKEND_URL } from "../../config/env";
 
 export default function TrailInfo() {
   const { trailName, trailId } = useParams(); // get both params
   const [trail, setTrail] = useState(null);
   const [notFound, setNotFound] = useState(false);
 
-  const APP_URL = import.meta.env.VITE_BASE_URL;
 
   const unslugify = (slug) => slug.replace(/-/g, " ").trim().toLowerCase();
+
 
   useEffect(() => {
     const fetchTrail = async () => {
       try {
-        const res = await fetch(`${APP_URL}/api/trails`);
+        const res = await fetch(`${BACKEND_URL}/api/trails`);
         const data = await res.json();
 
         let found = null;

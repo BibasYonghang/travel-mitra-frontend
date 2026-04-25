@@ -3,14 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { isAuthenticated } from '../../utils/auth.js';
 import axios from 'axios';
 import { CheckCircle2 } from 'lucide-react';
+import { BACKEND_URL } from '../../config/env.js';
 
 const PaymentSuccess = () => {
     const navigate = useNavigate();
     const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     const shippingInfo = JSON.parse(localStorage.getItem('shippingInfo')) || {};
     const { user, token } = isAuthenticated() || {};
-
- const APP_URL = import.meta.env.VITE_BASE_URL
 
     const order = {
         orderItems: cartItems,
@@ -22,6 +21,8 @@ const PaymentSuccess = () => {
         phone: shippingInfo?.phone || '',
         user: user?._id || null
     };
+
+    
 
     useEffect(() => {
         const processPayment = async () => {
@@ -45,7 +46,7 @@ const PaymentSuccess = () => {
                                 Authorization: `Bearer ${token}`
                             }
                         };
-                        await axios.post(`${APP_URL}/api/generate-signature`, order, config);
+                        await axios.post(`${BACKEND_URL}/api/generate-signature`, order, config);
                     }
 
                     localStorage.removeItem('cartItems');

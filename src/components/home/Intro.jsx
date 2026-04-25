@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { BACKEND_URL } from "../../config/env";
 
 export default function Intro() {
   const navigate = useNavigate();
@@ -19,7 +20,6 @@ export default function Intro() {
   const [progressBars, setProgressBars] = useState([0, 0, 0, 0]);
   const [searchValue, setSearchValue] = useState("");
 
-  const APP_URL = import.meta.env.VITE_BASE_URL;
 
   const backgroundImages = [
     { path: "/images/home-background-images/background-image1.png" },
@@ -80,11 +80,10 @@ export default function Intro() {
 
   // Slugify function
   const slugify = (str) => str.toLowerCase().trim().replace(/\s+/g, "-");
-
   // Search handler
   const handleSearch = async () => {
     try {
-      const res = await fetch(`${APP_URL}/api/trails`);
+      const res = await fetch(`${BACKEND_URL}/api/trails`);
       const data = await res.json();
 
       // Match ignoring case and whitespace

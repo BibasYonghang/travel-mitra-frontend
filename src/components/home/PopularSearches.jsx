@@ -1,71 +1,92 @@
-import { ArrowRight, Star } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
+import { ArrowRight, Star } from "lucide-react";
+import React, { useEffect, useState } from "react";
 import { AiFillStar } from "react-icons/ai";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { BACKEND_URL } from "../../config/env.js";
 
 export default function FeatureTrails() {
-    const [trailsData, setTrailsData] = useState([]);
+  const [trailsData, setTrailsData] = useState([]);
 
-     const APP_URL = import.meta.env.VITE_BASE_URL
+  useEffect(() => {
+    const fetchTrails = async () => {
+      try {
+        const res = await fetch(`${BACKEND_URL}/api/trails`);
 
+        const data = await res.json();
+        setTrailsData(data); // store API data in state
+      } catch (error) {
+        console.log(`Internal Error Says: ${error}`);
+      }
+    };
 
-    useEffect(() => {
-        const fetchTrails = async () => {
-            try {
-                const res = await fetch(`${APP_URL}/api/trails`);
-                const data = await res.json();
-                setTrailsData(data); // store API data in state
-            } catch (error) {
-                console.log(`Internal Error Says: ${error}`);
-            }
-        }
+    fetchTrails();
+  }, []);
 
-        fetchTrails();
-    }, []);
+  const popularSearches = trailsData.slice(4, 8); // this is array because .slice() always returns a new array, even if it only has 1 element or is empty.
 
-    const popularSearches = trailsData.slice(4, 8) // this is array because .slice() always returns a new array, even if it only has 1 element or is empty.
+  return (
+    <section className="w-full pt-6 md:px-10 px-5">
+      <h1 className="font-bold text-black md:text-4xl text-3xl">
+        <span className="text-sky-600">Popular</span> Searches
+      </h1>
+      <div
+        className="grid gap-3 justify-center my-8 w-full 
+                            grid-cols-1 sm:grid-cols-2  xl:grid-cols-4"
+      >
+        {popularSearches.map(({ image, name, stars }, idx) => (
+          <div
+            key={idx}
+            className="flex gap-10 shadow-lg py-3 sm:py-4 px-2 sm:px-3"
+          >
+            <div className="w-full">
+              <div className="w-full overflow-hidden">
+                <img
+                  src={image || "/images/background-image1.png"}
+                  alt={name}
+                  className="w-full object-cover rounded-md hover:rounded-md hover:scale-105 transition-transform duration-200 hover:cursor-pointer
+                                               h-[28vh] sm:h-[30vh] md:h-[38vh] xl:h-[37vh]"
+                />
+              </div>
+              <div className="w-full mt-2">
+                <h1 className="font-bold  font-sans text-base md:text-xl text-sky-700">
+                  {name}
+                </h1>
+                <div className="my-4 flex items-center">
+                  {Array.from({ length: stars }).map((_, idx) => (
+                    <AiFillStar
+                      key={idx}
+                      size={15}
+                      className="text-yellow-400 inline"
+                    />
+                  ))}
+                  <p className="inline ml-2 text-gray-600">
+                    Rated {stars} out of 5 on average
+                  </p>
+                </div>
 
+                <hr className="my-5 text-gray-300" />
 
-    return (
-        <section className='w-full pt-6 md:px-10 px-5'>
-            <h1 className='font-bold text-black md:text-4xl text-3xl'>
-                <span className='text-sky-600'>Popular</span> Searches
-            </h1>
-            <div className='grid gap-3 justify-center my-8 w-full 
-                            grid-cols-1 sm:grid-cols-2  xl:grid-cols-4'
-            >
-                {popularSearches.map(({ image, name, stars }, idx) => (
-                    <div key={idx} className='flex gap-10 shadow-lg py-3 sm:py-4 px-2 sm:px-3'>
-                        <div className='w-full'>
-                            <div className='w-full overflow-hidden'>
-                                <img
-                                    src={image || "/images/background-image1.png"}
-                                    alt={name}
-                                    className='w-full object-cover rounded-md hover:rounded-md hover:scale-105 transition-transform duration-200 hover:cursor-pointer
-                                               h-[28vh] sm:h-[30vh] md:h-[38vh] xl:h-[37vh]'
-                                />
-                            </div>
-                            <div className='w-full mt-2'>
-                                <h1 className='font-bold  font-sans text-base md:text-xl text-sky-700'>{name}</h1>
-                                <div className='my-4 flex items-center'>
-                                    {Array.from({ length: stars }).map((_, idx) => (
-                                        <AiFillStar key={idx} size={15} className='text-yellow-400 inline' />
-                                    ))}
-                                    <p className='inline ml-2 text-gray-600'>Rated {stars} out of 5 on average</p>
-                                </div>
-
-                                <hr className='my-5 text-gray-300' />
-
-                                <div className='relative group border rounded-sm h-8 w-24 mt-2 text-center border-sky-500 bg-sky-600 text-sky-700'>
-                                    <span className='absolute h-full w-full bg-sky-500 group-hover:scale-x-100 inset-0 scale-x-0 transition-all duration-300'></span>
-                                    <Link to={`/trails-info/id/${popularSearches[idx]._id}`} className='absolute z-20 inset-0 pt-0.5 text-white'>See More</Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                ))}
+                <div className="relative group border rounded-sm h-8 w-24 mt-2 text-center border-sky-500 bg-sky-600 text-sky-700">
+                  <span className="absolute h-full w-full bg-sky-500 group-hover:scale-x-100 inset-0 scale-x-0 transition-all duration-300"></span>
+                  <Link
+                    to={`/trails-info/id/${popularSearches[idx]._id}`}
+                    className="absolute z-20 inset-0 pt-0.5 text-white"
+                  >
+                    See More
+                  </Link>
+                </div>
+              </div>
             </div>
-            <Link to='/trails' className='text-xl font-bold  underline transform duration-150 hover:text-sky-600'> Explore All Trails <ArrowRight className='inline' /> </Link>
-        </section>
-    );
+          </div>
+        ))}
+      </div>
+      <Link
+        to="/trails"
+        className="text-xl font-bold  underline transform duration-150 hover:text-sky-600"
+      >
+        {" "}
+        Explore All Trails <ArrowRight className="inline" />{" "}
+      </Link>
+    </section>
+  );
 }

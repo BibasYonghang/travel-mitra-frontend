@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import { CreditCard, Wallet } from "lucide-react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { isAuthenticated } from "../../../utils/auth";
+import { isAuthenticated } from "../utils/auth";
 import axios from "axios";
+import { BACKEND_URL } from "../config/env";
 
 export default function ChoosePayment() {
   const { token } = isAuthenticated();
   const [selectedMethod, setSelectedMethod] = useState(null);
-
-  const APP_URL = import.meta.env.VITE_BASE_URL;
 
   const paymentMethods = [
     {
@@ -45,7 +44,7 @@ export default function ChoosePayment() {
     try {
       if (selectedMethod === "esewa") {
         const { data } = await axios.post(
-          `${APP_URL}/api/generate-signature`,
+          `${BACKEND_URL}/api/generate-signature`,
           paymentData,
           {
             headers: {
@@ -58,28 +57,53 @@ export default function ChoosePayment() {
         // Add success and failure redirect URLs here
         const formData = {
           ...data,
+          // Base URL of current app (protocol + domain + port), e.g. http://localhost:5173 or https://myapp.com
+          // Using this avoids hardcoding URLs and works in both dev and production
           success_url: `${window.location.origin}/payment-success`,
+
+          // URL where eSewa will redirect the user if payment fails or is cancelled
           failure_url: `${window.location.origin}/payment-failure`,
           signed_field_names: "total_amount,transaction_uuid,product_code",
         };
 
-        // Create and submit form
+        // Create a form element dynamically (not yet in DOM)
         const form = document.createElement("form");
+
+        // Set method and target payment gateway URL
         form.method = "POST";
         form.action = "https://rc-epay.esewa.com.np/api/epay/main/v2/form";
 
+        // Convert formData object into hidden input fields
         Object.keys(formData).forEach((key) => {
           const input = document.createElement("input");
+
+          // Hidden inputs are used to send data without showing in UI
           input.type = "hidden";
+
+          // 'name' must match what eSewa expects (field name)
           input.name = key;
+
+          // Assign corresponding value from formData
           input.value = formData[key];
+
+          // Append each input inside the form
           form.appendChild(input);
         });
 
+        // IMPORTANT: Form must be attached to the DOM before submission
+        // Otherwise, some browsers may not process form.submit() correctly
         document.body.appendChild(form);
+
+        // Trigger form submission → sends POST request → redirects user to eSewa
         form.submit();
+      } else if (selectedMethod === "khalti") {
+        await axios.post(`${BACKEND_URL}/api/generate-signature`, paymentData, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
       } else {
-        alert("Khalti integration coming soon!");
+        alert("Invalid Payment Method");
       }
     } catch (err) {
       console.error("Payment initiation failed:", err);
@@ -96,7 +120,7 @@ export default function ChoosePayment() {
 
       <div className="grid md:grid-cols-2 gap-6 w-full max-w-2xl">
         {paymentMethods.map((method) => (
-          <div
+          <button
             key={method.id}
             className={`p-6 rounded-xl cursor-pointer shadow-md relative border-2 ${
               selectedMethod === method.id
@@ -113,7 +137,7 @@ export default function ChoosePayment() {
               <h3 className="text-xl font-semibold">{method.name}</h3>
               <p className="text-sm">{method.description}</p>
             </div>
-          </div>
+          </button>
         ))}
       </div>
 
