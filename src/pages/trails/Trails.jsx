@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { BACKEND_URL } from "../../config/env";
+import ArrowLeftButton from "../../common/buttons/ArrowLeftButton";
 
 const Trails = () => {
   const [trailsData, setTrailsData] = useState([]);
@@ -20,8 +21,6 @@ const Trails = () => {
 
     fetchTrails();
   }, []);
-
-
 
   return (
     <section className="w-full py-6 md:px-10 px-5">
@@ -80,12 +79,7 @@ const Trails = () => {
         ))}
       </div>
       <div className="mt-10">
-        <Link
-          to="/"
-          className="font-bold hover:scale-y-105 hover:text-sky-500 transform duration-150 underline sm:text-xl text-md flex items-center gap-2"
-        >
-          <ArrowLeft size={20} className="mt-1" /> Back To Home
-        </Link>
+        <ArrowLeftButton buttonLink={"/"} buttonTitle={"Back To Home"} />
       </div>
     </section>
   );

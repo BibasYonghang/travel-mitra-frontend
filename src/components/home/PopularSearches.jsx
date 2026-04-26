@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { BACKEND_URL } from "../../config/env.js";
+import ArrowRightButton from "../../common/buttons/ArrowRightButton.jsx";
 
 export default function FeatureTrails() {
   const [trailsData, setTrailsData] = useState([]);
@@ -80,13 +81,10 @@ export default function FeatureTrails() {
           </div>
         ))}
       </div>
-      <Link
-        to="/trails"
-        className="text-xl font-bold  underline transform duration-150 hover:text-sky-600"
-      >
-        {" "}
-        Explore All Trails <ArrowRight className="inline" />{" "}
-      </Link>
+      <ArrowRightButton
+        buttonTitle={"Explore All Trails"}
+        buttonLink={"trails"}
+      />
     </section>
   );
 }
