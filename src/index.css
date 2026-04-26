@@ -1,9 +1,18 @@
-@import url('https://unpkg.com/leaflet/dist/leaflet.css');
 @import "tailwindcss";
 @import "leaflet/dist/leaflet.css";
 
-/* 
-html{
-  overscroll-behavior-y: none; 
-} */
+/* 2. Base styles (optional but useful) */
+html {
+  scroll-behavior: smooth;
+}
 
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* 3. Optional custom utilities or overrides */
+/* Example: fix Leaflet container height issues */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+}

@@ -39,7 +39,7 @@ export default function Community() {
     ];
 
     return (
-        <section className="py-16 md:px-10 px-5 rounded-2xl">
+        <section className="md:py-10 md:px-10 px-5 rounded-2xl">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 text-center">
                 Join the <span className="text-sky-600">Hiking Community</span>
             </h2>

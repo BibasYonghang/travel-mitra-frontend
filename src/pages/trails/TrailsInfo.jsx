@@ -3,15 +3,14 @@ import { useParams, Link } from "react-router-dom";
 import { Star, ArrowUpRight } from "lucide-react";
 import { AiFillStar } from "react-icons/ai";
 import { BACKEND_URL } from "../../config/env";
+import ArrowLeftButton from "../../common/buttons/ArrowLeftButton";
 
 export default function TrailInfo() {
   const { trailName, trailId } = useParams(); // get both params
   const [trail, setTrail] = useState(null);
   const [notFound, setNotFound] = useState(false);
 
-
   const unslugify = (slug) => slug.replace(/-/g, " ").trim().toLowerCase();
-
 
   useEffect(() => {
     const fetchTrail = async () => {
@@ -25,7 +24,7 @@ export default function TrailInfo() {
           found = data.find((t) => t._id === trailId);
         } else if (trailName) {
           found = data.find(
-            (t) => t.name.toLowerCase() === unslugify(trailName)
+            (t) => t.name.toLowerCase() === unslugify(trailName),
           );
         }
 
@@ -115,9 +114,9 @@ export default function TrailInfo() {
         </header>
 
         {/* MAIN CONTENT */}
-        <main className="grid grid-cols-1 md:grid-cols-3 gap-6 md:p-6 p-2">
+        <main className="grid grid-cols-1 md:grid-cols-3 gap-6 md:p-6 p-2 mb-4">
           {/* LEFT SIDE */}
-          <section className="md:col-span-2 space-y-5">
+          <section className="md:col-span-2 space-y-8 ">
             <div className="rounded-xl overflow-hidden shadow-md">
               <img
                 src={images[0]}
@@ -187,13 +186,11 @@ export default function TrailInfo() {
         </main>
 
         {/* FOOTER */}
-        <footer className="p-6 border-t border-sky-400 bg-white flex justify-between">
-          <Link
-            to="/trails"
-            className="px-4 py-2 rounded-lg bg-sky-700 text-white font-semibold hover:bg-sky-800"
-          >
-            ← Back to Trails
-          </Link>
+        <footer className="px-6 pb-6 border-t border-sky-400 bg-white flex justify-between">
+          <ArrowLeftButton
+            buttonLink={"/trails"}
+            buttonTitle={"Back To Trails"}
+          />
         </footer>
       </div>
     </div>
