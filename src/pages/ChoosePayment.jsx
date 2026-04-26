@@ -55,7 +55,7 @@ export default function ChoosePayment() {
         );
 
         // Add success and failure redirect URLs here
-        const formData = {
+        const esewaFormData = {
           ...data,
           // Base URL of current app (protocol + domain + port), e.g. http://localhost:5173 or https://myapp.com
           // Using this avoids hardcoding URLs and works in both dev and production
@@ -73,8 +73,8 @@ export default function ChoosePayment() {
         form.method = "POST";
         form.action = "https://rc-epay.esewa.com.np/api/epay/main/v2/form";
 
-        // Convert formData object into hidden input fields
-        Object.keys(formData).forEach((key) => {
+        // Convert esewaFormData object into hidden input fields
+        Object.keys(esewaFormData).forEach((key) => {
           const input = document.createElement("input");
 
           // Hidden inputs are used to send data without showing in UI
@@ -83,8 +83,8 @@ export default function ChoosePayment() {
           // 'name' must match what eSewa expects (field name)
           input.name = key;
 
-          // Assign corresponding value from formData
-          input.value = formData[key];
+          // Assign corresponding value from esewaFormData
+          input.value = esewaFormData[key];
 
           // Append each input inside the form
           form.appendChild(input);
@@ -97,11 +97,24 @@ export default function ChoosePayment() {
         // Trigger form submission → sends POST request → redirects user to eSewa
         form.submit();
       } else if (selectedMethod === "khalti") {
-        await axios.post(`${BACKEND_URL}/api/generate-signature`, paymentData, {
-          headers: {
-            "Content-Type": "application/json",
+        const { data } = await axios.post(
+          `${BACKEND_URL}/api/khalti/initiate`,
+          {
+            amount: 1300,
+            purchase_order_id: "ORDER_123",
+            purchase_order_name: "Test Product",
           },
-        });
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        );
+
+        console.log("Error Debugging:", data);
+
+        //  Redirect to Khalti hosted payment page
+        window.location.href = data.payment_url;
       } else {
         alert("Invalid Payment Method");
       }

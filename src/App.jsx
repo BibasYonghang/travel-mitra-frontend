@@ -4,6 +4,7 @@ import { trailsRoutes } from "./routes/trails.route";
 import { paymentRoutes } from "./routes/payment.route";
 import { fallbackRoutes } from "./routes/fallback.route";
 import { standaloneRoutes } from "./routes/standalone.route";
+import { khaltiRoutes } from "./routes/khalti.route";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           {paymentRoutes}
           {standaloneRoutes}
           {fallbackRoutes}
+          {khaltiRoutes}
         </Routes>
       </Router>
     </>
