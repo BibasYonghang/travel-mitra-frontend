@@ -1,145 +1,230 @@
-import React, { useState } from "react";
-import { SiApple } from "react-icons/si";
-import { FaFacebook, FaInstagram, FaYoutube, FaTiktok } from "react-icons/fa";
-import { ChevronDown } from "lucide-react";
+import { useState } from "react";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaYoutube,
+  FaTiktok,
+  FaChevronDown,
+  FaMapMarkerAlt,
+  FaCompass,
+  FaHeart,
+} from "react-icons/fa";
+import { MdExplore } from "react-icons/md";
+
+const footerSections = [
+  {
+    title: "Explore",
+    icon: <MdExplore className="text-sky-500" />,
+    links: ["Countries", "Region", "Cities", "Parks"],
+  },
+  {
+    title: "Maps",
+    icon: <FaMapMarkerAlt className="text-sky-500" />,
+    links: ["My Map", "Create Map", "Print Map", "Route Converter"],
+  },
+  {
+    title: "Company",
+    icon: <FaCompass className="text-sky-500" />,
+    links: ["About", "Jobs", "Press", "Ambassadors"],
+  },
+  {
+    title: "Community",
+    icon: <FaHeart className="text-sky-500" />,
+    links: ["Support", "Gift Membership", "Cities", "All Trail Gear"],
+  },
+];
+
+const socialLinks = [
+  {
+    icon: <FaFacebookF size={18} />,
+    label: "Facebook",
+    href: "#",
+    hoverColor: "hover:bg-blue-600",
+  },
+  {
+    icon: <FaInstagram size={18} />,
+    label: "Instagram",
+    href: "#",
+    hoverColor: "hover:bg-pink-600",
+  },
+  {
+    icon: <FaYoutube size={18} />,
+    label: "YouTube",
+    href: "#",
+    hoverColor: "hover:bg-red-600",
+  },
+  {
+    icon: <FaTiktok size={18} />,
+    label: "TikTok",
+    href: "#",
+    hoverColor: "hover:bg-neutral-700",
+  },
+];
+
+function AccordionSection({ section, isOpen, onToggle }) {
+  return (
+    <div className="border-b border-gray-800">
+      <button
+        onClick={onToggle}
+        className="flex items-center justify-between w-full py-4 px-1 text-left group"
+        aria-expanded={isOpen}
+      >
+        <span className="flex items-center gap-2 text-white font-semibold text-sm tracking-wide uppercase">
+          <span className="text-base">{section.icon}</span>
+          {section.title}
+        </span>
+        <FaChevronDown
+          className={`text-gray-400 transition-transform duration-300 ease-in-out ${
+            isOpen ? "rotate-180 text-sky-500" : ""
+          }`}
+          size={14}
+        />
+      </button>
+
+      <div
+        className={`overflow-hidden transition-all duration-300 ease-in-out ${
+          isOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <ul className="pb-4 space-y-1 pl-1">
+          {section.links.map((link) => (
+            <li key={link}>
+              <a
+                href="#"
+                className="block py-1.5 px-2 text-gray-400 text-sm rounded-md hover:text-sky-400 hover:bg-sky-500/10 transition-all duration-200"
+              >
+                {link}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
 
 export default function Footer() {
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [openSection, setOpenSection] = useState(null);
   const currentYear = new Date().getFullYear();
 
-  const footerSections = [
-    { title: "Explore", links: ["Countries", "Region", "Cities", "Parks"] },
-    {
-      title: "Maps",
-      links: ["My Map", "Create Map", "Print Map", "Route Converter"],
-    },
-    { title: "Company", links: ["About", "Jobs", "Press", "Ambassadors"] },
-    {
-      title: "Community",
-      links: ["Support", "Gift Membership", "Cities", "All Trail Gear"],
-    },
-  ];
-
-  const socialIcons = [FaFacebook, FaInstagram, FaYoutube, FaTiktok];
-
-  const toggleSection = (index) => {
-    setActiveIndex((prev) => (prev === index ? null : index));
+  const toggleSection = (idx) => {
+    setOpenSection(openSection === idx ? null : idx);
   };
 
   return (
-    <footer className="relative px-5 md:px-10 py-10 bg-sky-500 text-white">
-      {/* Logo */}
-      <div className="relative w-full pt-[5vh] md:pt-[9vh] lg:pt-[12vh]">
-        <img
-          src="/images/travel-mitra-logo.png"
-          alt="Travel Mitra Logo"
-          className="h-[6vh] md:h-[8vh] cursor-pointer"
-        />
-
-        {/* Footer Sections */}
-        <div className="w-full pt-10 space-y-6">
-          {footerSections.map(({ title, links }, index) => (
-            <div key={title} className="transition-transform duration-300">
-              <button
-                onClick={() => toggleSection(index)}
-                className="w-full flex justify-between font-bold text-lg md:text-xl mt-4 mb-2 cursor-pointer"
-              >
-                {title}
-                <ChevronDown
-                  size={21}
-                  className={`mt-1 transition-transform duration-300 ${activeIndex === index ? "rotate-180" : ""}`}
-                />
-              </button>
-
-              <div
-                className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                  activeIndex === index
-                    ? "max-h-40 opacity-100"
-                    : "max-h-0 opacity-0"
-                }`}
-              >
-                <ul className="ml-4 mt-2 text-base md:text-lg space-y-3">
-                  {links.map((link) => (
-                    <li
-                      key={link}
-                      className="font-semibold hover:underline hover:text--400 cursor-pointer"
-                    >
-                      <a href="">{link}</a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
-
-          {/* App Buttons */}
-          <section className="relative md:absolute z-20 flex flex-col gap-5 mt-10 md:mt-7 md:ml-[18rem]">
-            <h2 className="font-bold text-xl">An App For OutDoors</h2>
-            <div className="flex gap-6 md:items-end">
-              {/* App Store */}
-              <div className="flex w-[30vw] md:max-w-[13rem] h-[35px] items-center justify-center text-white bg-gray-700  border border-sky-900 rounded-lg pr-3">
-                <a
-                  href=""
-                  className="relative flex w-full h-full items-center justify-center "
-                >
-                  <p className="absolute w-full text-center text-[10px] mb-4 ml-4">
-                    Get It On
-                  </p>
-                  <SiApple size={24} className="mr-1" />
-                  <span className="text-xs font-bold pt-2 inline">
-                    App Store
-                  </span>
-                </a>
-              </div>
-
-              {/* Play Store */}
-              <div className="flex w-[30vw] md:max-w-[13rem] h-[35px] items-center justify-center text-white border border-sky-900 bg-gray-700 rounded-lg pr-3">
-                <a
-                  href=""
-                  className="relative flex w-full h-full items-center justify-center "
-                >
-                  <p className="absolute w-full text-center text-[10px] mb-4 ml-4">
-                    Get It On
-                  </p>
+    <footer className="bg-gray-950 text-white w-full">
+      <div className=" mx-auto px-6 lg:px-10">
+        {/* ── MAIN FOOTER BODY ── */}
+        <div className="py-14 lg:py-20">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-6">
+            {/* Brand column */}
+            <div className="lg:col-span-3 flex flex-col gap-10">
+              {/* Logo */}
+              <div>
+                <div className="mb-3">
                   <img
-                    src="/images/playstore-logo.png"
-                    alt="Play Store"
-                    className="h-7 w-8"
+                    src="/images/travel-mitra-logo.png"
+                    alt="Travel Mitra Logo"
+                    className="h-[6vh] md:h-[8vh] cursor-pointer"
                   />
-                  <span className="text-xs font-bold pt-2 inline">
-                    Play Store
-                  </span>
-                </a>
+                </div>
+                <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
+                  Your trusted companion for discovering the world — one
+                  adventure at a time.
+                </p>
+              </div>
+
+              {/* Social icons */}
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-3">
+                  Follow Us
+                </p>
+                <div className="flex items-center gap-2">
+                  {socialLinks.map(({ icon, label, href, hoverColor }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      aria-label={label}
+                      className={`w-9 h-9 rounded-xl bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white transition-all duration-200 hover:scale-110 hover:shadow-lg ${hoverColor}`}
+                    >
+                      {icon}
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
-          </section>
-        </div>
-      </div>
 
-      {/* Social Icons */}
-      <section className="relative md:absolute mt-10 md:mt-7 z-20  flex flex-col gap-3 md:gap-6">
-        <h1 className="text-xl font-bold">Connect with us</h1>
-        <div className="flex gap-5">
-          {socialIcons.map((Icon, i) => (
-            <Icon
-              key={i}
-              size={Icon === FaTiktok ? 20 : 25}
-              className={`cursor-pointer ${Icon === FaTiktok ? "mt-0.5 hover:text--600" : "hover:text--400"}`}
-            />
-          ))}
-        </div>
-      </section>
+            {/* Divider on large screens */}
+            <div className="hidden lg:flex lg:col-span-1 justify-center">
+              <div className="w-px bg-gradient-to-b from-transparent via-gray-700 to-transparent" />
+            </div>
 
-      {/* Copyright */}
-      <div className=" sm:flex justify-between text-sm sm:text-md mt-8 md:mt-48  ">
-        <p className="mb-3 sm:mb-0 font-semibold">
-          &copy; {currentYear}{" "}
-          <span className="hover:cursor-pointer hover:text-gray-900">
-            TRAVEL MITRA.
-          </span>{" "}
-          ALL RIGHT RESERVED
-        </p>{" "}
-        <p className="font-semibold">DESIGN AND DEVELOPED BY BIBAS YONGHANG </p>
+            {/* Nav columns — DESKTOP */}
+            <div className="hidden lg:grid lg:col-span-8 grid-cols-4 gap-10">
+              {footerSections.map((section) => (
+                <div key={section.title}>
+                  <h4 className="flex items-center gap-2 text-white font-bold text-xs uppercase tracking-widest mb-5">
+                    <span className="text-base">{section.icon}</span>
+                    {section.title}
+                  </h4>
+                  <ul className="space-y-6">
+                    {section.links.map((link) => (
+                      <li key={link}>
+                        <a
+                          href="#"
+                          className="text-gray-400 text-sm hover:text-sky-400 transition-colors duration-200 hover:translate-x-1 inline-block"
+                        >
+                          {link}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+
+            {/* Nav sections — MOBILE ACCORDION */}
+            <div className="lg:hidden">
+              <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
+                Navigate
+              </p>
+              {footerSections.map((section, idx) => (
+                <AccordionSection
+                  key={section.title}
+                  section={section}
+                  isOpen={openSection === idx}
+                  onToggle={() => toggleSection(idx)}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* ── BOTTOM BAR ── */}
+        <div className="border-t border-gray-800 py-10">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+            <p className="text-gray-500 text-sm">
+              © {currentYear}{" "}
+              <span className="text-white font-semibold">TravelMitra</span>. All
+              rights reserved.
+            </p>
+            <p className="text-gray-600 text-xs flex items-center gap-1">
+              Crafted with <FaHeart className="text-sky-500 inline" size={11} />{" "}
+              by the TravelMitra team
+            </p>
+            <div className="flex items-center gap-4">
+              {["Privacy Policy", "Terms of Use", "Sitemap"].map((item) => (
+                <a
+                  key={item}
+                  href="#"
+                  className="text-gray-500 text-xs hover:text-sky-400 transition-colors duration-200"
+                >
+                  {item}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </footer>
   );

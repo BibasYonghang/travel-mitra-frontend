@@ -16,6 +16,7 @@ import {
   FaHotel,
   FaUmbrellaBeach,
 } from "react-icons/fa";
+import { BACKEND_URL } from "../../config/env";
 
 export default function TravelContactUs() {
   const [form, setForm] = useState({
@@ -50,7 +51,7 @@ export default function TravelContactUs() {
 
     try {
       // POST to your backend
-      await fetch("/api/travel-contact", {
+      await fetch(`${BACKEND_URL}/api/contact-us`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
