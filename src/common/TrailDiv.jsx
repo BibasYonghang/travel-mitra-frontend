@@ -29,16 +29,14 @@ export default function TrailDiv({ image, name, stars, link, idx }) {
                 className="text-yellow-400 inline"
               />
             ))}
-            <p className=" text-gray-600">
-              Rated {stars} out of 5 on average
-            </p>
+            <p className=" text-gray-600">Rated {stars} out of 5 on average</p>
 
             <hr className="my-5 text-gray-300" />
 
             <div className="relative group border rounded-sm h-8 w-24 mt-2 text-center border-sky-500 bg-sky-600 text-sky-700">
               <span className="absolute h-full w-full bg-sky-500 group-hover:scale-x-100 inset-0 scale-x-0 transition-all duration-300"></span>
               <Link
-                to={`link`}
+                to={link}
                 className="absolute z-20 inset-0 pt-0.5 text-white"
               >
                 See More
