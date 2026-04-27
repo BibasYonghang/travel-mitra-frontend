@@ -112,7 +112,7 @@ export default function Intro() {
         />
 
         {/* Gradient Overlay */}
-        <div className="absolute z-10 top-0 h-[30vh] w-full bg-gradient-to-b from-black to-transparent"></div>
+        <div className="absolute z-10 top-0 h-[35vh] w-full bg-gradient-to-b from-sky-500 to-transparent"></div>
 
         {/* Navbar */}
         <nav className="absolute z-50 md:px-10 flex justify-between items-center w-full">
@@ -134,7 +134,7 @@ export default function Intro() {
               {navLi.map(({ name, action, route }, idx) => (
                 <li
                   key={idx}
-                  className="text-white hover:cursor-pointer hover:scale-102 hover:text-sky-500 transform duration-150 text-lg"
+                  className="text-white hover:cursor-pointer hover:scale-102 hover:text-black transform duration-150 text-lg"
                 >
                   <ul
                     onClick={() => {
