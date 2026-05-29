@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState, useRef } from "react";
 
 import { Send, X, User } from "lucide-react";
 
-import { AIChatContext } from "../../context/AIChatContext.jsx";
 import { RobotIcon } from "./RobotIcon.jsx";
+import { AIChatContext } from "../../context/AiChatContext.jsx";
 
 const suggestedQuestions = [
   "Easy trails near Kathmandu for beginners",
