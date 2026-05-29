@@ -17,15 +17,8 @@ const suggestedQuestions = [
 const ChatWindow = () => {
   const [text, setText] = useState("");
 
-  const {
-    sendMessage,
-    messages,
-    trails,
-    filters,
-    loading,
-    error,
-    closeChat,
-  } = useContext(AIChatContext);
+  const { sendMessage, messages, trails, filters, loading, error, closeChat } =
+    useContext(AIChatContext);
 
   const scrollRef = useRef(null);
 
@@ -125,9 +118,7 @@ const ChatWindow = () => {
 
                   <div
                     className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${
-                      isUser
-                        ? "bg-sky-600 text-white"
-                        : "bg-sky-600 text-white"
+                      isUser ? "bg-sky-600 text-white" : "bg-sky-600 text-white"
                     }`}
                   >
                     {isUser ? <User size={16} /> : <RobotIcon />}

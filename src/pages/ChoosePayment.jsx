@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { CreditCard, Wallet } from "lucide-react";
-import { ToastContainer, toast } from "react-toastify";
+import { CreditCard, Wallet, ArrowRight, ShieldCheck, Zap } from "lucide-react";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { isAuthenticated } from "../utils/auth";
 import axios from "axios";
@@ -9,21 +9,32 @@ import { BACKEND_URL } from "../config/env";
 export default function ChoosePayment() {
   const { token } = isAuthenticated();
   const [selectedMethod, setSelectedMethod] = useState(null);
+  const [isProceeding, setIsProceeding] = useState(false);
 
   const paymentMethods = [
     {
       id: "khalti",
       name: "Khalti",
-      icon: <Wallet className="w-12 h-12 text-purple-600" />,
+      icon: <Wallet className="w-8 h-8" />,
       description: "Pay securely via Khalti digital wallet.",
-      gradient: "from-purple-500 to-purple-700",
+      gradient: "from-violet-500 via-purple-500 to-fuchsia-500",
+      glowColor: "shadow-violet-500/30",
+      ringColor: "ring-violet-400",
+      bgAccent: "bg-violet-500/10",
+      dotColor: "bg-violet-400",
+      tag: "Popular",
     },
     {
       id: "esewa",
       name: "eSewa",
-      icon: <CreditCard className="w-12 h-12 text-sky-600" />,
+      icon: <CreditCard className="w-8 h-8" />,
       description: "Quick and easy payment with eSewa.",
-      gradient: "from-sky-500 to-sky-700",
+      gradient: "from-emerald-400 via-teal-500 to-sky-500",
+      glowColor: "shadow-teal-500/30",
+      ringColor: "ring-teal-400",
+      bgAccent: "bg-teal-500/10",
+      dotColor: "bg-teal-400",
+      tag: "Fast",
     },
   ];
 
@@ -31,9 +42,15 @@ export default function ChoosePayment() {
     e.preventDefault();
 
     if (!selectedMethod) {
-      alert("Please select a payment method first!");
+      toast.warn("Please select a payment method first!", {
+        position: "top-center",
+        autoClose: 2500,
+        theme: "dark",
+      });
       return;
     }
+
+    setIsProceeding(true);
 
     const paymentData = {
       amount: 1000,
@@ -54,47 +71,27 @@ export default function ChoosePayment() {
           },
         );
 
-        // Add success and failure redirect URLs here
         const esewaFormData = {
           ...data,
-          // Base URL of current app (protocol + domain + port), e.g. http://localhost:5173 or https://myapp.com
-          // Using this avoids hardcoding URLs and works in both dev and production
           success_url: `${window.location.origin}/payment-success`,
-
-          // URL where eSewa will redirect the user if payment fails or is cancelled
           failure_url: `${window.location.origin}/payment-failure`,
           signed_field_names: "total_amount,transaction_uuid,product_code",
         };
 
-        // Create a form element dynamically (not yet in DOM)
         const form = document.createElement("form");
 
-        // Set method and target payment gateway URL
         form.method = "POST";
         form.action = "https://rc-epay.esewa.com.np/api/epay/main/v2/form";
 
-        // Convert esewaFormData object into hidden input fields
         Object.keys(esewaFormData).forEach((key) => {
           const input = document.createElement("input");
-
-          // Hidden inputs are used to send data without showing in UI
           input.type = "hidden";
-
-          // 'name' must match what eSewa expects (field name)
           input.name = key;
-
-          // Assign corresponding value from esewaFormData
           input.value = esewaFormData[key];
-
-          // Append each input inside the form
           form.appendChild(input);
         });
 
-        // IMPORTANT: Form must be attached to the DOM before submission
-        // Otherwise, some browsers may not process form.submit() correctly
         document.body.appendChild(form);
-
-        // Trigger form submission → sends POST request → redirects user to eSewa
         form.submit();
       } else if (selectedMethod === "khalti") {
         const { data } = await axios.post(
@@ -112,54 +109,181 @@ export default function ChoosePayment() {
         );
 
         console.log("Error Debugging:", data);
-
-        //  Redirect to Khalti hosted payment page
         window.location.href = data.payment_url;
       } else {
-        alert("Invalid Payment Method");
+        toast.error("Invalid Payment Method", { theme: "dark" });
       }
     } catch (err) {
       console.error("Payment initiation failed:", err);
-      toast.error("Something went wrong. Redirecting...");
+      toast.error("Something went wrong. Redirecting...", {
+        position: "top-center",
+        theme: "dark",
+      });
+    } finally {
+      setIsProceeding(false);
     }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-sky-100 p-4">
-      <ToastContainer />
-      <h2 className="text-2xl sm:text-4xl font-bold mb-4">
-        Choose <span className="text-sky-700">Payment Method</span>
-      </h2>
+    <div className="relative flex flex-col items-center justify-center min-h-screen bg-slate-950 overflow-hidden p-4 font-sans">
+      <div className="relative z-10 w-full max-w-2xl">
+        <div className="text-center mb-10">
+          <h1 className="text-3xl sm:text-6xl font-bold text-white tracking-tight leading-tight">
+            Secure{" "}
+            <span className="bg-gradient-to-r from-sky-400 to-cyan-300 bg-clip-text text-transparent">
+              Checkout
+            </span>
+          </h1>
+          <p className="mt-2 text-sm text-slate-400">
+            Choose your preferred payment method to continue
+          </p>
+        </div>
 
-      <div className="grid md:grid-cols-2 gap-6 w-full max-w-2xl">
-        {paymentMethods.map((method) => (
-          <button
-            key={method.id}
-            className={`p-6 rounded-xl cursor-pointer shadow-md relative border-2 ${
-              selectedMethod === method.id
-                ? "border-sky-600"
-                : "border-transparent hover:border-gray-300"
-            }`}
-            onClick={() => setSelectedMethod(method.id)}
-          >
-            <div
-              className={`absolute inset-0 rounded-xl opacity-10 bg-gradient-to-br ${method.gradient}`}
-            ></div>
-            <div className="relative flex flex-col items-center text-center space-y-3">
-              {method.icon}
-              <h3 className="text-xl font-semibold">{method.name}</h3>
-              <p className="text-sm">{method.description}</p>
-            </div>
-          </button>
-        ))}
+        {/* ── Payment method cards ── */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-6">
+          {paymentMethods.map((method) => {
+            const isSelected = selectedMethod === method.id;
+            return (
+              <button
+                key={method.id}
+                onClick={() => setSelectedMethod(method.id)}
+                aria-pressed={isSelected}
+                className={`
+                  group relative overflow-hidden hover:cursor-pointer rounded-2xl py-8 px-14 text-left
+                  border transition-all duration-300 ease-out
+                  focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500
+                  ${
+                    isSelected
+                      ? `border-white/20 bg-white/10 backdrop-blur-md shadow-2xl ${method.glowColor} ring-1 ${method.ringColor} scale-[1.02]`
+                      : "border-white/8 bg-white/5 hover:bg-white/8 hover:border-white/15 hover:scale-[1.01] shadow-lg"
+                  }
+                `}
+              >
+                {/* Gradient top strip */}
+                <div
+                  className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${method.gradient} transition-opacity duration-300 ${isSelected ? "opacity-100" : "opacity-0 group-hover:opacity-60"}`}
+                />
+
+                {/* Subtle glow blob inside card */}
+                <div
+                  className={`absolute -top-6 -right-6 w-24 h-24 rounded-full bg-gradient-to-br ${method.gradient} blur-2xl transition-opacity duration-300 ${isSelected ? "opacity-20" : "opacity-0 group-hover:opacity-10"}`}
+                />
+
+                {/* Selected indicator dot */}
+                <div className="flex items-start justify-between mb-4">
+                  <div
+                    className={`
+                      flex items-center justify-center w-12 h-12 rounded-xl
+                      bg-gradient-to-br ${method.gradient} text-white
+                      shadow-lg transition-transform duration-300
+                      ${isSelected ? "scale-110" : "group-hover:scale-105"}
+                    `}
+                  >
+                    {method.icon}
+                  </div>
+                  <div className="flex flex-col items-end gap-2">
+                    <span
+                      className={`text-[10px] font-semibold tracking-widest uppercase px-2 py-0.5 rounded-full border ${isSelected ? `${method.bgAccent} border-white/20 text-white/80` : "bg-white/5 border-white/10 text-slate-500"}`}
+                    >
+                      {method.tag}
+                    </span>
+                    {/* Radio dot */}
+                    <div
+                      className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-all duration-200 ${isSelected ? `border-transparent bg-gradient-to-br ${method.gradient}` : "border-slate-600"}`}
+                    >
+                      {isSelected && (
+                        <div className="w-1.5 h-1.5 rounded-full bg-white" />
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                <h3
+                  className={`text-base font-bold mb-1 transition-colors duration-200 ${isSelected ? "text-white" : "text-slate-200 group-hover:text-white"}`}
+                >
+                  {method.name}
+                </h3>
+                <p className="text-xs text-slate-500 leading-relaxed">
+                  {method.description}
+                </p>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* ── Proceed button ── */}
+        <button
+          onClick={handleProceed}
+          disabled={isProceeding}
+          className={`
+            group relative w-full py-4 px-6 rounded-2xl font-bold text-base
+            overflow-hidden transition-all duration-300 ease-out
+            focus:outline-none hover:cursor-pointer focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950
+            ${
+              selectedMethod
+                ? "bg-gradient-to-r from-sky-500 to-cyan-500 text-white shadow-xl shadow-sky-500/30 hover:shadow-sky-500/50 hover:scale-[1.02] active:scale-[0.99]"
+                : "bg-white/5 text-slate-500 border border-white/10 cursor-not-allowed"
+            }
+            ${isProceeding ? "opacity-80 cursor-wait" : ""}
+          `}
+        >
+          {/* Shimmer sweep on hover */}
+          {selectedMethod && !isProceeding && (
+            <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+          )}
+
+          <span className="relative flex items-center justify-center gap-2">
+            {isProceeding ? (
+              <>
+                <svg
+                  className="w-5 h-5 animate-spin"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v8H4z"
+                  />
+                </svg>
+                Redirecting…
+              </>
+            ) : (
+              <>
+                {selectedMethod
+                  ? `Pay with ${paymentMethods.find((m) => m.id === selectedMethod)?.name}`
+                  : "Select a payment method"}
+                {selectedMethod && (
+                  <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+                )}
+              </>
+            )}
+          </span>
+        </button>
+
+        {/* ── Footer trust badges ── */}
+        <div className="flex items-center justify-center gap-4 mt-6">
+          {["256-bit Encrypted", "No Hidden Fees", "Instant Confirmation"].map(
+            (label) => (
+              <span
+                key={label}
+                className="flex items-center gap-1 text-[11px] text-slate-600"
+              >
+                <span className="w-1 h-1 rounded-full bg-slate-700 inline-block" />
+                {label}
+              </span>
+            ),
+          )}
+        </div>
       </div>
-
-      <button
-        onClick={handleProceed}
-        className="mt-6 px-6 py-3 bg-sky-600 text-white rounded-lg font-bold hover:cursor-pointer hover:bg-sky-700"
-      >
-        Proceed to Pay
-      </button>
     </div>
   );
 }
