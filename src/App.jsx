@@ -5,6 +5,7 @@ import { paymentRoutes } from "./routes/payment.route";
 import { fallbackRoutes } from "./routes/fallback.route";
 import { standaloneRoutes } from "./routes/standalone.route";
 import { khaltiRoutes } from "./routes/khalti.route";
+import RAGButton from "./components/rag/RAGButton";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           {fallbackRoutes}
           {khaltiRoutes}
         </Routes>
+        <RAGButton />
       </Router>
     </>
   );
