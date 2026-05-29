@@ -89,7 +89,7 @@ export default function TravelContactUs() {
         {/* Header */}
         <div className="text-center mb-8 lg:mb-12">
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
-            Travel Support
+            Travel <span className="inline text-sky-500">Support</span>
           </h1>
           <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">
             Need help planning your trip or have questions about your booking?
@@ -101,7 +101,7 @@ export default function TravelContactUs() {
           {/* Left Column - Contact Info */}
           <div className=" space-y-3">
             {/* Contact Methods Card */}
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition-shadow duration-300">
+            <div className="bg-white rounded-2xl shadow-sm border border-sky-200 p-6 hover:shadow-md transition-shadow duration-300">
               <h2 className="text-lg font-semibold text-gray-900 mb-4">
                 Get in touch
               </h2>
@@ -169,7 +169,7 @@ export default function TravelContactUs() {
               ].map((c) => (
                 <div
                   key={c.label}
-                  className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 hover:shadow-md transition-all duration-300 cursor-pointer group"
+                  className="bg-white rounded-2xl shadow-sm border border-sky-200 p-5 hover:shadow-md transition-all duration-300 cursor-pointer group"
                 >
                   <div className="flex items-start gap-4">
                     <div
@@ -193,7 +193,7 @@ export default function TravelContactUs() {
 
           {/* Right Column - Contact Form */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 hover:shadow-md transition-shadow duration-300">
+            <div className="bg-white rounded-2xl shadow-sm border border-sky-200 p-6 md:p-8 hover:shadow-md transition-shadow duration-300">
               <h2 className="text-xl font-semibold text-gray-900 mb-6">
                 Send us a message
               </h2>

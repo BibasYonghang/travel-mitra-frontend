@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import {
-    MapContainer,
-    TileLayer,
-    Marker,
-    Popup,
-    LayersControl,
-    useMap,
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  LayersControl,
+  useMap,
 } from "react-leaflet";
 import L from "leaflet";
 
@@ -19,120 +19,127 @@ import { Search } from "lucide-react";
 // Fix default marker issue in Vite
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
-    iconRetinaUrl: markerIcon2x,
-    iconUrl: markerIcon,
-    shadowUrl: markerShadow,
+  iconRetinaUrl: markerIcon2x,
+  iconUrl: markerIcon,
+  shadowUrl: markerShadow,
 });
 
 const { BaseLayer } = LayersControl;
 
 // Custom component to move map when position updates
 function RecenterMap({ position }) {
-    const map = useMap();
-    useEffect(() => {
-        map.setView(position, 13);
-    }, [position, map]);
-    return null;
+  const map = useMap();
+  useEffect(() => {
+    map.setView(position, 13);
+  }, [position, map]);
+  return null;
 }
 
 export default function Map() {
-    const [position, setPosition] = useState([27.7172, 85.324]); // Kathmandu default
-    const [loading, setLoading] = useState(true);
-    const [query, setQuery] = useState("");
+  const [position, setPosition] = useState([27.7172, 85.324]); // Kathmandu default
+  const [loading, setLoading] = useState(true);
+  const [query, setQuery] = useState("");
 
-    // Get user location
-    useEffect(() => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (pos) => {
-                    setPosition([pos.coords.latitude, pos.coords.longitude]);
-                    setLoading(false);
-                },
-                () => {
-                    setLoading(false); // fallback: Kathmandu
-                }
-            );
-        }
-    }, []);
+  // Get user location
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          setPosition([pos.coords.latitude, pos.coords.longitude]);
+          setLoading(false);
+        },
+        () => {
+          setLoading(false); // fallback: Kathmandu
+        },
+      );
+    }
+  }, []);
 
-    // Handle search
-    const handleSearch = async (e) => {
-        e.preventDefault();
-        if (!query.trim()) return;
+  // Handle search
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    if (!query.trim()) return;
 
-        try {
-            const res = await fetch(
-                `https://nominatim.openstreetmap.org/search?format=json&q=${query}`
-            );
-            const data = await res.json();
-            if (data && data.length > 0) {
-                const { lat, lon } = data[0];
-                setPosition([parseFloat(lat), parseFloat(lon)]);
-            } else {
-                alert("Location not found!");
-            }
-        } catch (err) {
-            console.error("Search error:", err);
-        }
-    };
+    try {
+      const res = await fetch(
+        `https://nominatim.openstreetmap.org/search?format=json&q=${query}`,
+      );
+      const data = await res.json();
+      if (data && data.length > 0) {
+        const { lat, lon } = data[0];
+        setPosition([parseFloat(lat), parseFloat(lon)]);
+      } else {
+        alert("Location not found!");
+      }
+    } catch (err) {
+      console.error("Search error:", err);
+    }
+  };
 
-    return (
-
-        <div className="w-full md:h-[570px] h-[500px] md:px-10 px-5 pt-5 rounded-2xl overflow-hidden relative">
-            <h1 className="h-20 font-bold md:text-4xl text-3xl text-center"><span className="text-sky-600"> Explore</span>  Trial on Map</h1>
-            {/* Search Bar */}
-            <form
-                onSubmit={handleSearch}
-                className="absolute top-28 left-1/2 -translate-x-1/2 z-[1000] shadow-md rounded-full flex
+  return (
+    <div className="w-full z-0 md:h-[570px] h-[500px] md:px-10 px-5 pt-5 rounded-2xl overflow-hidden relative">
+      <h1 className="h-20 font-bold md:text-4xl text-3xl text-center">
+        <span className="text-sky-600"> Explore</span> Trial on Map
+      </h1>
+      {/* Search Bar */}
+      <form
+        onSubmit={handleSearch}
+        className="absolute top-28 left-1/2 -translate-x-1/2 z-[1000] shadow-md rounded-full flex
                 md:mr-0 mr-20
-                ">
-                <input
-                    type="text"
-                    value={query}
-                    placeholder="Search location..."
-                    onChange={(e) => setQuery(e.target.value)}
-                    className="md:px-10 px-5 md:py-4 py-3 rounded-l-full bg-white   outline-none
+                "
+      >
+        <input
+          type="text"
+          value={query}
+          placeholder="Search location..."
+          onChange={(e) => setQuery(e.target.value)}
+          className="md:px-10 px-5 md:py-4 py-3 rounded-l-full bg-white   outline-none
                     w-[42vw]
                     "
-                />
-                <button
-                    type="submit"
-                    className=" bg-sky-600 text-white rounded-r-full hover:bg-sky-700 hover:cursor-pointer
+        />
+        <button
+          type="submit"
+          className=" bg-sky-600 text-white rounded-r-full hover:bg-sky-700 hover:cursor-pointer
                     md:px-6 px-2 
                     md:py-4 py-3
                     md:mr-0 mr-3
-                    ">
-                    <Search />
-                </button>
-            </form>
+                    "
+        >
+          <Search />
+        </button>
+      </form>
 
-            {/* Map */}
-            <MapContainer center={position} zoom={13} className="w-full h-full rounded-2xl ">
-                <LayersControl position="topright">
-                    {/* Default Street Map */}
-                    <BaseLayer checked name="Street Map" className="rounded-2xl">
-                        <TileLayer
-                            attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
-                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                        />
-                    </BaseLayer>
+      {/* Map */}
+      <MapContainer
+        center={position}
+        zoom={13}
+        className="w-full h-full rounded-2xl "
+      >
+        <LayersControl position="topright">
+          {/* Default Street Map */}
+          <BaseLayer checked name="Street Map" className="rounded-2xl">
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+          </BaseLayer>
 
-                    {/* Satellite Map */}
-                    <BaseLayer name="Satellite">
-                        <TileLayer
-                            attribution="Tiles &copy; Esri"
-                            url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-                        />
-                    </BaseLayer>
-                </LayersControl>
+          {/* Satellite Map */}
+          <BaseLayer name="Satellite">
+            <TileLayer
+              attribution="Tiles &copy; Esri"
+              url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+            />
+          </BaseLayer>
+        </LayersControl>
 
-                <Marker position={position}>
-                    <Popup>{loading ? "Fetching location..." : "You are here 📍"}</Popup>
-                </Marker>
+        <Marker position={position}>
+          <Popup>{loading ? "Fetching location..." : "You are here 📍"}</Popup>
+        </Marker>
 
-                {/* Keep map centered when position changes */}
-                <RecenterMap position={position} />
-            </MapContainer>
-        </div>
-    );
+        {/* Keep map centered when position changes */}
+        <RecenterMap position={position} />
+      </MapContainer>
+    </div>
+  );
 }

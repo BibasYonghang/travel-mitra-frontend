@@ -20,7 +20,6 @@ export default function Intro() {
   const [progressBars, setProgressBars] = useState([0, 0, 0, 0]);
   const [searchValue, setSearchValue] = useState("");
 
-
   const backgroundImages = [
     { path: "/images/home-background-images/background-image1.png" },
     { path: "/images/home-background-images/background-image2.png" },
@@ -56,7 +55,7 @@ export default function Intro() {
   useEffect(() => {
     const interval = setInterval(
       () => setCurrentImage((prev) => (prev + 1) % backgroundImages.length),
-      4000
+      4000,
     );
     return () => clearInterval(interval);
   }, []);
@@ -88,7 +87,7 @@ export default function Intro() {
 
       // Match ignoring case and whitespace
       const matchedTrail = data.find((trail) =>
-        trail.name.toLowerCase().includes(searchValue.trim().toLowerCase())
+        trail.name.toLowerCase().includes(searchValue.trim().toLowerCase()),
       );
 
       if (matchedTrail) {
@@ -112,7 +111,7 @@ export default function Intro() {
         />
 
         {/* Gradient Overlay */}
-        <div className="absolute z-10 top-0 h-[35vh] w-full bg-gradient-to-b from-sky-500 to-transparent"></div>
+        <div className="absolute z-10 top-0 h-[40vh] w-full bg-gradient-to-b from-gray-950 to-transparent"></div>
 
         {/* Navbar */}
         <nav className="absolute z-50 md:px-10 flex justify-between items-center w-full">
@@ -134,7 +133,7 @@ export default function Intro() {
               {navLi.map(({ name, action, route }, idx) => (
                 <li
                   key={idx}
-                  className="text-white hover:cursor-pointer hover:scale-102 hover:text-black transform duration-150 text-lg"
+                  className="text-white hover:cursor-pointer hover:scale-102 hover:text-sky-500 transform duration-150 text-lg"
                 >
                   <ul
                     onClick={() => {

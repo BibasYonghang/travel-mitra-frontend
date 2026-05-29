@@ -39,7 +39,7 @@ export default function Community() {
     ];
 
     return (
-        <section className="md:py-10 md:px-10 px-5 rounded-2xl">
+        <section className="md:pt-14 md:px-10 px-5 rounded-2xl">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 text-center">
                 Join the <span className="text-sky-600">Hiking Community</span>
             </h2>
@@ -53,7 +53,7 @@ export default function Community() {
                     <Link
                         to={path}
                         key={idx}
-                        className="flex flex-col items-center text-center bg-gray-50 p-6 rounded-2xl shadow-md hover:shadow-xl hover:cursor-pointer transition"
+                        className="flex flex-col hover:-translate-y-1.5 items-center text-center bg-gray-100 p-6 rounded-2xl shadow-md hover:shadow-xl hover:cursor-pointer transition"
                     >
                         <div className={`${bg} p-4 rounded-full mb-4`}>
                             {icon}

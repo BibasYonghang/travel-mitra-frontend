@@ -115,13 +115,13 @@ export default function Footer() {
     <footer className="bg-gray-950 text-white w-full">
       <div className=" mx-auto px-6 lg:px-10">
         {/* ── MAIN FOOTER BODY ── */}
-        <div className="py-14 lg:py-20">
+        <div className="py-14  pt-30 pb-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-6">
             {/* Brand column */}
             <div className="lg:col-span-3 flex flex-col gap-10">
               {/* Logo */}
               <div>
-                <div className="mb-3">
+                <div className="mb-10">
                   <img
                     src="/images/travel-mitra-logo.png"
                     alt="Travel Mitra Logo"
@@ -163,11 +163,11 @@ export default function Footer() {
             <div className="hidden lg:grid lg:col-span-8 grid-cols-4 gap-10">
               {footerSections.map((section) => (
                 <div key={section.title}>
-                  <h4 className="flex items-center gap-2 text-white font-bold text-xs uppercase tracking-widest mb-5">
+                  <h4 className="flex items-center gap-2 mb-10 text-white font-bold text-xs uppercase tracking-widest">
                     <span className="text-base">{section.icon}</span>
                     {section.title}
                   </h4>
-                  <ul className="space-y-6">
+                  <ul className="space-y-10">
                     {section.links.map((link) => (
                       <li key={link}>
                         <a
@@ -201,7 +201,7 @@ export default function Footer() {
         </div>
 
         {/* ── BOTTOM BAR ── */}
-        <div className="border-t border-gray-800 py-10">
+        <div className="border-t border-gray-800 py-10 sm:pt-15 sm:pb-20">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
             <p className="text-gray-500 text-sm">
               © {currentYear}{" "}
@@ -209,8 +209,7 @@ export default function Footer() {
               rights reserved.
             </p>
             <p className="text-gray-600 text-xs flex items-center gap-1">
-              Crafted with <FaHeart className="text-sky-500 inline" size={11} />{" "}
-              by the TravelMitra team
+              Designed & Developed By Bibas Yonghang
             </p>
             <div className="flex items-center gap-4">
               {["Privacy Policy", "Terms of Use", "Sitemap"].map((item) => (
