@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import React from "react";
 import { Link } from "react-router-dom";
+import TrailsSkeleton from "../../components/skeletons/TrailsSkeleton";
 
 export default function ArrowRightButton({ buttonTitle, buttonLink }) {
   return (

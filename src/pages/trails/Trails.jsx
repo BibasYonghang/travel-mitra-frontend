@@ -5,24 +5,28 @@ import { Link } from "react-router-dom";
 import { BACKEND_URL } from "../../config/env";
 import ArrowLeftButton from "../../common/buttons/ArrowLeftButton";
 import TrailDiv from "../../common/TrailDiv";
+import TrailsSkeleton from "../../components/skeletons/TrailsSkeleton";
 
 const Trails = () => {
   const [trailsData, setTrailsData] = useState([]);
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchTrails = async () => {
       try {
         const res = await fetch(`${BACKEND_URL}/api/trails`);
         const data = await res.json();
-        console.log(data);
         setTrailsData(data);
       } catch (error) {
         console.log(`Internal Error Says: ${error}`);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchTrails();
   }, []);
+
+  if (loading) return <TrailsSkeleton />;
 
   return (
     <section className="w-full py-6 md:px-10 px-5">
