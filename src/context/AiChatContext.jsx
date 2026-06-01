@@ -45,19 +45,27 @@ export const AIChatProvider = ({ children }) => {
       }
 
       const data = await res.json();
+      const assistantText =
+        data.type === "navigate"
+          ? data.message || data.answer || "Navigating you now..."
+          : data.answer || "No response received";
 
       setMessages((prev) => [
         ...prev,
         {
           role: "assistant",
-          text: data.answer || "No response received",
+          text: assistantText,
           trails: data.trails || [],
+          type: data.type,
+          page: data.page,
         },
       ]);
 
       if (data.trails) {
         setTrails(data.trails);
       }
+
+      return data;
     } catch (err) {
       console.error("Chat error:", err);
       const errorMsg = err.message || "Failed to get response from server";

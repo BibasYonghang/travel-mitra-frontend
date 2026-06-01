@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { Send, X, User } from "lucide-react";
 
@@ -19,6 +20,7 @@ const ChatWindow = () => {
 
   const { sendMessage, messages, trails, filters, loading, error, closeChat } =
     useContext(AIChatContext);
+  const navigate = useNavigate();
 
   const scrollRef = useRef(null);
 
@@ -33,7 +35,10 @@ const ChatWindow = () => {
 
     if (!text.trim()) return;
 
-    await sendMessage(text);
+    const data = await sendMessage(text);
+    if (data?.type === "navigate" && data?.page) {
+      navigate(data.page);
+    }
 
     setText("");
   };

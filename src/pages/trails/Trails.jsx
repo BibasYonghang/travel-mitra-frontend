@@ -14,7 +14,8 @@ const Trails = () => {
       try {
         const res = await fetch(`${BACKEND_URL}/api/trails`);
         const data = await res.json();
-        setTrailsData(data); // store API data in state
+        console.log(data);
+        setTrailsData(data);
       } catch (error) {
         console.log(`Internal Error Says: ${error}`);
       }
