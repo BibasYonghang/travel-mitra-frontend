@@ -35,7 +35,6 @@ function SkeletonBox({ className = "", rounded = "rounded-xl" }) {
   );
 }
 
-// ── single review card skeleton ──
 function ReviewCardSkeleton() {
   return (
     <div className="flex-shrink-0 w-[280px] md:w-[320px] lg:w-[350px] min-h-[380px] bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex flex-col justify-between">
@@ -71,7 +70,6 @@ function ReviewCardSkeleton() {
   );
 }
 
-// ── main skeleton ──
 export default function ReviewsSkeleton({ count = 6 }) {
   if (typeof document !== "undefined") injectStyles();
 
