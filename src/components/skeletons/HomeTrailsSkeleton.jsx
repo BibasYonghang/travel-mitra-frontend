@@ -27,7 +27,6 @@ function injectStyles() {
   document.head.appendChild(tag);
 }
 
-// ── Reusable primitive ──────────────────────────────────────────
 function SkeletonBox({ className = "", rounded = "rounded-xl", style = {} }) {
   return (
     <div
@@ -65,9 +64,7 @@ function TrailCardSkeleton() {
   );
 }
 
-// ── Main skeleton ───────────────────────────────────────────────
 export default function HomeTrailsSkeleton({ name1, name2 }) {
-  // inject shimmer styles once
   if (typeof document !== "undefined") injectStyles();
 
   return (

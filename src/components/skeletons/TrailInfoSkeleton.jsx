@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 
-// ── Inject shimmer once ─────────────────────────────────────────
 const SHIMMER_STYLE = `
   @keyframes trailShimmer {
     0%   { background-position: -700px 0; }
@@ -29,7 +28,6 @@ function injectStyles() {
   document.head.appendChild(tag);
 }
 
-// ── Primitives ──────────────────────────────────────────────────
 function Sk({ className = "", rounded = "rounded-xl", style = {} }) {
   return (
     <div
@@ -50,7 +48,6 @@ function SkLine({ width = "100%", className = "" }) {
   );
 }
 
-// ── Main skeleton ───────────────────────────────────────────────
 export default function TrailInfoSkeleton() {
   useEffect(() => {
     injectStyles();
@@ -63,7 +60,6 @@ export default function TrailInfoSkeleton() {
       aria-label="Loading trail information"
     >
       <div className="w-[95vw] mx-auto bg-white/90 rounded-2xl shadow-lg overflow-hidden border border-sky-200">
-        {/* ── HEADER ─────────────────────────────────────────── */}
         <header className="bg-gradient-to-r from-sky-700 to-sky-500 p-2 md:p-6">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             {/* Avatar + name + location */}
@@ -87,7 +83,6 @@ export default function TrailInfoSkeleton() {
               </div>
             </div>
 
-            {/* Stars + Get Directions */}
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2">
                 <Sk
@@ -110,7 +105,6 @@ export default function TrailInfoSkeleton() {
           </div>
         </header>
 
-        {/* ── MAIN ───────────────────────────────────────────── */}
         <main className="grid grid-cols-1 md:grid-cols-3 gap-6 md:p-6 p-2 mb-4">
           {/* LEFT col-span-2 */}
           <section className="md:col-span-2 space-y-8">
@@ -212,7 +206,6 @@ export default function TrailInfoSkeleton() {
           </aside>
         </main>
 
-        {/* ── FOOTER ─────────────────────────────────────────── */}
         <footer className="px-6 pb-6 pt-4 border-t border-sky-400 bg-white">
           <Sk rounded="rounded-full" className="h-10 w-36" />
         </footer>

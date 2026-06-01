@@ -25,7 +25,6 @@ function injectStyles() {
   document.head.appendChild(tag);
 }
 
-// ── Reusable primitive ──────────────────────────────────────────
 function SkeletonBox({ className = "", rounded = "rounded-xl", style = {} }) {
   return (
     <div
@@ -36,7 +35,6 @@ function SkeletonBox({ className = "", rounded = "rounded-xl", style = {} }) {
   );
 }
 
-// ── Single trail card skeleton — mirrors <TrailDiv> ─────────────
 function TrailCardSkeleton() {
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100">
@@ -64,7 +62,6 @@ function TrailCardSkeleton() {
   );
 }
 
-// ── Main skeleton ───────────────────────────────────────────────
 export default function TrailsSkeleton({ cardCount = 8 }) {
   // inject shimmer styles once
   if (typeof document !== "undefined") injectStyles();
@@ -75,14 +72,12 @@ export default function TrailsSkeleton({ cardCount = 8 }) {
       aria-busy="true"
       aria-label="Loading trails"
     >
-      {/* ── Heading: "Discover Trails" ── */}
       <div className="flex items-center gap-3">
         {/* "Discover" word */}
         <SkeletonBox
           className="h-8 md:h-10 w-32 md:w-40"
           rounded="rounded-lg"
         />
-        {/* "Trails" word (sky-colored in real page) */}
         <SkeletonBox
           className="h-8 md:h-10 w-24 md:w-28"
           rounded="rounded-lg"
@@ -90,7 +85,6 @@ export default function TrailsSkeleton({ cardCount = 8 }) {
         />
       </div>
 
-      {/* ── Trail card grid — matches grid-cols-1 sm:2 xl:4 ── */}
       <div
         className="grid gap-3 justify-center mt-5 w-full
                    grid-cols-1 sm:grid-cols-2 xl:grid-cols-4"
@@ -100,7 +94,6 @@ export default function TrailsSkeleton({ cardCount = 8 }) {
         ))}
       </div>
 
-      {/* ── Back button ghost — mirrors <ArrowLeftButton> ── */}
       <div className="mt-10">
         <SkeletonBox className="h-10 w-36" rounded="rounded-full" />
       </div>
