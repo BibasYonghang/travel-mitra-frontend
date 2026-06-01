@@ -4,9 +4,10 @@ import { Star, ArrowUpRight } from "lucide-react";
 import { AiFillStar } from "react-icons/ai";
 import { BACKEND_URL } from "../../config/env";
 import ArrowLeftButton from "../../common/buttons/ArrowLeftButton";
+import TrailInfoSkeleton from "../../components/skeletons/TrailInfoSkeleton";
 
 export default function TrailInfo() {
-  const { trailName, trailId } = useParams(); // get both params
+  const { trailName, trailId } = useParams(); 
   const [trail, setTrail] = useState(null);
   const [notFound, setNotFound] = useState(false);
 
@@ -58,7 +59,7 @@ export default function TrailInfo() {
     );
   }
 
-  if (!trail) return <div className="p-10 text-center text-xl">Loading...</div>;
+  if (!trail) return <TrailInfoSkeleton />;
 
   const images = trail.images || [trail.image || "/images/placeholder.jpg"];
   const stats = [

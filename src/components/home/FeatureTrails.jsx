@@ -4,9 +4,11 @@ import { AiFillStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { BACKEND_URL } from "../../config/env";
 import TrailDiv from "../../common/TrailDiv";
+import HomeTrailsSkeleton from "../skeletons/HomeTrailsSkeleton";
 
 export default function FeatureTrails() {
   const [trailsData, setTrailsData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchTrails = async () => {
@@ -14,6 +16,7 @@ export default function FeatureTrails() {
         const res = await fetch(`${BACKEND_URL}/api/trails`);
         const data = await res.json();
         setTrailsData(data); // store API data in state
+        setLoading(false);
       } catch (error) {
         console.log(`Internal Error Says: ${error}`);
       }
@@ -23,6 +26,7 @@ export default function FeatureTrails() {
   }, []);
 
   const featuredTrails = trailsData.slice(0, 4);
+  if (loading) return <HomeTrailsSkeleton name1="Featured" name2="Trails" />;
 
   return (
     <section className="w-full py-6 md:px-10 px-5">

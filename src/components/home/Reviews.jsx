@@ -3,11 +3,13 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { BACKEND_URL } from "../../config/env";
 import ArrowRightButton from "../../common/buttons/ArrowRightButton";
+import ReviewsSkeleton from "../skeletons/ReviewsSkeleton";
 
 export default function Reviews() {
   const [reviews, setReviews] = useState([]);
   const scrollContainerRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
+  const [loading, setLoading] = useState(true);
   const animationRef = useRef(null);
   const scrollSpeed = 1; // pixels per frame
 
@@ -16,8 +18,8 @@ export default function Reviews() {
       try {
         const res = await fetch(`${BACKEND_URL}/api/reviews`);
         const data = await res.json();
-        // Duplicate reviews for seamless infinite scroll if needed
         setReviews(data);
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -61,6 +63,8 @@ export default function Reviews() {
       }
     };
   }, [reviews, isHovered]);
+
+  if (loading) return <ReviewsSkeleton />;
 
   return (
     <section
@@ -225,17 +229,6 @@ export default function Reviews() {
           buttonLink={"user-review"}
         />
       </div>
-
-      {/* Custom CSS for hiding scrollbar */}
-      {/* <style jsx>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-        .scrollbar-hide {
-          scrollbar-width: none;
-          -ms-overflow-style: none;
-        }
-      `}</style> */}
     </section>
   );
 }

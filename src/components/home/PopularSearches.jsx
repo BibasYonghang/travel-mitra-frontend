@@ -5,17 +5,20 @@ import { Link } from "react-router-dom";
 import { BACKEND_URL } from "../../config/env.js";
 import ArrowRightButton from "../../common/buttons/ArrowRightButton.jsx";
 import TrailDiv from "../../common/TrailDiv.jsx";
+import TrailsSkeleton from "../skeletons/TrailsSkeleton.jsx";
+import HomeTrailsSkeleton from "../skeletons/HomeTrailsSkeleton.jsx";
 
-export default function FeatureTrails() {
+export default function PopularSearches() {
   const [trailsData, setTrailsData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchTrails = async () => {
       try {
         const res = await fetch(`${BACKEND_URL}/api/trails`);
-
         const data = await res.json();
         setTrailsData(data); // store API data in state
+        setLoading(false);
       } catch (error) {
         console.log(`Internal Error Says: ${error}`);
       }
@@ -24,7 +27,8 @@ export default function FeatureTrails() {
     fetchTrails();
   }, []);
 
-  const popularSearches = trailsData.slice(4, 8); // this is array because .slice() always returns a new array, even if it only has 1 element or is empty.
+  const popularSearches = trailsData.slice(4, 8);
+  if (loading) return <HomeTrailsSkeleton name1="Popular" name2="Searches" />;
 
   return (
     <section className="w-full pt-6 md:px-10 px-5">
