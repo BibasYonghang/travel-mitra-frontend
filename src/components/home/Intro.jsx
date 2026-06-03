@@ -11,6 +11,8 @@ import {
 } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { BACKEND_URL } from "../../config/env";
+import axios from "axios";
 
 export default function Intro() {
   const navigate = useNavigate();
@@ -18,8 +20,6 @@ export default function Intro() {
   const [currentImage, setCurrentImage] = useState(0);
   const [progressBars, setProgressBars] = useState([0, 0, 0, 0]);
   const [searchValue, setSearchValue] = useState("");
-
-  const APP_URL = import.meta.env.VITE_BASE_URL;
 
   const backgroundImages = [
     { path: "/images/home-background-images/background-image1.png" },
@@ -33,8 +33,10 @@ export default function Intro() {
     document
       .getElementById("about-app")
       ?.scrollIntoView({ behavior: "smooth" });
+
   const contact = () =>
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+
   const popularSearches = () =>
     document
       .getElementById("popular-section")
@@ -56,7 +58,7 @@ export default function Intro() {
   useEffect(() => {
     const interval = setInterval(
       () => setCurrentImage((prev) => (prev + 1) % backgroundImages.length),
-      4000
+      4000,
     );
     return () => clearInterval(interval);
   }, []);
@@ -80,16 +82,15 @@ export default function Intro() {
 
   // Slugify function
   const slugify = (str) => str.toLowerCase().trim().replace(/\s+/g, "-");
-
   // Search handler
   const handleSearch = async () => {
     try {
-      const res = await fetch(`${APP_URL}/api/trails`);
+      const res = await axios.get(`${BACKEND_URL}/api/trails`);
       const data = await res.json();
 
       // Match ignoring case and whitespace
       const matchedTrail = data.find((trail) =>
-        trail.name.toLowerCase().includes(searchValue.trim().toLowerCase())
+        trail.name.toLowerCase().includes(searchValue.trim().toLowerCase()),
       );
 
       if (matchedTrail) {
@@ -113,7 +114,7 @@ export default function Intro() {
         />
 
         {/* Gradient Overlay */}
-        <div className="absolute z-10 top-0 h-[30vh] w-full bg-gradient-to-b from-black to-transparent"></div>
+        <div className="absolute z-10 top-0 h-[40vh] w-full bg-gradient-to-b from-gray-950 to-transparent"></div>
 
         {/* Navbar */}
         <nav className="absolute z-50 md:px-10 flex justify-between items-center w-full">
