@@ -12,6 +12,7 @@ import {
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { BACKEND_URL } from "../../config/env";
+import axios from "axios";
 
 export default function Intro() {
   const navigate = useNavigate();
@@ -32,8 +33,10 @@ export default function Intro() {
     document
       .getElementById("about-app")
       ?.scrollIntoView({ behavior: "smooth" });
+
   const contact = () =>
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+
   const popularSearches = () =>
     document
       .getElementById("popular-section")
@@ -82,7 +85,7 @@ export default function Intro() {
   // Search handler
   const handleSearch = async () => {
     try {
-      const res = await fetch(`${BACKEND_URL}/api/trails`);
+      const res = await axios.get(`${BACKEND_URL}/api/trails`);
       const data = await res.json();
 
       // Match ignoring case and whitespace

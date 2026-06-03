@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { BACKEND_URL } from "../../config/env";
 import TrailDiv from "../../common/TrailDiv";
 import HomeTrailsSkeleton from "../skeletons/HomeTrailsSkeleton";
+import axios from "axios";
 
 export default function FeatureTrails() {
   const [trailsData, setTrailsData] = useState([]);
@@ -13,7 +14,7 @@ export default function FeatureTrails() {
   useEffect(() => {
     const fetchTrails = async () => {
       try {
-        const res = await fetch(`${BACKEND_URL}/api/trails`);
+        const res = await axios.get(`${BACKEND_URL}/api/trails`);
         const data = await res.json();
         setTrailsData(data); // store API data in state
         setLoading(false);

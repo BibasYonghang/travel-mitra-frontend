@@ -16,6 +16,7 @@ import {
   FaHotel,
   FaUmbrellaBeach,
 } from "react-icons/fa";
+import axios from "axios";
 import { BACKEND_URL } from "../../config/env";
 
 export default function TravelContactUs() {
@@ -50,9 +51,7 @@ export default function TravelContactUs() {
     setIsSubmitting(true);
 
     try {
-      // POST to your backend
-      await fetch(`${BACKEND_URL}/api/contact-us`, {
-        method: "POST",
+      await axios.post(`${BACKEND_URL}/api/contact-us`, {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
